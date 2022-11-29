@@ -1,6 +1,4 @@
-﻿
-
-namespace Kindergarten2.Controllers
+﻿namespace Kindergarten2.Controllers
 {
 	using Kindergarten2.Models.Teachers;
 	using Microsoft.AspNetCore.Mvc;
