@@ -13,18 +13,25 @@
 				<div class="form-group">
 					<label asp-for="FirstName"></label>
 					<input asp-for="FirstName" class="form-control" placeholder="Add Teacher's first name here...">
+					<span asp-validation-for="FirstName" class="small text-danger"></span>
 				</div>
 				<div class="form-group">
 					<label asp-for="LastName"></label>
 					<input asp-for="LastName" class="form-control" placeholder="Add Teacher's last name here...">
+					<span asp-validation-for="LastName" class="small text-danger"></span>
+
 				</div>
 				<div class="form-group">
 					<label asp-for="Experience"></label>
 					<input asp-for="Experience" class="form-control" placeholder="Add Teacher's years of experience here...">
+					<span asp-validation-for="Experience" class="small text-danger"></span>
+
 				</div>
 				<div class="form-group">
 					<label asp-for="Specialization"></label>
 					<textarea asp-for="Specialization" rows="3" class="form-control" placeholder="Add Teacher's specialization description here..."></textarea>
+					<span asp-validation-for="Specialization" class="small text-danger"></span>
+
 				</div>
 				 <div class="form-group">
                 <label asp-for="GroupId"></label>

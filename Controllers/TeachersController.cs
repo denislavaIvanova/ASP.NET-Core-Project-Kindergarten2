@@ -20,7 +20,14 @@
 		[HttpPost]
 		public IActionResult Add(AddTeacherFormModel teacher)
 		{
-			return View();
+			if (!ModelState.IsValid)
+			{
+				teacher.Groups = this.GetTeacherGroups();
+
+				return View(teacher);
+			}
+
+			return RedirectToAction("Index", "Home");
 		}
 
 		private IEnumerable<TeacherGroupViewModel> GetTeacherGroups()

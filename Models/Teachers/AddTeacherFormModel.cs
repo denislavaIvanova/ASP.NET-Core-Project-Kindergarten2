@@ -7,14 +7,12 @@ namespace Kindergarten2.Models.Teachers
 	public class AddTeacherFormModel
 	{
 		[Required]
-		[MinLength(2)]
-		[MaxLength(100)]
+		[StringLength(100, MinimumLength = 2, ErrorMessage = "{0} must be between {2} and {1} symbols.")]
 		[Display(Name = "First name")]
 		public string FirstName { get; init; }
 
 		[Required]
-		[MinLength(2)]
-		[MaxLength(100)]
+		[StringLength(100, MinimumLength = 2, ErrorMessage = "{0} must be between {2} and {1} symbols.")]
 		[Display(Name = "Last name")]
 		public string LastName { get; init; }
 
@@ -22,8 +20,8 @@ namespace Kindergarten2.Models.Teachers
 		public int Experience { get; init; }
 
 		[Required]
-		[MinLength(2)]
-		[MaxLength(300)]
+		[StringLength(300, MinimumLength = 2, ErrorMessage = "{0} must be between {2} and {1} symbols.")]
+
 		public string Specialization { get; init; }
 
 		[Display(Name = "Group")]
