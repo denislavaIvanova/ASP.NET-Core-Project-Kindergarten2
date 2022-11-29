@@ -21,6 +21,8 @@ namespace Kindergarten2.Infrastructure
 
 			SeedCategories(data);
 
+			SeedGroups(data);
+
 
 			return app;
 		}
@@ -37,6 +39,29 @@ namespace Kindergarten2.Infrastructure
 				new Category{Description="Nursery" },
 				new Category{Description="Kindergarten" },
 				new Category{Description="Prepschool" },
+
+			});
+
+			data.SaveChanges();
+		}
+
+		private static void SeedGroups(KindergartenDbContext data)
+		{
+			if (data.Groups.Any())
+			{
+				return;
+			}
+
+			data.Groups.AddRange(new[]
+			{
+				new Group{Name="Snowdrop",ChildrenCount=19,CategoryId=1 },
+				new Group{Name="Daisy" ,ChildrenCount=15,CategoryId=1},
+				new Group{Name="Dew",ChildrenCount=14,CategoryId=2 },
+				new Group{Name="Bear",ChildrenCount=16,CategoryId=2 },
+				new Group{Name="Sweet",ChildrenCount=12,CategoryId=2 },
+				new Group{Name="Chocolate",ChildrenCount=5,CategoryId=3 },
+				new Group{Name="Rose",ChildrenCount=7,CategoryId=3 },
+
 
 			});
 

@@ -1,32 +1,44 @@
 ﻿@model AddTeacherFormModel
-<form method="post">
-  <div class="form-group">
-    <label asp for="First Name">First Name</label>
-    <input class="form-control" placeholder="Penka">
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Example select</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlSelect2">Example multiple select</label>
-    <select multiple class="form-control" id="exampleFormControlSelect2">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1">Example textarea</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
-</form>
+
+@{
+	ViewData["Title"] = "Add Teacher";
+}
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+			<h2 class="heading-margin text-center">Add Teacher</h2>
+			<form method="post">
+				<div class="form-group">
+					<label asp-for="FirstName"></label>
+					<input asp-for="FirstName" class="form-control" placeholder="Add Teacher's first name here...">
+				</div>
+				<div class="form-group">
+					<label asp-for="LastName"></label>
+					<input asp-for="LastName" class="form-control" placeholder="Add Teacher's last name here...">
+				</div>
+				<div class="form-group">
+					<label asp-for="Experience"></label>
+					<input asp-for="Experience" class="form-control" placeholder="Add Teacher's years of experience here...">
+				</div>
+				<div class="form-group">
+					<label asp-for="Specialization"></label>
+					<textarea asp-for="Specialization" rows="3" class="form-control" placeholder="Add Teacher's specialization description here..."></textarea>
+				</div>
+				 <div class="form-group">
+                <label asp-for="GroupId"></label>
+                <select asp-for="GroupId" class="form-control">
+                    @foreach (var category in Model.Groups)
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="GroupId" class="small text-danger"></span>
+            </div>
+
+            <input class="btn btn-primary mt-3" type="submit" value="Save" />
+			</form>
+		</div>
+	</div>
+</div>

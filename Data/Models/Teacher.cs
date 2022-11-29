@@ -11,16 +11,20 @@
 		public Group Group { get; init; }
 
 		[Required]
+		[MinLength(2)]
 		[MaxLength(100)]
 		public string FirstName { get; set; }
 
 		[Required]
+		[MinLength(2)]
 		[MaxLength(100)]
 		public string LastName { get; set; }
 
+		[Range(0, 100)]
 		public int Experience { get; set; }
 
 		[Required]
+		[MinLength(2)]
 		[MaxLength(300)]
 		public string Specialization { get; set; }
 	}
