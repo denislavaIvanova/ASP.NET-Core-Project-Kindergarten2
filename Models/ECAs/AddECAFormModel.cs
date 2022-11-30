@@ -9,7 +9,7 @@ namespace Kindergarten2.Models.ECAs
 		[StringLength(300, MinimumLength = 2, ErrorMessage = "The {0} must be between {2} and {1} symbols.")]
 		public string Description { get; init; }
 
-		[Display(Name = "Monthly Fee in EUR(0.00)")]
+		[Display(Name = "Monthly Fee in EUR")]
 		[Range(0, 10000)]
 		public double MonthlyFee { get; init; }
 

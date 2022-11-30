@@ -13,7 +13,7 @@ namespace Kindergarten2.Models.Menus
 		public string MenuType { get; init; }
 
 		[Range(0, 2000)]
-		[Display(Name = "Price per menu in EUR(0.00)")]
+		[Display(Name = "Price per menu in EUR")]
 
 		public double Price { get; init; }
 
