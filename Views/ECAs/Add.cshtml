@@ -1,0 +1,27 @@
+﻿@model AddECAFormModel
+
+@{
+	ViewData["Title"] = "Add ECA";
+}
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+			<h2 class="heading-margin text-center">Add ECA</h2>
+			<form method="post">
+				<div class="form-group">
+					<label asp-for="MonthlyFee"></label>
+					<input asp-for="MonthlyFee" class="form-control" placeholder="Add monthly fee in EUR(0.00) of the extracurricular activity here...">
+					<span asp-validation-for="MonthlyFee" class="small text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Description"></label>
+					<textarea asp-for="Description" rows="3" class="form-control" placeholder="Add description of the extracurricular activity here..."></textarea>
+					<span asp-validation-for="Description" class="small text-danger"></span>
+
+				</div>
+				<input class="btn btn-primary" type="submit" value="Save"/>
+			</form>
+		</div>
+	</div>
+</div>
