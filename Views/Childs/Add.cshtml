@@ -1,0 +1,86 @@
+﻿@model AddChildFormModel
+
+@{
+	ViewData["Title"] = "Add Child";
+}
+
+<div class="container">
+	<div class="row">
+
+		<div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+			<h2 class="heading-margin text-center">Add Child</h2>
+			<form method="post">
+				<div class="form-group">
+					<label asp-for="FirstName"></label>
+					<input asp-for="FirstName" class="form-control" placeholder="Add child's first name here...">
+					<span asp-validation-for="FirstName" class="small text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="MiddleName"></label>
+					<input asp-for="MiddleName" class="form-control" placeholder="Add child's middle name here...">
+					<span asp-validation-for="MiddleName" class="small text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="LastName"></label>
+					<input asp-for="LastName" class="form-control" placeholder="Add child's last name here...">
+					<span asp-validation-for="LastName" class="small text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Age"></label>
+					<input asp-for="Age" class="form-control" placeholder="Add child's age here...">
+					<span asp-validation-for="Age" class="small text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="GroupId"></label>
+					<select asp-for="GroupId" class="form-control">
+						@foreach (var group in Model.Groups)
+						{
+							<option value="@group.Id">@group.Name</option>
+						}
+					</select>
+					<span asp-validation-for="GroupId" class="small text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="TripId"></label>
+					<select asp-for="TripId" class="form-control">
+						@foreach (var trip in Model.Trips)
+						{
+							<option value="@trip.Id">@trip.PlaceToVisit</option>
+						}
+					</select>
+					<span asp-validation-for="TripId" class="small text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="MenuId"></label>
+					<select asp-for="MenuId" class="form-control">
+						@foreach (var menu in Model.Menus)
+						{
+							<option value="@menu.Id">@menu.MenuType</option>
+						}
+					</select>
+					<span asp-validation-for="MenuId" class="small text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="ECAId"></label>
+					<select asp-for="ECAId" class="form-control">
+						@foreach (var ECA in Model.ECAs)
+						{
+							<option value="@ECA.Id">@ECA.Description</option>
+						}
+					</select>
+					<span asp-validation-for="ECAId" class="small text-danger"></span>
+				</div>
+				<input class="btn btn-primary mt-3" type="submit" value="Save" />
+			</form>
+		</div>
+	</div>
+
+</div>
+
+
+
+
+
+
+

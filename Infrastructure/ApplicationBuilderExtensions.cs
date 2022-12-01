@@ -36,9 +36,9 @@ namespace Kindergarten2.Infrastructure
 
 			data.Categories.AddRange(new[]
 			{
-				new Category{Description="Nursery" },
-				new Category{Description="Kindergarten" },
-				new Category{Description="Prepschool" },
+				new Category{Description="Music" },
+				new Category{Description="Engineering" },
+				new Category{Description="IT" },
 
 			});
 
