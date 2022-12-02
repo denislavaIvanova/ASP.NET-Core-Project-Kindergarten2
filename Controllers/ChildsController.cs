@@ -42,6 +42,8 @@ namespace Kindergarten2.Controllers
 				this.ModelState.AddModelError(nameof(child.TripId), "Trip does not exist!");
 			}
 
+
+
 			if (!ModelState.IsValid)
 			{
 				child.Groups = this.GetChildGroups();
@@ -88,7 +90,7 @@ namespace Kindergarten2.Controllers
 			.ECAs.Select(c => new ChildECAViewModel
 			{
 				Id = c.Id,
-				Description = c.Description
+				Title = c.Title
 
 			}).ToList();
 

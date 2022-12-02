@@ -30,7 +30,9 @@ namespace Kindergarten2.Controllers
 			var ECAData = new ECA
 			{
 				MonthlyFee = ECA.MonthlyFee,
+				Title = ECA.Title,
 				Description = ECA.Description,
+				ImageUrl = ECA.ImageUrl
 			};
 
 			this.data.ECAs.Add(ECAData);

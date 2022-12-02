@@ -12,7 +12,15 @@
 
 		public string MenuType { get; set; }
 
+		[Required]
+		[MaxLength(300)]
+
+		public string Description { get; set; }
+
 		public double Price { get; set; }
+
+		[Required]
+		public string ImageUrl { get; set; }
 
 		public IEnumerable<Child> Children { get; init; } = new List<Child>();
 	}

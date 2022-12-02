@@ -1,0 +1,22 @@
+﻿@model IEnumerable<TeacherListingViewModel>
+
+<div class="row">
+	@foreach (var teacher in Model)
+	{
+	<div class="col-md-4">
+			<div class="card mb-3">
+				<img class="card-img-top" src="@teacher.ImageUrl" alt="@teacher.FirstName @teacher.LastName">
+			<div class="card-body text-center">
+				<h5 class="card-title text-center">@teacher.FirstName @teacher.LastName with @teacher.Experience years of experience.</h5>
+				<p class="card-text text-center">@teacher.Specialization</p>
+				<a asp-controller="Teachers" asp-action="Details" asp-route-id="@teacher.Id" class="btn btn-primary">Details</a>
+			</div>
+		</div>
+
+	</div>
+	
+	}
+
+
+</div>
+

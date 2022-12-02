@@ -13,10 +13,34 @@
 
 		public TeachersController(KindergartenDbContext data)
 			=> this.data = data;
+
+
 		public IActionResult Add() => View(new AddTeacherFormModel
 		{
 			Groups = this.GetTeacherGroups()
 		});
+
+		public IActionResult All()
+		{
+			var teachers = this.data
+				.Teachers
+				.OrderBy(t => t.FirstName)
+				.ThenBy(t => t.LastName)
+				.Select(t => new TeacherListingViewModel
+				{
+					Id = t.Id,
+					FirstName = t.FirstName,
+					LastName = t.LastName,
+					Experience = t.Experience,
+					Specialization = t.Specialization,
+					Group = t.Group.Name,
+					ImageUrl = t.ImageUrl
+				})
+				.ToList();
+
+			return View(teachers);
+
+		}
 
 		[HttpPost]
 		public IActionResult Add(AddTeacherFormModel teacher)
@@ -39,7 +63,8 @@
 				FirstName = teacher.FirstName,
 				LastName = teacher.LastName,
 				Experience = teacher.Experience,
-				Specialization = teacher.Specialization
+				Specialization = teacher.Specialization,
+				ImageUrl = teacher.ImageUrl
 
 			};
 
@@ -47,7 +72,7 @@
 
 			this.data.SaveChanges();
 
-			return RedirectToAction("Index", "Home");
+			return RedirectToAction(nameof(All));
 		}
 
 		private IEnumerable<TeacherGroupViewModel> GetTeacherGroups()

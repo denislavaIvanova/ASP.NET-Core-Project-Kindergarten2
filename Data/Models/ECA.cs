@@ -8,8 +8,15 @@ namespace Kindergarten2.Data.Models
 		public int Id { get; init; }
 
 		[Required]
+		[MaxLength(100)]
+		public string Title { get; set; }
+
+		[Required]
 		[MaxLength(300)]
 		public string Description { get; set; }
+
+		[Required]
+		public string ImageUrl { get; set; }
 
 		public double MonthlyFee { get; set; }
 

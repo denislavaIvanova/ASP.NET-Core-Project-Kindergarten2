@@ -28,7 +28,9 @@ namespace Kindergarten2.Controllers
 			var menuData = new Menu
 			{
 				MenuType = menu.MenuType,
+				Description = menu.Description,
 				Price = menu.Price,
+				ImageUrl = menu.ImageUrl
 			};
 
 			this.data.Menus.Add(menuData);

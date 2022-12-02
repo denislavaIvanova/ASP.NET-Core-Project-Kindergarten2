@@ -396,3 +396,4 @@ C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\obj
 C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\obj\Debug\net5.0\Razor\Views\Menus\Add.cshtml.g.cs
 C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\obj\Debug\net5.0\Razor\Views\Trips\Add.cshtml.g.cs
 C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\obj\Debug\net5.0\Razor\Views\Childs\Add.cshtml.g.cs
+C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\obj\Debug\net5.0\Razor\Views\Teachers\All.cshtml.g.cs

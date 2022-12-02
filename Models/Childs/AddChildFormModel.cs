@@ -24,6 +24,8 @@
 		[Range(1, 6, ErrorMessage = "{0} must be between {1} and {2} years inclusive.")]
 		public int Age { get; init; }
 
+
+
 		[Display(Name = "Group")]
 		public int GroupId { get; init; }
 

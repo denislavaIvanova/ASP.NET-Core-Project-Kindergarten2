@@ -11,6 +11,11 @@
 		public string PlaceToVisit { get; set; }
 
 		[Required]
+		[Url]
+		[Display(Name = "Image URL")]
+		public string ImageUrl { get; init; }
+
+		[Required]
 		[StringLength(300, MinimumLength = 2, ErrorMessage = "{0} must be between {2} and {1} symbols.")]
 		public string Activity { get; set; }
 

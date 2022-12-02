@@ -14,6 +14,9 @@
 		[MaxLength(300)]
 		public string Activity { get; set; }
 
+		[Required]
+		public string ImageUrl { get; set; }
+
 		public double Price { get; set; }
 
 		[Required]

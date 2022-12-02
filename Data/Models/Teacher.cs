@@ -20,6 +20,9 @@
 		[MaxLength(100)]
 		public string LastName { get; set; }
 
+		[Required]
+		public string ImageUrl { get; set; }
+
 		[Range(0, 100)]
 		public int Experience { get; set; }
 

@@ -30,6 +30,7 @@
 					<input asp-for="Age" class="form-control" placeholder="Add child's age here...">
 					<span asp-validation-for="Age" class="small text-danger"></span>
 				</div>
+				 
 				<div class="form-group">
 					<label asp-for="GroupId"></label>
 					<select asp-for="GroupId" class="form-control">
@@ -66,7 +67,7 @@
 					<select asp-for="ECAId" class="form-control">
 						@foreach (var ECA in Model.ECAs)
 						{
-							<option value="@ECA.Id">@ECA.Description</option>
+							<option value="@ECA.Id">@ECA.Title</option>
 						}
 					</select>
 					<span asp-validation-for="ECAId" class="small text-danger"></span>

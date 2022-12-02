@@ -32,7 +32,8 @@ namespace Kindergarten2.Controllers
 				PlaceToVisit = trip.PlaceToVisit,
 				Activity = trip.Activity,
 				Location = trip.Location,
-				Price = trip.Price
+				Price = trip.Price,
+				ImageUrl = trip.ImageUrl
 			};
 
 			this.data.Trips.Add(tripData);

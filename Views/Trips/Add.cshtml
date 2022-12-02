@@ -16,7 +16,7 @@
 				</div>
 				<div class="form-group">
 					<label asp-for="Activity"></label>
-					<input asp-for="Activity" class="form-control" placeholder="Add trip's main activity here...">
+					<textarea asp-for="Activity" class="form-control" placeholder="Add trip's main activity here..."></textarea>
 					<span asp-validation-for="Activity" class="small text-danger"></span>
 				</div>
 				<div class="form-group">
@@ -24,6 +24,11 @@
 					<input asp-for="Price" class="form-control" placeholder="Add trip's price here...">
 					<span asp-validation-for="Price" class="small text-danger"></span>
 				</div>
+				 <div class="form-group">
+                <label asp-for="ImageUrl"></label>
+                <input asp-for="ImageUrl" class="form-control" placeholder="Your trip's URL here...">
+                <span asp-validation-for="ImageUrl" class="small text-danger"></span>
+            </div>
 				<div class="form-group">
 					<label asp-for="Location"></label>
 					<input asp-for="Location" class="form-control" placeholder="Add trip's location here...">

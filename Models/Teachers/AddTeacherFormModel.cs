@@ -24,6 +24,11 @@ namespace Kindergarten2.Models.Teachers
 
 		public string Specialization { get; init; }
 
+		[Required]
+		[Url]
+		[Display(Name = "Image URL")]
+		public string ImageUrl { get; init; }
+
 		[Display(Name = "Group")]
 		public int GroupId { get; init; }
 
