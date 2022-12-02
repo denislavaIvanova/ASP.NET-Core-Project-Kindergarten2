@@ -30,5 +30,10 @@
 		[MinLength(2)]
 		[MaxLength(300)]
 		public string Specialization { get; set; }
+
+		[Required]
+		[MinLength(2)]
+		[MaxLength(600)]
+		public string Introduction { get; set; }
 	}
 }

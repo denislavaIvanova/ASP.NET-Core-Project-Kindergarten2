@@ -2,7 +2,7 @@
 {
 	using Kindergarten2.Data;
 	using Kindergarten2.Models;
-	using Kindergarten2.Models.Teachers;
+	using Kindergarten2.Models.Home;
 	using Microsoft.AspNetCore.Mvc;
 	using System.Diagnostics;
 	using System.Linq;
@@ -16,24 +16,35 @@
 			=> this.data = data;
 		public IActionResult Index()
 		{
+
+			var totalTeachers = this.data.Teachers.Count();
+			var totalChildren = this.data.Children.Count();
+			var totalGroups = this.data.Groups.Count();
+
 			var teachers = this.data
 					.Teachers
 					.OrderBy(t => t.FirstName)
 					.ThenBy(t => t.LastName)
-					.Select(t => new TeacherListingViewModel
+					.Select(t => new TeacherIndexViewModel
 					{
 						Id = t.Id,
 						FirstName = t.FirstName,
 						LastName = t.LastName,
 						Experience = t.Experience,
 						Specialization = t.Specialization,
-						Group = t.Group.Name,
+						Introduction = t.Introduction,
 						ImageUrl = t.ImageUrl
 					})
 					.Take(3)
 					.ToList();
 
-			return View(teachers);
+			return View(new IndexViewModel
+			{
+				TotalTeachers = totalTeachers,
+				Teachers = teachers,
+				TotalChildren = totalChildren,
+				TotalGroups = totalGroups
+			});
 
 		}
 

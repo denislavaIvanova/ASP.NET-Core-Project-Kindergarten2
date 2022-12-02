@@ -25,6 +25,11 @@ namespace Kindergarten2.Models.Teachers
 		public string Specialization { get; init; }
 
 		[Required]
+		[StringLength(600, MinimumLength = 2, ErrorMessage = "{0} must be between {2} and {1} symbols.")]
+
+		public string Introduction { get; init; }
+
+		[Required]
 		[Url]
 		[Display(Name = "Image URL")]
 		public string ImageUrl { get; init; }

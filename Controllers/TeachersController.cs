@@ -33,12 +33,16 @@
 					LastName = t.LastName,
 					Experience = t.Experience,
 					Specialization = t.Specialization,
+					Introduction = t.Introduction,
 					Group = t.Group.Name,
 					ImageUrl = t.ImageUrl
 				})
 				.ToList();
 
-			return View(teachers);
+			return View(new AllTeachersQueryModel
+			{
+				Teachers = teachers
+			});
 
 		}
 
@@ -64,6 +68,7 @@
 				LastName = teacher.LastName,
 				Experience = teacher.Experience,
 				Specialization = teacher.Specialization,
+				Introduction = teacher.Introduction,
 				ImageUrl = teacher.ImageUrl
 
 			};

@@ -1,7 +1,18 @@
-﻿@model IEnumerable<TeacherListingViewModel>
+﻿@model AllTeachersQueryModel
+
+	
+		<form method="get">
+			<div class="row">
+				<div class="form-group col-md-3">
+					<label asp-for="SearchTerm"></label>
+					<input asp-for="SearchTerm" class="form-control" placeholder="Use Teacher's first and last names...">
+				</div>
+				</div>
+		</form>
+		
 
 <div class="row">
-	@foreach (var teacher in Model)
+	@foreach (var teacher in Model.Teachers)
 	{
 	<div class="col-md-4">
 			<div class="card mb-3">

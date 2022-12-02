@@ -11,6 +11,8 @@
 
 		public string Specialization { get; init; }
 
+		public string Introduction { get; init; }
+
 		public string ImageUrl { get; init; }
 
 		public string Group { get; init; }

@@ -29,8 +29,14 @@
 				</div>
 				<div class="form-group">
 					<label asp-for="Specialization"></label>
-					<textarea asp-for="Specialization" rows="3" class="form-control" placeholder="Add Teacher's specialization description here..."></textarea>
+					<input asp-for="Specialization" class="form-control" placeholder="Add Teacher's specialization here...">
 					<span asp-validation-for="Specialization" class="small text-danger"></span>
+
+				</div>
+				<div class="form-group">
+					<label asp-for="Introduction"></label>
+					<textarea asp-for="Introduction" rows="3" class="form-control" placeholder="Add Teacher's introduction here..."></textarea>
+					<span asp-validation-for="Introduction" class="small text-danger"></span>
 
 				</div>
 				 <div class="form-group">
