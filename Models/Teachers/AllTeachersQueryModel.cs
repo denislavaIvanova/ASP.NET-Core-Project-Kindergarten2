@@ -5,14 +5,17 @@
 
 	public class AllTeachersQueryModel
 	{
+		public const int TeachersPerPage = 3;
 		public string Specialization { get; init; }
-		public IEnumerable<string> Specializations { get; init; }
+		public IEnumerable<string> Specializations { get; set; }
 
 		[Display(Name = "Search")]
 		public string SearchTerm { get; init; }
 
 		public TeacherSorting Sorting { get; init; }
 
-		public IEnumerable<TeacherListingViewModel> Teachers { get; init; }
+		//current page if IT HAS NO VALUE, IT WILL START FROM 1
+		public int CurrentPage { get; init; } = 1;
+		public IEnumerable<TeacherListingViewModel> Teachers { get; set; }
 	}
 }

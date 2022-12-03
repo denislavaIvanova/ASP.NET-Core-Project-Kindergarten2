@@ -14,32 +14,33 @@
 		public TeachersController(KindergartenDbContext data)
 			=> this.data = data;
 
-
-		public IActionResult Add() => View(new AddTeacherFormModel
-		{
-			Groups = this.GetTeacherGroups()
-		});
-
-		public IActionResult All(string specialization, string searchTerm)
+		public IActionResult All([FromQuery] AllTeachersQueryModel query)
 		{
 			var teachersQuery = this.data.Teachers.AsQueryable();
 
-			if (!string.IsNullOrWhiteSpace(specialization))
+			if (!string.IsNullOrWhiteSpace(query.Specialization))
 			{
-				teachersQuery = teachersQuery.Where(t => t.Specialization == specialization);
+				teachersQuery = teachersQuery.Where(t => t.Specialization == query.Specialization);
 
 			}
 
-			if (!string.IsNullOrWhiteSpace(searchTerm))
+			if (!string.IsNullOrWhiteSpace(query.SearchTerm))
 			{
 				teachersQuery = teachersQuery.Where(t =>
-				  (t.FirstName + " " + t.LastName).ToLower().Contains(searchTerm.ToLower()) ||
-				  t.Introduction.ToLower().Contains(searchTerm.ToLower()));
+				  (t.FirstName + " " + t.LastName).ToLower().Contains(query.SearchTerm.ToLower()) ||
+				  t.Introduction.ToLower().Contains(query.SearchTerm.ToLower()));
 			}
 
+			teachersQuery = query.Sorting switch
+			{
+				TeacherSorting.Experience => teachersQuery.OrderByDescending(t => t.Experience),
+				TeacherSorting.FirstNameAndLastName => teachersQuery.OrderBy(t => t.FirstName).ThenBy(t => t.LastName),
+				TeacherSorting.DateCreated or _ => teachersQuery.OrderByDescending(t => t.Id)
+			};
+
 			var teachers = teachersQuery
-				.OrderBy(t => t.FirstName)
-				.ThenBy(t => t.LastName)
+				.Skip((query.CurrentPage - 1) * AllTeachersQueryModel.TeachersPerPage)
+				.Take(AllTeachersQueryModel.TeachersPerPage)
 				.Select(t => new TeacherListingViewModel
 				{
 					Id = t.Id,
@@ -60,14 +61,17 @@
 						.OrderBy(spec => spec)
 						.ToList();
 
-			return View(new AllTeachersQueryModel
-			{
-				Teachers = teachers,
-				SearchTerm = searchTerm,
-				Specializations = teacherSpecializations
-			});
+			query.Specializations = teacherSpecializations;
+			query.Teachers = teachers;
+
+			return View(query);
 
 		}
+
+		public IActionResult Add() => View(new AddTeacherFormModel
+		{
+			Groups = this.GetTeacherGroups()
+		});
 
 		[HttpPost]
 		public IActionResult Add(AddTeacherFormModel teacher)

@@ -1,6 +1,8 @@
 ﻿@model AllTeachersQueryModel
 
-
+@{
+	ViewData["Title"] ="All Teachers";
+}
 <form method="get">
 	<div class="row mb-5">
 		<div class="form-group col-md-4">
@@ -8,6 +10,7 @@
 			<div class="form-group">
 				<label asp-for="Specialization"></label>
 				<select asp-for="Specialization" class="form-control">
+					<option value="">All</option>
 					@foreach (var specialization in Model.Specializations)
 					{
 						<option value="@specialization">@specialization</option>
@@ -22,8 +25,17 @@
 		</div>
 
 		<div class="form-group col-md-3">
-		</div>
+			<div class="form-group">
+				<label asp-for="Sorting"></label>
+				<select asp-for="Sorting" class="form-control">
+					<option value="0" selected>Date Created</option>
+					<option value="1">Years of Experience</option>
+					<option value="2">First Name and Last Name</option>
 
+
+				</select>
+			</div>
+		</div>
 	</div>
 </form>
 
