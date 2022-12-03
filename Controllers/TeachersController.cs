@@ -20,10 +20,24 @@
 			Groups = this.GetTeacherGroups()
 		});
 
-		public IActionResult All()
+		public IActionResult All(string specialization, string searchTerm)
 		{
-			var teachers = this.data
-				.Teachers
+			var teachersQuery = this.data.Teachers.AsQueryable();
+
+			if (!string.IsNullOrWhiteSpace(specialization))
+			{
+				teachersQuery = teachersQuery.Where(t => t.Specialization == specialization);
+
+			}
+
+			if (!string.IsNullOrWhiteSpace(searchTerm))
+			{
+				teachersQuery = teachersQuery.Where(t =>
+				  (t.FirstName + " " + t.LastName).ToLower().Contains(searchTerm.ToLower()) ||
+				  t.Introduction.ToLower().Contains(searchTerm.ToLower()));
+			}
+
+			var teachers = teachersQuery
 				.OrderBy(t => t.FirstName)
 				.ThenBy(t => t.LastName)
 				.Select(t => new TeacherListingViewModel
@@ -39,9 +53,18 @@
 				})
 				.ToList();
 
+			var teacherSpecializations = this.data
+						.Teachers
+						.Select(t => t.Specialization)
+						.Distinct()
+						.OrderBy(spec => spec)
+						.ToList();
+
 			return View(new AllTeachersQueryModel
 			{
-				Teachers = teachers
+				Teachers = teachers,
+				SearchTerm = searchTerm,
+				Specializations = teacherSpecializations
 			});
 
 		}
