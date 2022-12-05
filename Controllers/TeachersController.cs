@@ -38,6 +38,8 @@
 				TeacherSorting.DateCreated or _ => teachersQuery.OrderByDescending(t => t.Id)
 			};
 
+			var totalTeachers = teachersQuery.Count();
+
 			var teachers = teachersQuery
 				.Skip((query.CurrentPage - 1) * AllTeachersQueryModel.TeachersPerPage)
 				.Take(AllTeachersQueryModel.TeachersPerPage)
@@ -61,6 +63,8 @@
 						.OrderBy(spec => spec)
 						.ToList();
 
+
+			query.TotalTeachers = totalTeachers;
 			query.Specializations = teacherSpecializations;
 			query.Teachers = teachers;
 

@@ -1,0 +1,57 @@
+﻿@model AllECAsQueryModel
+@{
+	ViewData["Title"] = "All Extracurricular Activities";
+}
+
+<form method="get">
+		<div class="row mb-5">
+	<div class="form-group col-md-4">
+		<div class="form-group">
+			<label asp-for="Title"></label>
+			<select asp-for="Title" class="form-control">
+				<option value="">All</option>
+				@foreach (var title in Model.Titles)
+				{
+					<option value="@title">@title</option>
+				}
+			</select>
+		</div>
+	</div>
+
+		<div class="form-group col-md-4">
+			<label asp-for="SearchTerm"></label>
+			<input asp-for="SearchTerm" class="form-control" placeholder="Search by text here...">
+		</div>
+
+		<div class="form-group col-md-4">
+			<div class="form-group">
+				<label asp-for="Sorting"></label>
+				<select asp-for="Sorting" class="form-control">
+					<option value="0" selected>Date Created</option>
+					<option value="1">Monthly Fee</option>
+					<option value="2">Title</option>
+				</select>
+			</div>
+		</div>
+	</div>
+
+</form>
+
+
+
+<div class="row">
+
+	@foreach (var ECA in Model.ECAs)
+	{
+		<div class="col-md-4">
+			<div class="card mb-3">
+				<img class="card-img-top" src="@ECA.ImageUrl" alt="@ECA.Title - @ECA.MonthlyFee">
+				<div class="card-body text-center">
+					<h5 class="card-title text-center">@ECA.Title for only @ECA.MonthlyFee EUR per month.</h5>
+					<a asp-controller="ECAs" asp-action="Details" asp-route-id="@ECA.Id" class="btn btn-primary">Details</a>
+				</div>
+			</div>
+		</div>
+		<div class="mb-5"></div>
+	}
+</div>

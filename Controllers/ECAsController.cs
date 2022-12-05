@@ -6,6 +6,7 @@ namespace Kindergarten2.Controllers
 	using Kindergarten2.Data.Models;
 	using Kindergarten2.Models.ECAs;
 	using Microsoft.AspNetCore.Mvc;
+	using System.Linq;
 
 	public class ECAsController : Controller
 	{
@@ -13,6 +14,56 @@ namespace Kindergarten2.Controllers
 
 		public ECAsController(KindergartenDbContext data)
 				=> this.data = data;
+
+		public IActionResult All([FromQuery] AllECAsQueryModel query)
+		{
+			var ECAsQuery = this.data.ECAs.AsQueryable();
+
+			if (!string.IsNullOrWhiteSpace(query.Title))
+			{
+				ECAsQuery = ECAsQuery.Where(e => e.Title == query.Title);
+
+			}
+
+			if (!string.IsNullOrWhiteSpace(query.SearchTerm))
+			{
+				ECAsQuery = ECAsQuery.Where(e =>
+				 e.Title.ToLower().Contains(query.SearchTerm.ToLower()) ||
+				 e.Description.ToLower().Contains(query.SearchTerm.ToLower()));
+			}
+
+			ECAsQuery = query.Sorting switch
+			{
+				ECASorting.MonthlyFee => ECAsQuery.OrderBy(e => e.MonthlyFee),
+				ECASorting.Title => ECAsQuery.OrderBy(e => e.Title),
+				ECASorting.DateCreated or _ => ECAsQuery.OrderByDescending(e => e.Id)
+			};
+
+			var ECAs = ECAsQuery
+				.Select(e => new ECAListingViewModel
+				{
+					Id = e.Id,
+					Title = e.Title,
+					Description = e.Description,
+					MonthlyFee = e.MonthlyFee,
+					ImageUrl = e.ImageUrl
+
+				}).ToList();
+
+			var ECAsTitles = this.data
+				.ECAs
+				.Select(e => e.Title)
+				.Distinct()
+				.OrderBy(t => t)
+				.ToList();
+
+
+			query.Titles = ECAsTitles;
+			query.ECAs = ECAs;
+
+			return View(query);
+		}
+
 		public IActionResult Add() => View(new AddECAFormModel
 		{
 
@@ -39,7 +90,7 @@ namespace Kindergarten2.Controllers
 
 			this.data.SaveChanges();
 
-			return RedirectToAction("Index", "Home");
+			return RedirectToAction(nameof(All));
 		}
 	}
 }

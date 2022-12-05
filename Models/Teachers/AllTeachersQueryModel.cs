@@ -16,6 +16,8 @@
 
 		//current page if IT HAS NO VALUE, IT WILL START FROM 1
 		public int CurrentPage { get; init; } = 1;
+
+		public int TotalTeachers { get; set; }
 		public IEnumerable<TeacherListingViewModel> Teachers { get; set; }
 	}
 }

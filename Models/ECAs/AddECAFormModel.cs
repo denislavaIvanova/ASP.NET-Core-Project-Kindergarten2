@@ -22,6 +22,5 @@ namespace Kindergarten2.Models.ECAs
 		[Display(Name = "Image URL")]
 		public string ImageUrl { get; init; }
 
-		//public IEnumerable<Child> Children { get; init; } = new List<Child>();
 	}
 }
