@@ -39,7 +39,11 @@ namespace Kindergarten2.Controllers
 				ECASorting.DateCreated or _ => ECAsQuery.OrderByDescending(e => e.Id)
 			};
 
+			var totalECAs = ECAsQuery.Count();
+
 			var ECAs = ECAsQuery
+				.Skip((query.CurrentPage - 1) * AllECAsQueryModel.ECAsPerPage)
+				.Take(AllECAsQueryModel.ECAsPerPage)
 				.Select(e => new ECAListingViewModel
 				{
 					Id = e.Id,
@@ -60,6 +64,7 @@ namespace Kindergarten2.Controllers
 
 			query.Titles = ECAsTitles;
 			query.ECAs = ECAs;
+			query.TotalECAs = totalECAs;
 
 			return View(query);
 		}

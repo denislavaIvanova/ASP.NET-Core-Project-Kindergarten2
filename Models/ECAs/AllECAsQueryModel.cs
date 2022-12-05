@@ -6,7 +6,7 @@ namespace Kindergarten2.Models.ECAs
 
 	public class AllECAsQueryModel
 	{
-		public const int CarsPerPage = 3;
+		public const int ECAsPerPage = 3;
 		public string Title { get; init; }
 		public IEnumerable<string> Titles { get; set; }
 
@@ -14,6 +14,10 @@ namespace Kindergarten2.Models.ECAs
 		public string SearchTerm { get; init; }
 
 		public ECASorting Sorting { get; init; }
+
+		public int TotalECAs { get; set; }
+
+		public int CurrentPage { get; init; } = 1;
 		public IEnumerable<ECAListingViewModel> ECAs { get; set; }
 	}
 }
