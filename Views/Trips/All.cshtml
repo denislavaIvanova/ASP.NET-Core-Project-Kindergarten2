@@ -1,0 +1,56 @@
+﻿@model AllTripsQueryModel
+
+@{
+	ViewData["Title"] = "All Trips";
+}
+
+<form method="get">
+	<div class="row">
+		<div class="form-group col-md-4">
+
+			<div class="form-group">
+				<label asp-for="PlaceToVisit"></label>
+				<select asp-for="PlaceToVisit" class="form-control">
+					<option value="">All</option>
+					@foreach (var placeToVisit in Model.PlacesToVisit)
+					{
+						<option value="@placeToVisit">@placeToVisit</option>
+					}
+				</select>
+			</div>
+
+		</div>
+		<div class="form-group col-md-4">
+			<label asp-for="SearchTerm"></label>
+			<input asp-for="SearchTerm" class="form-control" placeholder="Search by text here...">
+		</div>
+
+		<div class="form-group col-md-4">
+			<div class="form-group">
+				<label asp-for="Sorting"></label>
+				<select asp-for="Sorting" class="form-control">
+					<option value="0" selected>Date Created</option>
+					<option value="1">Price</option>
+					<option value="2">Location</option>
+				</select>
+			</div>
+		</div>
+	</div>
+</form>
+<div class="row">
+	@foreach(var trip in Model.Trips)
+	{
+		<div class="col-md-4">
+			<div class="card mb-3">
+				<img class="card-img-top" src="@trip.ImageUrl" alt="@trip.PlaceToVisit @trip.Location">
+				<div class="card-body text-center">
+					<h5 class="card-title text-center"> Trip to @trip.PlaceToVisit in @trip.Location for @trip.Price EUR.</h5>
+					<p class="card-text text-center">@trip.PlaceToVisit</p>
+					<a asp-controller="Trips" asp-action="Details" asp-route-id="@trip.Id" class="btn btn-primary">Details</a>
+				</div>
+			</div>
+
+		</div>
+	}
+
+</div>
