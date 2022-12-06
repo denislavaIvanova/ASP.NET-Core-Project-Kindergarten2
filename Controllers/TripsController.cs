@@ -38,7 +38,11 @@ namespace Kindergarten2.Controllers
 
 			};
 
+			var totalTrips = tripsQuery.Count();
+
 			var trips = tripsQuery
+				.Skip((query.CurrentPage - 1) * AllTripsQueryModel.TripsPerPage)
+				.Take(AllTripsQueryModel.TripsPerPage)
 				.Select(t => new TripListingViewModel
 				{
 					Id = t.Id,
@@ -58,6 +62,7 @@ namespace Kindergarten2.Controllers
 
 			query.Trips = trips;
 			query.PlacesToVisit = tripsPlacesTovisit;
+			query.TotalTrips = totalTrips;
 
 			return View(query);
 
