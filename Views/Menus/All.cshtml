@@ -1,0 +1,91 @@
+﻿@model AllMenusQueryModel
+
+@{
+	ViewData["Title"] = "All Menus";
+}
+
+<form method="get">
+		<div class="row">
+	<div class="form-group col-md-4">
+		<div class="form-group">
+			<label asp-for="MenuType"></label>
+			<select asp-for="MenuType" class="form-control">
+				<option value="">All</option>
+				@foreach (var menuType in Model.MenuTypes)
+				{
+					<option value="@menuType">@menuType</option>
+				}
+			</select>
+		</div>
+	</div>
+
+		<div class="form-group col-md-4">
+			<label asp-for="SearchTerm"></label>
+			<input asp-for="SearchTerm" class="form-control" placeholder="Search by text here...">
+		</div>
+
+		<div class="form-group col-md-4">
+			<div class="form-group">
+				<label asp-for="Sorting"></label>
+				<select asp-for="Sorting" class="form-control">
+					<option value="0" selected>Date Created</option>
+					<option value="1">Price</option>
+				</select>
+			</div>
+		</div>
+	</div>
+
+</form>
+
+@{
+	var previousPage = Model.CurrentPage - 1;
+
+	if (previousPage<1)
+	{
+		previousPage = 1;
+	}
+
+	var maxPage = Math.Ceiling((double)Model.TotalMenus/AllMenusQueryModel.MenusPerPage);
+}
+
+<div class="row mb-5">
+	<div class="col-md-6">
+		<a class="btn btn-primary @(Model.CurrentPage==1?"disabled":string.Empty)"
+		asp-controller="Menus" 
+		asp-action="All"
+		asp-route-currentPage="@previousPage"
+		asp-route-menuType="@Model.MenuType"
+		asp-route-searchTerm="@Model.SearchTerm"
+		asp-route-sorting="@((int)Model.Sorting)"
+		><<</a>
+	</div>
+
+	<div class="col-md-6">
+		<a class="btn btn-primary @(Model.CurrentPage==maxPage ? "disabled" :string.Empty) float-right"
+		asp-controller="Menus"
+		asp-action="All"
+		asp-route-currentPage="@(Model.CurrentPage+1)"
+		asp-route-menuType="@Model.MenuType"
+		asp-route-searchTerm="@Model.SearchTerm"
+		asp-route-sorting="@((int)Model.Sorting)">>></a>
+
+	</div>
+
+</div>
+
+<div class="row">
+
+	@foreach (var menu in Model.Menus)
+	{
+		<div class="col-md-4">
+			<div class="card mb-3">
+				<img class="card-img-top" src="@menu.ImageUrl" alt="@menu.MenuType - @menu.Price">
+				<div class="card-body text-center">
+					<h5 class="card-title text-center">@menu.MenuType menu for only @menu.Price EUR per meal.</h5>
+					<a asp-controller="Menus" asp-action="Details" asp-route-id="@menu.Id" class="btn btn-primary">Details</a>
+				</div>
+			</div>
+		</div>
+		<div class="mb-5"></div>
+	}
+</div>

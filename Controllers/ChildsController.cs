@@ -16,6 +16,62 @@ namespace Kindergarten2.Controllers
 		public ChildsController(KindergartenDbContext data)
 			=> this.data = data;
 
+		public IActionResult All([FromQuery] AllChildsQueryModel query)
+		{
+			var childrenQuery = this.data.Children.AsQueryable();
+
+			if (!string.IsNullOrWhiteSpace(query.Group))
+			{
+				childrenQuery = childrenQuery.Where(x => x.Group.Name == query.Group);
+			}
+
+			if (!string.IsNullOrWhiteSpace(query.SearchTerm))
+			{
+				childrenQuery = childrenQuery.Where(c => (c.FirstName + " " + c.LastName).ToLower().Contains(query.SearchTerm.ToLower()));
+			}
+
+			childrenQuery = query.Sorting switch
+			{
+				ChildSorting.Age => childrenQuery.OrderBy(c => c.Age),
+				ChildSorting.FirstNameAndLastName => childrenQuery.OrderBy(c => c.FirstName).ThenBy(c => c.LastName),
+				ChildSorting.DateCreated or _ => childrenQuery.OrderByDescending(c => c.Id)
+
+			};
+
+			var totalChildren = childrenQuery.Count();
+
+			var children = childrenQuery
+							.Skip((query.CurrentPage - 1) * AllChildsQueryModel.ChildrenPerPage)
+							.Take(AllChildsQueryModel.ChildrenPerPage)
+							.Select(c => new ChildListingViewModel
+							{
+								Id = c.Id,
+								FirstName = c.FirstName,
+								LastName = c.LastName,
+								MiddleName = c.MiddleName,
+								Age = c.Age,
+								Group = c.Group.Name,
+								ECA = c.ECA.Title,
+								Trip = c.Trip.PlaceToVisit,
+								Menu = c.Menu.MenuType
+
+							}).ToList();
+
+			var childrenGroup = this.data
+				.Groups
+				.Select(c => c.Name)
+				.Distinct()
+				.OrderBy(gn => gn)
+				.ToList();
+
+			query.TotalChildren = totalChildren;
+			query.Children = children;
+			query.Groups = childrenGroup;
+
+			return View(query);
+
+		}
+
 		public IActionResult Add() => View(new AddChildFormModel
 		{
 
