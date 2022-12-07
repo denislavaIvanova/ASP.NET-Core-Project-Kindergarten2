@@ -3,6 +3,7 @@
 	using Kindergarten2.Data;
 	using Kindergarten2.Data.Models;
 	using Kindergarten2.Models.Teachers;
+	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Mvc;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -70,12 +71,18 @@
 
 			return View(query);
 
+
+
 		}
 
+		[Authorize]
+		//if you want to find additional info for the user var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;=>this.User.GetId()
 		public IActionResult Add() => View(new AddTeacherFormModel
 		{
 			Groups = this.GetTeacherGroups()
 		});
+
+		[Authorize]
 
 		[HttpPost]
 		public IActionResult Add(AddTeacherFormModel teacher)

@@ -3,6 +3,7 @@
 	using Kindergarten2.Data;
 	using Kindergarten2.Models;
 	using Kindergarten2.Models.Home;
+	using Kindergarten2.Services.Statistics;
 	using Microsoft.AspNetCore.Mvc;
 	using System.Diagnostics;
 	using System.Linq;
@@ -11,15 +12,16 @@
 	{
 
 		private readonly KindergartenDbContext data;
+		private readonly IStatisticsService statistics;
 
-		public HomeController(KindergartenDbContext data)
-			=> this.data = data;
+		public HomeController(
+			IStatisticsService statistics, KindergartenDbContext data)
+		{
+			this.statistics = statistics;
+			this.data = data;
+		}
 		public IActionResult Index()
 		{
-
-			var totalTeachers = this.data.Teachers.Count();
-			var totalChildren = this.data.Children.Count();
-			var totalGroups = this.data.Groups.Count();
 
 			var teachers = this.data
 					.Teachers
@@ -38,12 +40,14 @@
 					.Take(3)
 					.ToList();
 
+			var totalStatistics = this.statistics.Total();
+
 			return View(new IndexViewModel
 			{
-				TotalTeachers = totalTeachers,
+				TotalTeachers = totalStatistics.TotalTeachers,
 				Teachers = teachers,
-				TotalChildren = totalChildren,
-				TotalGroups = totalGroups
+				TotalChildren = totalStatistics.TotalChildren,
+				TotalGroups = totalStatistics.TotalGroups
 			});
 
 		}

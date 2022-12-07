@@ -5,6 +5,7 @@ namespace Kindergarten2.Controllers
 	using Kindergarten2.Data;
 	using Kindergarten2.Data.Models;
 	using Kindergarten2.Models.ECAs;
+	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Mvc;
 	using System.Linq;
 
@@ -69,12 +70,15 @@ namespace Kindergarten2.Controllers
 			return View(query);
 		}
 
+		[Authorize]
+
 		public IActionResult Add() => View(new AddECAFormModel
 		{
 
 		});
 
 		[HttpPost]
+		[Authorize]
 
 		public IActionResult Add(AddECAFormModel ECA)
 		{

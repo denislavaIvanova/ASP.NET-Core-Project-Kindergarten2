@@ -2,6 +2,7 @@ namespace Kindergarten2
 {
 	using Kindergarten2.Data;
 	using Kindergarten2.Infrastructure;
+	using Kindergarten2.Services.Statistics;
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.AspNetCore.Hosting;
 	using Microsoft.AspNetCore.Identity;
@@ -36,6 +37,8 @@ namespace Kindergarten2
 				})
 				.AddEntityFrameworkStores<KindergartenDbContext>();
 			services.AddControllersWithViews();
+
+			services.AddTransient<IStatisticsService, StatisticsService>();
 		}
 
 

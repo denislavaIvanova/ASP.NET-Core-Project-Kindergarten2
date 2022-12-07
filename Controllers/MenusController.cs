@@ -5,6 +5,7 @@ namespace Kindergarten2.Controllers
 	using Kindergarten2.Data;
 	using Kindergarten2.Data.Models;
 	using Kindergarten2.Models.Menus;
+	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Mvc;
 	using System.Linq;
 
@@ -66,6 +67,7 @@ namespace Kindergarten2.Controllers
 
 		}
 
+		[Authorize]
 
 		public IActionResult Add() => View(new AddMenuFormModel
 		{
@@ -73,6 +75,8 @@ namespace Kindergarten2.Controllers
 		});
 
 		[HttpPost]
+		[Authorize]
+
 		public IActionResult Add(AddMenuFormModel menu)
 		{
 			if (!ModelState.IsValid)
@@ -92,7 +96,8 @@ namespace Kindergarten2.Controllers
 
 			this.data.SaveChanges();
 
-			return RedirectToAction("Index", "Home");
+			return RedirectToAction(nameof(All));
+
 		}
 	}
 }

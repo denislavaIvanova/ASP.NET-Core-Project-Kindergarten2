@@ -45,16 +45,34 @@
 </div>
 
 <div class="mb-5"></div>
-<div class="jumbotron">
+
+<div class="row">
+	<div class="col-12 text-center">
+		<button class="btn btn-primary" id="statistics-button">Show Statistics</button>
+	</div>
+
+</div>
+
+<div class="jumbotron d-none" id="statistics">
 	<div class="row">
-		<h2 class="col-md-4 text-center">
-			@Model.TotalTeachers Teachers
-		</h2>
-		<h2 class="col-md-4 text-center">
-			@Model.TotalChildren Children
-		</h2>
-		<h2 class="col-md-4 text-center">
-			@Model.TotalGroups Groups
-		</h2>
+		<h2 class="col-md-4 text-center" id="total-teachers"></h2>
+		<h2 class="col-md-4 text-center" id="total-children"></h2>
+		<h2 class="col-md-4 text-center" id="total-groups"></h2>
 	</div>
 </div>
+
+@section Scripts{
+	<script>
+		$('#statistics-button').on('click',ev=>{
+			$.get('/api/statistics', (data)=>{
+				$('#total-teachers').text(data.totalTeachers+ " Teachers");
+				$('#total-children').text(data.totalChildren+" Children");
+				$('#total-groups').text(data.totalGroups+" Groups");
+
+				$('#statistics').removeClass('d-none');
+				$("#statistics-button").hide();
+			});
+
+		});
+	</script>
+}

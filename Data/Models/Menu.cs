@@ -23,5 +23,6 @@
 		public string ImageUrl { get; set; }
 
 		public IEnumerable<Child> Children { get; init; } = new List<Child>();
+
 	}
 }

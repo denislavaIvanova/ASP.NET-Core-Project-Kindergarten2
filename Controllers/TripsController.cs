@@ -5,6 +5,7 @@ namespace Kindergarten2.Controllers
 	using Kindergarten2.Data;
 	using Kindergarten2.Data.Models;
 	using Kindergarten2.Models.Trips;
+	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Mvc;
 	using System.Linq;
 
@@ -67,12 +68,15 @@ namespace Kindergarten2.Controllers
 			return View(query);
 
 		}
+		[Authorize]
+
 		public IActionResult Add() => View(new AddTripFormModel
 		{
 
 		});
 
 		[HttpPost]
+		[Authorize]
 
 		public IActionResult Add(AddTripFormModel trip)
 		{
@@ -94,7 +98,8 @@ namespace Kindergarten2.Controllers
 
 			this.data.SaveChanges();
 
-			return RedirectToAction("Index", "Home");
+			return RedirectToAction(nameof(All));
+
 		}
 
 	}

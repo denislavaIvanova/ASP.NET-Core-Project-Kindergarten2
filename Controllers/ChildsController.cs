@@ -72,6 +72,8 @@ namespace Kindergarten2.Controllers
 
 		}
 
+		//[Authorize]
+
 		public IActionResult Add() => View(new AddChildFormModel
 		{
 
@@ -84,6 +86,8 @@ namespace Kindergarten2.Controllers
 
 
 		[HttpPost]
+		//[Authorize]
+
 		public IActionResult Add(AddChildFormModel child)
 		{
 
@@ -128,7 +132,8 @@ namespace Kindergarten2.Controllers
 
 			this.data.SaveChanges();
 
-			return RedirectToAction("Index", "Home");
+			return RedirectToAction(nameof(All));
+
 
 		}
 

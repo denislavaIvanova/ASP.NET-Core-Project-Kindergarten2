@@ -35,5 +35,7 @@
 		[MinLength(2)]
 		[MaxLength(600)]
 		public string Introduction { get; set; }
+
+
 	}
 }

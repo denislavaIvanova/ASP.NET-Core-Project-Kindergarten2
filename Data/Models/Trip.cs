@@ -23,5 +23,6 @@
 		[MaxLength(300)]
 		public string Location { get; set; }
 		public IEnumerable<Child> Children { get; init; } = new List<Child>();
+
 	}
 }

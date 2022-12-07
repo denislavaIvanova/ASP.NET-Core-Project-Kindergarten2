@@ -21,5 +21,6 @@ namespace Kindergarten2.Data.Models
 		public double MonthlyFee { get; set; }
 
 		public IEnumerable<Child> Children { get; init; } = new List<Child>();
+
 	}
 }
