@@ -1,5 +1,6 @@
 ﻿namespace Kindergarten2.Models.Teachers
 {
+	using Kindergarten2.Services.Teachers;
 	using System.Collections.Generic;
 	using System.ComponentModel.DataAnnotations;
 
@@ -18,6 +19,6 @@
 		public int CurrentPage { get; init; } = 1;
 
 		public int TotalTeachers { get; set; }
-		public IEnumerable<TeacherListingViewModel> Teachers { get; set; }
+		public IEnumerable<TeacherServiceModel> Teachers { get; set; }
 	}
 }

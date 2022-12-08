@@ -15,6 +15,5 @@ namespace Kindergarten2.Models.Api.Teachers
 
 		public int TeachersPerPage { get; init; } = 10;
 
-		public int TotalTeachers { get; init; }
 	}
 }

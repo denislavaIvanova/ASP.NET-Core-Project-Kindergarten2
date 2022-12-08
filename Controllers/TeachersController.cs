@@ -3,6 +3,7 @@
 	using Kindergarten2.Data;
 	using Kindergarten2.Data.Models;
 	using Kindergarten2.Models.Teachers;
+	using Kindergarten2.Services.Teachers;
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Mvc;
 	using System.Collections.Generic;
@@ -11,63 +12,28 @@
 	public class TeachersController : Controller
 	{
 		private readonly KindergartenDbContext data;
-
-		public TeachersController(KindergartenDbContext data)
-			=> this.data = data;
+		private readonly ITeacherService teachers;
+		public TeachersController(KindergartenDbContext data, ITeacherService teachers)
+		{
+			this.data = data;
+			this.teachers = teachers;
+		}
 
 		public IActionResult All([FromQuery] AllTeachersQueryModel query)
 		{
-			var teachersQuery = this.data.Teachers.AsQueryable();
+			var queryResult = this.teachers.All(
+					query.Specialization,
+					query.SearchTerm,
+					query.Sorting,
+					query.CurrentPage,
+					AllTeachersQueryModel.TeachersPerPage
+				);
 
-			if (!string.IsNullOrWhiteSpace(query.Specialization))
-			{
-				teachersQuery = teachersQuery.Where(t => t.Specialization == query.Specialization);
+			var teacherSpecializations = teachers.AllTeacherSpecializations();
 
-			}
-
-			if (!string.IsNullOrWhiteSpace(query.SearchTerm))
-			{
-				teachersQuery = teachersQuery.Where(t =>
-				  (t.FirstName + " " + t.LastName).ToLower().Contains(query.SearchTerm.ToLower()) ||
-				  t.Introduction.ToLower().Contains(query.SearchTerm.ToLower()));
-			}
-
-			teachersQuery = query.Sorting switch
-			{
-				TeacherSorting.Experience => teachersQuery.OrderByDescending(t => t.Experience),
-				TeacherSorting.FirstNameAndLastName => teachersQuery.OrderBy(t => t.FirstName).ThenBy(t => t.LastName),
-				TeacherSorting.DateCreated or _ => teachersQuery.OrderByDescending(t => t.Id)
-			};
-
-			var totalTeachers = teachersQuery.Count();
-
-			var teachers = teachersQuery
-				.Skip((query.CurrentPage - 1) * AllTeachersQueryModel.TeachersPerPage)
-				.Take(AllTeachersQueryModel.TeachersPerPage)
-				.Select(t => new TeacherListingViewModel
-				{
-					Id = t.Id,
-					FirstName = t.FirstName,
-					LastName = t.LastName,
-					Experience = t.Experience,
-					Specialization = t.Specialization,
-					Introduction = t.Introduction,
-					Group = t.Group.Name,
-					ImageUrl = t.ImageUrl
-				})
-				.ToList();
-
-			var teacherSpecializations = this.data
-						.Teachers
-						.Select(t => t.Specialization)
-						.Distinct()
-						.OrderBy(spec => spec)
-						.ToList();
-
-
-			query.TotalTeachers = totalTeachers;
+			query.TotalTeachers = queryResult.TotalTeachers;
 			query.Specializations = teacherSpecializations;
-			query.Teachers = teachers;
+			query.Teachers = queryResult.Teachers;
 
 			return View(query);
 

@@ -1,6 +1,6 @@
-﻿namespace Kindergarten2.Models.Api.Teachers
+﻿namespace Kindergarten2.Services.Teachers
 {
-	public class TeacherResponseModel
+	public class TeacherServiceModel
 	{
 		public int Id { get; init; }
 		public string FirstName { get; init; }
