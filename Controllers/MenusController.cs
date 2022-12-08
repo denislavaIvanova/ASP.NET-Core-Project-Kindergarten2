@@ -5,62 +5,34 @@ namespace Kindergarten2.Controllers
 	using Kindergarten2.Data;
 	using Kindergarten2.Data.Models;
 	using Kindergarten2.Models.Menus;
+	using Kindergarten2.Services.Menus;
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Mvc;
-	using System.Linq;
 
 	public class MenusController : Controller
 	{
 		private readonly KindergartenDbContext data;
+		private readonly IMenuService menus;
 
-		public MenusController(KindergartenDbContext data)
-			=> this.data = data;
+		public MenusController(KindergartenDbContext data, IMenuService menus)
+		{
+			this.data = data;
+			this.menus = menus;
+		}
 
 		public IActionResult All([FromQuery] AllMenusQueryModel query)
 		{
-			var menusQuery = this.data.Menus.AsQueryable();
+			var queryResult = this.menus.All(query.MenuType,
+				query.SearchTerm,
+				query.Sorting,
+				query.CurrentPage,
+				AllMenusQueryModel.MenusPerPage);
 
-			if (!string.IsNullOrWhiteSpace(query.MenuType))
-			{
-				menusQuery = menusQuery.Where(m => m.MenuType == query.MenuType);
-			}
+			var menusMenuType = this.menus.AllMenuTypes();
 
-			if (!string.IsNullOrWhiteSpace(query.SearchTerm))
-			{
-				menusQuery = menusQuery.Where(m => m.MenuType.ToLower().Contains(query.SearchTerm.ToLower()) ||
-				  m.Description.ToLower().Contains(query.SearchTerm.ToLower()));
-			}
 
-			menusQuery = query.Sorting switch
-			{
-				MenuSorting.Price => menusQuery.OrderBy(m => m.Price),
-				MenuSorting.DateCreated or _ => menusQuery.OrderByDescending(m => m.Id)
-			};
-
-			var totalMenus = menusQuery.Count();
-
-			var menus = menusQuery
-				.Skip((query.CurrentPage - 1) * AllMenusQueryModel.MenusPerPage)
-				.Take(AllMenusQueryModel.MenusPerPage)
-				.Select(m => new MenuListingViewModel
-				{
-					Id = m.Id,
-					MenuType = m.MenuType,
-					Price = m.Price,
-					Description = m.Description,
-					ImageUrl = m.ImageUrl
-
-				}).ToList();
-
-			var menusMenuType = this.data
-				.Menus
-				.Select(m => m.MenuType)
-				.Distinct()
-				.OrderBy(mt => mt)
-				.ToList();
-
-			query.Menus = menus;
-			query.TotalMenus = totalMenus;
+			query.Menus = queryResult.Menus;
+			query.TotalMenus = queryResult.TotalMenus;
 			query.MenuTypes = menusMenuType;
 
 			return View(query);

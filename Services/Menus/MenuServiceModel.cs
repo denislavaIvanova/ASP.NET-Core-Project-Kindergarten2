@@ -1,6 +1,6 @@
-﻿namespace Kindergarten2.Models.Menus
+﻿namespace Kindergarten2.Services.Menus
 {
-	public class MenuListingViewModel
+	public class MenuServiceModel
 	{
 		public int Id { get; init; }
 
@@ -11,6 +11,5 @@
 		public double Price { get; init; }
 
 		public string ImageUrl { get; init; }
-
 	}
 }

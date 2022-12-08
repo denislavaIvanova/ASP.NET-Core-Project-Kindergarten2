@@ -1,6 +1,7 @@
 ﻿
 namespace Kindergarten2.Models.Trips
 {
+	using Kindergarten2.Services.Trips;
 	using System.Collections.Generic;
 	using System.ComponentModel.DataAnnotations;
 
@@ -21,7 +22,7 @@ namespace Kindergarten2.Models.Trips
 
 		public int TotalTrips { get; set; }
 
-		public IEnumerable<TripListingViewModel> Trips { get; set; }
+		public IEnumerable<TripServiceModel> Trips { get; set; }
 	}
 }
 

@@ -1,6 +1,6 @@
-﻿namespace Kindergarten2.Models.Trips
+﻿namespace Kindergarten2.Services.Trips
 {
-	public class TripListingViewModel
+	public class TripServiceModel
 	{
 		public int Id { get; init; }
 
@@ -13,6 +13,5 @@
 		public double Price { get; set; }
 
 		public string Location { get; set; }
-
 	}
 }

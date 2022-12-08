@@ -2,8 +2,10 @@ namespace Kindergarten2
 {
 	using Kindergarten2.Data;
 	using Kindergarten2.Infrastructure;
+	using Kindergarten2.Services.Menus;
 	using Kindergarten2.Services.Statistics;
 	using Kindergarten2.Services.Teachers;
+	using Kindergarten2.Services.Trips;
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.AspNetCore.Hosting;
 	using Microsoft.AspNetCore.Identity;
@@ -41,6 +43,10 @@ namespace Kindergarten2
 
 			services.AddTransient<IStatisticsService, StatisticsService>();
 			services.AddTransient<ITeacherService, TeacherService>();
+			services.AddTransient<ITripService, TripService>();
+			services.AddTransient<IMenuService, MenuService>();
+
+
 		}
 
 

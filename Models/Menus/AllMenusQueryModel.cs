@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿
 
 namespace Kindergarten2.Models.Menus
 {
+	using Kindergarten2.Services.Menus;
+	using System.Collections.Generic;
+	using System.ComponentModel.DataAnnotations;
 	public class AllMenusQueryModel
 	{
 		public const int MenusPerPage = 3;
@@ -20,6 +22,6 @@ namespace Kindergarten2.Models.Menus
 
 		public int TotalMenus { get; set; }
 
-		public IEnumerable<MenuListingViewModel> Menus { get; set; }
+		public IEnumerable<MenuServiceModel> Menus { get; set; }
 	}
 }
