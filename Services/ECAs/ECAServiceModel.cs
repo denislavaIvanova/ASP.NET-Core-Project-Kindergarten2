@@ -1,6 +1,6 @@
-﻿namespace Kindergarten2.Models.ECAs
+﻿namespace Kindergarten2.Services.ECAs
 {
-	public class ECAListingViewModel
+	public class ECAServiceModel
 	{
 		public int Id { get; init; }
 

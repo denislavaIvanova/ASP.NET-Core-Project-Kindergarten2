@@ -2,6 +2,7 @@ namespace Kindergarten2
 {
 	using Kindergarten2.Data;
 	using Kindergarten2.Infrastructure;
+	using Kindergarten2.Services.ECAs;
 	using Kindergarten2.Services.Menus;
 	using Kindergarten2.Services.Statistics;
 	using Kindergarten2.Services.Teachers;
@@ -45,6 +46,8 @@ namespace Kindergarten2
 			services.AddTransient<ITeacherService, TeacherService>();
 			services.AddTransient<ITripService, TripService>();
 			services.AddTransient<IMenuService, MenuService>();
+			services.AddTransient<IECAService, ECAService>();
+
 
 
 		}

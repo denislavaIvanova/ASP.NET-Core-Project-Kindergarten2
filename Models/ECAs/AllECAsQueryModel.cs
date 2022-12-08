@@ -1,6 +1,7 @@
 ﻿
 namespace Kindergarten2.Models.ECAs
 {
+	using Kindergarten2.Services.ECAs;
 	using System.Collections.Generic;
 	using System.ComponentModel.DataAnnotations;
 
@@ -18,6 +19,6 @@ namespace Kindergarten2.Models.ECAs
 		public int TotalECAs { get; set; }
 
 		public int CurrentPage { get; init; } = 1;
-		public IEnumerable<ECAListingViewModel> ECAs { get; set; }
+		public IEnumerable<ECAServiceModel> ECAs { get; set; }
 	}
 }

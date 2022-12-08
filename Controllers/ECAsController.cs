@@ -5,67 +5,37 @@ namespace Kindergarten2.Controllers
 	using Kindergarten2.Data;
 	using Kindergarten2.Data.Models;
 	using Kindergarten2.Models.ECAs;
+	using Kindergarten2.Services.ECAs;
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Mvc;
-	using System.Linq;
 
 	public class ECAsController : Controller
 	{
 		private readonly KindergartenDbContext data;
+		private readonly IECAService ECAs;
 
-		public ECAsController(KindergartenDbContext data)
-				=> this.data = data;
+
+		public ECAsController(KindergartenDbContext data, IECAService ECAs)
+		{
+			this.data = data;
+			this.ECAs = ECAs;
+		}
 
 		public IActionResult All([FromQuery] AllECAsQueryModel query)
 		{
-			var ECAsQuery = this.data.ECAs.AsQueryable();
+			var queryResult = this.ECAs.All
+				(query.Title,
+				query.SearchTerm,
+				query.Sorting,
+				query.CurrentPage,
+				AllECAsQueryModel.ECAsPerPage);
 
-			if (!string.IsNullOrWhiteSpace(query.Title))
-			{
-				ECAsQuery = ECAsQuery.Where(e => e.Title == query.Title);
-
-			}
-
-			if (!string.IsNullOrWhiteSpace(query.SearchTerm))
-			{
-				ECAsQuery = ECAsQuery.Where(e =>
-				 e.Title.ToLower().Contains(query.SearchTerm.ToLower()) ||
-				 e.Description.ToLower().Contains(query.SearchTerm.ToLower()));
-			}
-
-			ECAsQuery = query.Sorting switch
-			{
-				ECASorting.MonthlyFee => ECAsQuery.OrderBy(e => e.MonthlyFee),
-				ECASorting.Title => ECAsQuery.OrderBy(e => e.Title),
-				ECASorting.DateCreated or _ => ECAsQuery.OrderByDescending(e => e.Id)
-			};
-
-			var totalECAs = ECAsQuery.Count();
-
-			var ECAs = ECAsQuery
-				.Skip((query.CurrentPage - 1) * AllECAsQueryModel.ECAsPerPage)
-				.Take(AllECAsQueryModel.ECAsPerPage)
-				.Select(e => new ECAListingViewModel
-				{
-					Id = e.Id,
-					Title = e.Title,
-					Description = e.Description,
-					MonthlyFee = e.MonthlyFee,
-					ImageUrl = e.ImageUrl
-
-				}).ToList();
-
-			var ECAsTitles = this.data
-				.ECAs
-				.Select(e => e.Title)
-				.Distinct()
-				.OrderBy(t => t)
-				.ToList();
+			var ECAsTitles = this.ECAs.AllECAsTitles();
 
 
+			query.ECAs = queryResult.ECAs;
 			query.Titles = ECAsTitles;
-			query.ECAs = ECAs;
-			query.TotalECAs = totalECAs;
+			query.TotalECAs = queryResult.TotalECAs;
 
 			return View(query);
 		}
