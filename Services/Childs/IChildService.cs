@@ -6,7 +6,12 @@ namespace Kindergarten2.Services.Childs
 
 	public interface IChildService
 	{
-		ChildQueryServiceModel All(string group, string searchTerm, ChildSorting sorting, int currentPage, int childrenPerPage);
+		ChildQueryServiceModel All(
+			string group,
+			string searchTerm,
+			ChildSorting sorting,
+			int currentPage,
+			int childrenPerPage);
 
 		IEnumerable<string> AllChildGroups();
 	}

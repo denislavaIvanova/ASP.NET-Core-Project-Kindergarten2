@@ -1,6 +1,7 @@
 ﻿namespace Kindergarten2.Data
 {
 	using Kindergarten2.Data.Models;
+	using Microsoft.AspNetCore.Identity;
 	using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore;
 	public class KindergartenDbContext : IdentityDbContext
@@ -11,6 +12,19 @@
 		}
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
+			builder
+				.Entity<Child>()
+				.HasOne(c => c.Parent)
+				.WithMany(p => p.Children)
+				.HasForeignKey(c => c.ParentId)
+				.OnDelete(DeleteBehavior.Restrict);
+
+			builder
+				.Entity<Parent>()
+				.HasOne<IdentityUser>()
+				.WithOne()
+				.HasForeignKey<Parent>(p => p.UserId)
+				.OnDelete(DeleteBehavior.Restrict);
 
 			base.OnModelCreating(builder);
 		}
@@ -27,6 +41,9 @@
 		public DbSet<Teacher> Teachers { get; init; }
 
 		public DbSet<Trip> Trips { get; init; }
+
+		public DbSet<Parent> Parents { get; init; }
+
 
 
 

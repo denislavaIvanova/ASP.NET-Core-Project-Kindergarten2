@@ -36,5 +36,8 @@
 		public int ECAId { get; set; }
 
 		public ECA ECA { get; init; }
+
+		public int ParentId { get; init; }
+		public Parent Parent { get; init; }
 	}
 }

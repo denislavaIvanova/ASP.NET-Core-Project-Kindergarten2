@@ -1,7 +1,8 @@
-﻿using System.Security.Claims;
-
+﻿
 namespace Kindergarten2.Infrastructure
 {
+	using System.Security.Claims;
+
 	public static class ClaimsPrincipalExtensions
 	{
 		public static string GetId(this ClaimsPrincipal user)

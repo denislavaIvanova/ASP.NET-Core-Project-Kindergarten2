@@ -401,3 +401,4 @@ C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\obj
 C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\obj\Debug\net5.0\Razor\Views\Trips\All.cshtml.g.cs
 C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\obj\Debug\net5.0\Razor\Views\Menus\All.cshtml.g.cs
 C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\obj\Debug\net5.0\Razor\Views\Childs\All.cshtml.g.cs
+C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\obj\Debug\net5.0\Razor\Views\Parents\Become.cshtml.g.cs

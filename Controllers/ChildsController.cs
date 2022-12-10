@@ -4,8 +4,10 @@ namespace Kindergarten2.Controllers
 {
 	using Kindergarten2.Data;
 	using Kindergarten2.Data.Models;
+	using Kindergarten2.Infrastructure;
 	using Kindergarten2.Models.Childs;
 	using Kindergarten2.Services.Childs;
+	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Mvc;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -40,24 +42,43 @@ namespace Kindergarten2.Controllers
 
 		}
 
-		//[Authorize]
+		[Authorize]
 
-		public IActionResult Add() => View(new AddChildFormModel
+		public IActionResult Add()
 		{
+			if (!this.UserIsParent())
+			{
+				return RedirectToAction(nameof(ParentsController.Become), "Parents");
+			}
 
-			Groups = this.GetChildGroups(),
-			ECAs = this.GetChildECAs(),
-			Menus = this.GetChildMenus(),
-			Trips = this.GetChildTrips(),
-		});
+			return View(new AddChildFormModel
+			{
+
+				Groups = this.GetChildGroups(),
+				ECAs = this.GetChildECAs(),
+				Menus = this.GetChildMenus(),
+				Trips = this.GetChildTrips()
+			});
+
+		}
 
 
 
 		[HttpPost]
-		//[Authorize]
+		[Authorize]
 
 		public IActionResult Add(AddChildFormModel child)
 		{
+			var parentId = this.data
+				.Parents
+				.Where(p => p.UserId == this.User.GetId())
+				.Select(p => p.Id)
+				.FirstOrDefault();
+
+			if (parentId == 0)
+			{
+				return RedirectToAction(nameof(ParentsController.Become), "Parents");
+			}
 
 			if (!this.data.Groups.Any(g => g.Id == child.GroupId)
 				|| !this.data.ECAs.Any(e => e.Id == child.ECAId)
@@ -92,7 +113,8 @@ namespace Kindergarten2.Controllers
 				ECAId = child.ECAId,
 				MenuId = child.MenuId,
 				GroupId = child.GroupId,
-				TripId = child.TripId
+				TripId = child.TripId,
+				ParentId = parentId
 			};
 
 
@@ -105,6 +127,10 @@ namespace Kindergarten2.Controllers
 
 		}
 
+		private bool UserIsParent()
+			=> this.data
+				.Parents
+				.Any(p => p.UserId == this.User.GetId());
 		private IEnumerable<ChildGroupViewModel> GetChildGroups()
 			=> this.data
 			.Groups.Select(c => new ChildGroupViewModel

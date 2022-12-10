@@ -68,8 +68,15 @@ using Kindergarten2.Models.Home;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 9 "C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\Views\_ViewImports.cshtml"
+using Kindergarten2.Models.Parents;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9f2de2e65f846b5daed375159b12ff91366658e2", @"/Views/Shared/_Layout.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a6b43e293736a52e7001f59345f10a0d8aa5efbc", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7309ce9e4d0744bd7d36686553c412a3adb5342b", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Shared__Layout : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     #nullable disable
@@ -123,7 +130,7 @@ using Kindergarten2.Models.Home;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("<!DOCTYPE html>\r\n<html lang=\"en\">\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e211420", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e211640", async() => {
                 WriteLiteral("\r\n\t<meta charset=\"utf-8\" />\r\n\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n\t<title>");
 #nullable restore
 #line 6 "C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\Views\Shared\_Layout.cshtml"
@@ -133,7 +140,7 @@ using Kindergarten2.Models.Home;
 #line hidden
 #nullable disable
                 WriteLiteral(" - Kindergarten</title>\r\n\t");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "9f2de2e65f846b5daed375159b12ff91366658e212084", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "9f2de2e65f846b5daed375159b12ff91366658e212304", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -148,7 +155,7 @@ using Kindergarten2.Models.Home;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n\t");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "9f2de2e65f846b5daed375159b12ff91366658e213261", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "9f2de2e65f846b5daed375159b12ff91366658e213481", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -175,9 +182,9 @@ using Kindergarten2.Models.Home;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e215144", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e215364", async() => {
                 WriteLiteral("\r\n\t<header>\r\n\t\t<nav class=\"navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3\">\r\n\t\t\t<div class=\"container\">\r\n\t\t\t\t");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e215580", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e215800", async() => {
                     WriteLiteral("Kindergarten");
                 }
                 );
@@ -210,7 +217,7 @@ using Kindergarten2.Models.Home;
 						</button>
 						<div class=""dropdown-menu"" aria-labelledby=""dropdownMenuButton"">
 							");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e218009", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e218229", async() => {
                     WriteLiteral("Add Teacher");
                 }
                 );
@@ -231,7 +238,7 @@ using Kindergarten2.Models.Home;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n\t\t\t\t\t\t\t");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e219757", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e219977", async() => {
                     WriteLiteral("All Teachers");
                 }
                 );
@@ -252,7 +259,7 @@ using Kindergarten2.Models.Home;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n\t\t\t\t\t\t\t");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e221508", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e221728", async() => {
                     WriteLiteral("Add Extracurricular Activity");
                 }
                 );
@@ -273,7 +280,7 @@ using Kindergarten2.Models.Home;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n\t\t\t\t\t\t\t");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e223275", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e223495", async() => {
                     WriteLiteral("All Extracurricular Activities");
                 }
                 );
@@ -294,7 +301,7 @@ using Kindergarten2.Models.Home;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n\t\t\t\t\t\t\t");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e225046", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e225266", async() => {
                     WriteLiteral("Add Menu");
                 }
                 );
@@ -315,7 +322,7 @@ using Kindergarten2.Models.Home;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n\t\t\t\t\t\t\t");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e226793", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e227013", async() => {
                     WriteLiteral("All Menus");
                 }
                 );
@@ -336,7 +343,7 @@ using Kindergarten2.Models.Home;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n\t\t\t\t\t\t\t");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e228543", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e228763", async() => {
                     WriteLiteral("Add Trip");
                 }
                 );
@@ -357,7 +364,7 @@ using Kindergarten2.Models.Home;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n\t\t\t\t\t\t\t");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e230290", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e230510", async() => {
                     WriteLiteral("All Trips");
                 }
                 );
@@ -378,7 +385,7 @@ using Kindergarten2.Models.Home;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n\t\t\t\t\t\t\t");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e232040", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e232260", async() => {
                     WriteLiteral("Add Child");
                 }
                 );
@@ -399,7 +406,7 @@ using Kindergarten2.Models.Home;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n\t\t\t\t\t\t\t");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e233788", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e234008", async() => {
                     WriteLiteral("All Children");
                 }
                 );
@@ -421,7 +428,7 @@ using Kindergarten2.Models.Home;
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n");
                 WriteLiteral("\t\t\t\t\t");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "9f2de2e65f846b5daed375159b12ff91366658e235614", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "9f2de2e65f846b5daed375159b12ff91366658e235834", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper>();
@@ -452,7 +459,7 @@ using Kindergarten2.Models.Home;
 #line hidden
 #nullable disable
                 WriteLiteral(" - Kindergarten\r\n\t\t</div>\r\n\t</footer>\r\n\t");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e237635", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e237855", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -466,7 +473,7 @@ using Kindergarten2.Models.Home;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n\t");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e238734", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e238954", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -480,7 +487,7 @@ using Kindergarten2.Models.Home;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n\t");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e239833", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f2de2e65f846b5daed375159b12ff91366658e240053", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

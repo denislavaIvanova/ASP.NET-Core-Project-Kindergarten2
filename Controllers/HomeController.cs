@@ -1,11 +1,9 @@
 ﻿namespace Kindergarten2.Controllers
 {
 	using Kindergarten2.Data;
-	using Kindergarten2.Models;
 	using Kindergarten2.Models.Home;
 	using Kindergarten2.Services.Statistics;
 	using Microsoft.AspNetCore.Mvc;
-	using System.Diagnostics;
 	using System.Linq;
 
 	public class HomeController : Controller
@@ -52,8 +50,7 @@
 
 		}
 
-		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-		public IActionResult Error() => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+		public IActionResult Error() => View();
 
 	}
 }

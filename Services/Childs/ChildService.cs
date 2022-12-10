@@ -5,6 +5,8 @@ namespace Kindergarten2.Services.Childs
 	using Kindergarten2.Models.Childs;
 	using System.Collections.Generic;
 	using System.Linq;
+
+
 	public class ChildService : IChildService
 	{
 		private readonly KindergartenDbContext data;
@@ -68,5 +70,13 @@ namespace Kindergarten2.Services.Childs
 				.Distinct()
 				.OrderBy(gn => gn)
 				.ToList();
+
+
 	}
 }
+
+//var user = repo.All<User>()
+//			  .Where(u => u.Id == userId)
+//			  .Include(u => u.Cart)
+//			  .ThenInclude(c => c.Products)
+//	  .FirstOrDefault();

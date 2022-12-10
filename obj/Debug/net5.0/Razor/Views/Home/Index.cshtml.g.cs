@@ -68,8 +68,15 @@ using Kindergarten2.Models.Home;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 9 "C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\Views\_ViewImports.cshtml"
+using Kindergarten2.Models.Parents;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1cb445589a7052d0dc40d0b5a50f0dd2822b7eea", @"/Views/Home/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a6b43e293736a52e7001f59345f10a0d8aa5efbc", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7309ce9e4d0744bd7d36686553c412a3adb5342b", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Home_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IndexViewModel>
     #nullable disable
@@ -123,7 +130,7 @@ using Kindergarten2.Models.Home;
 #line hidden
 #nullable disable
             WriteLiteral("\t<div class=\"jumbotron\">\r\n\t\t<h1 class=\"display-4\">Welcome to the best place for your child!</h1>\r\n\t\t<p class=\"lead\">No teachers are available at the moment so please add one.</p>\r\n\t\t<hr class=\"my-4\">\r\n\t\t<p class=\"lead\">\r\n\t\t\t");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1cb445589a7052d0dc40d0b5a50f0dd2822b7eea7226", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1cb445589a7052d0dc40d0b5a50f0dd2822b7eea7446", async() => {
                 WriteLiteral("Add Teacher");
             }
             );
@@ -199,7 +206,7 @@ WriteAttributeValue(" ", 834, teacher.LastName, 835, 17, false);
 #nullable disable
             EndWriteAttribute();
             WriteLiteral(">\r\n\t\t\t\t<div class=\"carousel-caption d-none d-md-block\">\r\n\t\t\t\t\t<h5>");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1cb445589a7052d0dc40d0b5a50f0dd2822b7eea11069", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1cb445589a7052d0dc40d0b5a50f0dd2822b7eea11289", async() => {
 #nullable restore
 #line 32 "C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\Views\Home\Index.cshtml"
                                                                                                                         Write(teacher.FirstName);

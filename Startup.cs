@@ -11,6 +11,7 @@ namespace Kindergarten2
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.AspNetCore.Hosting;
 	using Microsoft.AspNetCore.Identity;
+	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.EntityFrameworkCore;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
@@ -38,10 +39,16 @@ namespace Kindergarten2
 					options.Password.RequireLowercase = false;
 					options.Password.RequireNonAlphanumeric = false;
 					options.Password.RequireUppercase = false;
+					options.SignIn.RequireConfirmedAccount = false;
 
 				})
+				.AddRoles<IdentityRole>()
 				.AddEntityFrameworkStores<KindergartenDbContext>();
-			services.AddControllersWithViews();
+
+			services.AddControllersWithViews(options =>
+			{
+				options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+			});
 
 			services.AddTransient<IStatisticsService, StatisticsService>();
 			services.AddTransient<ITeacherService, TeacherService>();
