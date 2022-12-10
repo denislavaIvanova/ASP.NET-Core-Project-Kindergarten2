@@ -1,6 +1,7 @@
 ﻿
 namespace Kindergarten2.Models.Childs
 {
+	using Kindergarten2.Services.Childs;
 	using System.Collections.Generic;
 	using System.ComponentModel.DataAnnotations;
 	public class AllChildsQueryModel
@@ -18,6 +19,6 @@ namespace Kindergarten2.Models.Childs
 		public int CurrentPage { get; init; } = 1;
 
 		public int TotalChildren { get; set; }
-		public IEnumerable<ChildListingViewModel> Children { get; set; }
+		public IEnumerable<ChildServiceModel> Children { get; set; }
 	}
 }

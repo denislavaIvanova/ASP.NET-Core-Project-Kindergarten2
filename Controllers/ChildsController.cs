@@ -5,6 +5,7 @@ namespace Kindergarten2.Controllers
 	using Kindergarten2.Data;
 	using Kindergarten2.Data.Models;
 	using Kindergarten2.Models.Childs;
+	using Kindergarten2.Services.Childs;
 	using Microsoft.AspNetCore.Mvc;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -13,59 +14,26 @@ namespace Kindergarten2.Controllers
 	{
 		private readonly KindergartenDbContext data;
 
-		public ChildsController(KindergartenDbContext data)
-			=> this.data = data;
+		private readonly IChildService children;
+
+		public ChildsController(KindergartenDbContext data, IChildService children)
+		{
+			this.data = data;
+			this.children = children;
+		}
 
 		public IActionResult All([FromQuery] AllChildsQueryModel query)
 		{
-			var childrenQuery = this.data.Children.AsQueryable();
+			var queryResult = this.children.All(query.Group,
+				query.SearchTerm,
+				query.Sorting,
+				query.CurrentPage,
+				AllChildsQueryModel.ChildrenPerPage);
 
-			if (!string.IsNullOrWhiteSpace(query.Group))
-			{
-				childrenQuery = childrenQuery.Where(x => x.Group.Name == query.Group);
-			}
+			var childrenGroup = this.children.AllChildGroups();
 
-			if (!string.IsNullOrWhiteSpace(query.SearchTerm))
-			{
-				childrenQuery = childrenQuery.Where(c => (c.FirstName + " " + c.LastName).ToLower().Contains(query.SearchTerm.ToLower()));
-			}
-
-			childrenQuery = query.Sorting switch
-			{
-				ChildSorting.Age => childrenQuery.OrderBy(c => c.Age),
-				ChildSorting.FirstNameAndLastName => childrenQuery.OrderBy(c => c.FirstName).ThenBy(c => c.LastName),
-				ChildSorting.DateCreated or _ => childrenQuery.OrderByDescending(c => c.Id)
-
-			};
-
-			var totalChildren = childrenQuery.Count();
-
-			var children = childrenQuery
-							.Skip((query.CurrentPage - 1) * AllChildsQueryModel.ChildrenPerPage)
-							.Take(AllChildsQueryModel.ChildrenPerPage)
-							.Select(c => new ChildListingViewModel
-							{
-								Id = c.Id,
-								FirstName = c.FirstName,
-								LastName = c.LastName,
-								MiddleName = c.MiddleName,
-								Age = c.Age,
-								Group = c.Group.Name,
-								ECA = c.ECA.Title,
-								Trip = c.Trip.PlaceToVisit,
-								Menu = c.Menu.MenuType
-
-							}).ToList();
-
-			var childrenGroup = this.data
-				.Groups
-				.Select(c => c.Name)
-				.Distinct()
-				.OrderBy(gn => gn)
-				.ToList();
-
-			query.TotalChildren = totalChildren;
-			query.Children = children;
+			query.TotalChildren = queryResult.TotalChildren;
+			query.Children = queryResult.Children;
 			query.Groups = childrenGroup;
 
 			return View(query);
