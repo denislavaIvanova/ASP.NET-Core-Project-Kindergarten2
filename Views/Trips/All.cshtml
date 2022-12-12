@@ -41,41 +41,40 @@
 @{
 	var previousPage = Model.CurrentPage - 1;
 
-	if (previousPage<1)
+	if (previousPage < 1)
 	{
 		previousPage = 1;
 	}
 
-	var maxPage = Math.Ceiling((double)Model.TotalTrips/AllTripsQueryModel.TripsPerPage);
+	var maxPage = Math.Ceiling((double)Model.TotalTrips / AllTripsQueryModel.TripsPerPage);
 }
 
 <div class="row mb-5">
 	<div class="col-md-6">
 		<a class="btn btn-primary @(Model.CurrentPage==1?"disabled":string.Empty)"
-		asp-controller="Trips" 
-		asp-action="All"
-		asp-route-currentPage="@previousPage"
-		asp-route-placeToVisit="@Model.PlaceToVisit"
-		asp-route-searchTerm="@Model.SearchTerm"
-		asp-route-sorting="@((int)Model.Sorting)"
-		><<</a>
+		   asp-controller="Trips"
+		   asp-action="All"
+		   asp-route-currentPage="@previousPage"
+		   asp-route-placeToVisit="@Model.PlaceToVisit"
+		   asp-route-searchTerm="@Model.SearchTerm"
+		   asp-route-sorting="@((int)Model.Sorting)"><<</a>
 	</div>
 
 	<div class="col-md-6">
 		<a class="btn btn-primary @(Model.CurrentPage==maxPage ? "disabled" :string.Empty) float-right"
-		asp-controller="Trips"
-		asp-action="All"
-		asp-route-currentPage="@(Model.CurrentPage+1)"
-		asp-route-placeToVisit="@Model.PlaceToVisit"
-		asp-route-searchTerm="@Model.SearchTerm"
-		asp-route-sorting="@((int)Model.Sorting)">>></a>
+		   asp-controller="Trips"
+		   asp-action="All"
+		   asp-route-currentPage="@(Model.CurrentPage+1)"
+		   asp-route-placeToVisit="@Model.PlaceToVisit"
+		   asp-route-searchTerm="@Model.SearchTerm"
+		   asp-route-sorting="@((int)Model.Sorting)">>></a>
 
 	</div>
 
 </div>
 
 <div class="row">
-	@foreach(var trip in Model.Trips)
+	@foreach (var trip in Model.Trips)
 	{
 		<div class="col-md-4">
 			<div class="card mb-3">
@@ -83,7 +82,14 @@
 				<div class="card-body text-center">
 					<h5 class="card-title text-center"> Trip to @trip.PlaceToVisit in @trip.Location for @trip.Price EUR.</h5>
 					<p class="card-text text-center">@trip.PlaceToVisit</p>
+
 					<a asp-controller="Trips" asp-action="Details" asp-route-id="@trip.Id" class="btn btn-primary">Details</a>
+					@if (User.IsAdmin())
+					{
+						<a asp-controller="Trips" asp-action="Edit" asp-route-id="@trip.Id" class="btn btn-warning">Edit</a>
+						<a asp-controller="Trips" asp-action="Delete" asp-route-id="@trip.Id" class="btn btn-danger">Delete</a>
+					}
+
 				</div>
 			</div>
 

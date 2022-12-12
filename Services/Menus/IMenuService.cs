@@ -15,5 +15,9 @@ namespace Kindergarten2.Services.Menus
 		IEnumerable<string> AllMenuTypes();
 
 		int Create(string menuType, string description, double price, string imageUrl);
+
+		bool Edit(int id, string menuType, string description, double price, string imageUrl);
+
+		MenuServiceModel Details(int id);
 	}
 }

@@ -18,5 +18,12 @@ namespace Kindergarten2.Services.ECAs
 			   string title,
 			   string description,
 			   string imageUrl);
+		bool Edit(int id,
+			double monthlyFee,
+				   string title,
+				   string description,
+				   string imageUrl);
+
+		ECAServiceModel Details(int id);
 	}
 }

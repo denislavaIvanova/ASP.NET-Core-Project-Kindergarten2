@@ -66,5 +66,40 @@ namespace Kindergarten2.Controllers
 			return RedirectToAction(nameof(All));
 
 		}
+
+		[Authorize(Roles = "Administrator")]
+		public IActionResult Edit(int id)
+		{
+			var menu = this.menus.Details(id);
+
+			return View(new MenuServiceModel
+			{
+				MenuType = menu.MenuType,
+				Description = menu.Description,
+				Price = menu.Price,
+				ImageUrl = menu.ImageUrl
+			});
+		}
+
+		[Authorize(Roles = "Administrator")]
+		[HttpPost]
+
+		public IActionResult Edit(int id, MenuServiceModel menu)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View(menu);
+			}
+
+			this.menus.Edit(id,
+				menu.MenuType,
+				menu.Description,
+				menu.Price,
+				menu.ImageUrl);
+
+			return RedirectToAction(nameof(All));
+
+
+		}
 	}
 }

@@ -96,5 +96,39 @@ namespace Kindergarten2.Services.Trips
 
 			return tripData.Id;
 		}
+
+		public TripServiceModel Details(int id)
+			=> this.data
+			.Trips.Where(t => t.Id == id)
+			.Select(t => new TripServiceModel
+			{
+				Id = t.Id,
+				PlaceToVisit = t.PlaceToVisit,
+				Activity = t.Activity,
+				Location = t.Location,
+				Price = t.Price,
+				ImageUrl = t.ImageUrl
+			}).FirstOrDefault();
+
+		public bool Edit(int id, string placeToVisit, string activity, string location, double price, string imageUrl)
+		{
+			var tripData = this.data.Trips.Find(id);
+
+			if (tripData == null)
+			{
+				return false;
+			}
+
+			tripData.PlaceToVisit = placeToVisit;
+			tripData.Activity = activity;
+			tripData.Location = location;
+			tripData.Price = price;
+			tripData.ImageUrl = imageUrl;
+
+			this.data.SaveChanges();
+
+			return true;
+
+		}
 	}
 }

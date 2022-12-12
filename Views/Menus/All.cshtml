@@ -83,6 +83,11 @@
 				<div class="card-body text-center">
 					<h5 class="card-title text-center">@menu.MenuType menu for only @menu.Price EUR per meal.</h5>
 					<a asp-controller="Menus" asp-action="Details" asp-route-id="@menu.Id" class="btn btn-primary">Details</a>
+						@if (User.IsAdmin()) 
+					{
+					<a asp-controller="Menus" asp-action="Edit" asp-route-id="@menu.Id" class="btn btn-warning">Edit</a>
+					<a asp-controller="Menus" asp-action="Delete" asp-route-id="@menu.Id" class="btn btn-danger">Delete</a>
+					}
 				</div>
 			</div>
 		</div>

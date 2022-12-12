@@ -64,5 +64,42 @@ namespace Kindergarten2.Controllers
 
 			return RedirectToAction(nameof(All));
 		}
+
+		[Authorize(Roles = "Administrator")]
+		public IActionResult Edit(int id)
+		{
+
+			var ECA = this.ECAs.Details(id);
+
+
+			return View(new ECAServiceModel
+			{
+				Title = ECA.Title,
+				Description = ECA.Description,
+				MonthlyFee = ECA.MonthlyFee,
+				ImageUrl = ECA.ImageUrl
+			});
+		}
+
+		[Authorize(Roles = "Administrator")]
+		[HttpPost]
+
+		public IActionResult Edit(int id, ECAServiceModel ECA)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View(ECA);
+			}
+
+			this.ECAs.Edit(id,
+				ECA.MonthlyFee,
+				ECA.Title,
+				ECA.Description,
+				ECA.ImageUrl);
+
+			return RedirectToAction(nameof(All));
+
+
+		}
 	}
 }

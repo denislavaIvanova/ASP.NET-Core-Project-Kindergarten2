@@ -67,5 +67,42 @@ namespace Kindergarten2.Controllers
 
 		}
 
+		[Authorize(Roles = "Administrator")]
+
+		public IActionResult Edit(int id)
+		{
+			var trip = this.trips.Details(id);
+
+			return View(new TripServiceModel
+			{
+				PlaceToVisit = trip.PlaceToVisit,
+				Activity = trip.Activity,
+				Location = trip.Location,
+				ImageUrl = trip.ImageUrl,
+				Price = trip.Price
+			});
+
+		}
+
+		[Authorize(Roles = "Administrator")]
+		[HttpPost]
+		public IActionResult Edit(int id, TripServiceModel trip)
+		{
+			if (!ModelState.IsValid) 
+			{
+				return View(trip);
+			}
+
+			this.trips.Edit(id,
+				trip.PlaceToVisit,
+				trip.Activity,
+				trip.Location,
+				trip.Price,
+				trip.ImageUrl);
+
+			return RedirectToAction(nameof(All));
+
+		}
+
 	}
 }

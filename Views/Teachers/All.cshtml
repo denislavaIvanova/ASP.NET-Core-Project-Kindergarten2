@@ -89,6 +89,11 @@
 					<h5 class="card-title text-center">@teacher.FirstName @teacher.LastName with @teacher.Experience years of experience.</h5>
 					<p class="card-text text-center">@teacher.Specialization</p>
 					<a asp-controller="Teachers" asp-action="Details" asp-route-id="@teacher.Id" class="btn btn-primary">Details</a>
+						@if (User.IsAdmin()) 
+					{
+					<a asp-controller="Teachers" asp-action="Edit" asp-route-id="@teacher.Id" class="btn btn-warning">Edit</a>
+					<a asp-controller="Teachers" asp-action="Delete" asp-route-id="@teacher.Id" class="btn btn-danger">Delete</a>
+					}
 				</div>
 			</div>
 

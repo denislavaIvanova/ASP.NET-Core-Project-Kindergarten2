@@ -82,5 +82,36 @@
 
 			return menuData.Id;
 		}
+
+		public MenuServiceModel Details(int id)
+			=> this.data
+			.Menus.Where(m => m.Id == id)
+			.Select(m => new MenuServiceModel
+			{
+				Id = m.Id,
+				MenuType = m.MenuType,
+				Description = m.Description,
+				Price = m.Price,
+				ImageUrl = m.ImageUrl
+			}).FirstOrDefault();
+
+		public bool Edit(int id, string menuType, string description, double price, string imageUrl)
+		{
+			var menuData = this.data.Menus.Find(id);
+
+			if (menuData == null)
+			{
+				return false;
+			}
+
+			menuData.MenuType = menuType;
+			menuData.Description = description;
+			menuData.Price = price;
+			menuData.ImageUrl = imageUrl;
+
+			this.data.SaveChanges();
+
+			return true;
+		}
 	}
 }

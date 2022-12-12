@@ -19,5 +19,13 @@ namespace Kindergarten2.Services.Trips
 		string location,
 		double price,
 		string imageUrl);
+
+		bool Edit(int id, string placeToVisit,
+	string activity,
+	string location,
+	double price,
+	string imageUrl);
+
+		TripServiceModel Details(int id);
 	}
 }

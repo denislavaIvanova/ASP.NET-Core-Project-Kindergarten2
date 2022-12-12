@@ -86,5 +86,38 @@ namespace Kindergarten2.Services.ECAs
 
 			return ECAData.Id;
 		}
+
+		public bool Edit(int id, double monthlyFee, string title, string description, string imageUrl)
+		{
+			var ECAData = this.data.ECAs.Find(id);
+
+			if (ECAData == null)
+			{
+				return false;
+			}
+
+			ECAData.MonthlyFee = monthlyFee;
+			ECAData.Title = title;
+			ECAData.Description = description;
+			ECAData.ImageUrl = imageUrl;
+
+			this.data.SaveChanges();
+
+			return true;
+		}
+
+		public ECAServiceModel Details(int id)
+			=> this.data
+			.ECAs.Where(e => e.Id == id)
+			.Select(e => new ECAServiceModel
+			{
+				Id = e.Id,
+				Title = e.Title,
+				Description = e.Description,
+				MonthlyFee = e.MonthlyFee,
+				ImageUrl = e.ImageUrl
+
+			}).FirstOrDefault();
+
 	}
 }

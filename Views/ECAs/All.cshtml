@@ -79,6 +79,12 @@
 				<div class="card-body text-center">
 					<h5 class="card-title text-center">@ECA.Title for only @ECA.MonthlyFee EUR per month.</h5>
 					<a asp-controller="ECAs" asp-action="Details" asp-route-id="@ECA.Id" class="btn btn-primary">Details</a>
+
+					@if (User.IsAdmin()) 
+					{
+					<a asp-controller="ECAs" asp-action="Edit" asp-route-id="@ECA.Id" class="btn btn-warning">Edit</a>
+					<a asp-controller="ECAs" asp-action="Delete" asp-route-id="@ECA.Id" class="btn btn-danger">Delete</a>
+					}
 				</div>
 			</div>
 		</div>
