@@ -3,7 +3,6 @@
 namespace Kindergarten2.Controllers
 {
 	using Kindergarten2.Data;
-	using Kindergarten2.Data.Models;
 	using Kindergarten2.Models.Menus;
 	using Kindergarten2.Services.Menus;
 	using Microsoft.AspNetCore.Authorization;
@@ -58,17 +57,11 @@ namespace Kindergarten2.Controllers
 				return View(menu);
 			}
 
-			var menuData = new Menu
-			{
-				MenuType = menu.MenuType,
-				Description = menu.Description,
-				Price = menu.Price,
-				ImageUrl = menu.ImageUrl
-			};
+			this.menus.Create(menu.MenuType,
+				menu.Description,
+				menu.Price,
+				menu.ImageUrl);
 
-			this.data.Menus.Add(menuData);
-
-			this.data.SaveChanges();
 
 			return RedirectToAction(nameof(All));
 

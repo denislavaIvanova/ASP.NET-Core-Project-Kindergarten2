@@ -1,13 +1,16 @@
-﻿using Kindergarten2.Data;
-using Kindergarten2.Models.ECAs;
-using System.Collections.Generic;
-using System.Linq;
+﻿
 
 namespace Kindergarten2.Services.ECAs
 {
+	using Kindergarten2.Data;
+	using Kindergarten2.Data.Models;
+	using Kindergarten2.Models.ECAs;
+	using System.Collections.Generic;
+	using System.Linq;
 	public class ECAService : IECAService
 	{
 		private readonly KindergartenDbContext data;
+
 
 		public ECAService(KindergartenDbContext data)
 			=> this.data = data;
@@ -66,5 +69,22 @@ namespace Kindergarten2.Services.ECAs
 				.Distinct()
 				.OrderBy(t => t)
 				.ToList();
+
+		public int Create(double monthlyFee, string title, string description, string imageUrl)
+		{
+			var ECAData = new ECA
+			{
+				MonthlyFee = monthlyFee,
+				Title = title,
+				Description = description,
+				ImageUrl = imageUrl
+			};
+
+			this.data.ECAs.Add(ECAData);
+
+			this.data.SaveChanges();
+
+			return ECAData.Id;
+		}
 	}
 }

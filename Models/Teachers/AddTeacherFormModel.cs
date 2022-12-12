@@ -1,6 +1,7 @@
 ﻿
 namespace Kindergarten2.Models.Teachers
 {
+	using Kindergarten2.Services.Teachers;
 	using System.Collections.Generic;
 	using System.ComponentModel.DataAnnotations;
 
@@ -37,7 +38,7 @@ namespace Kindergarten2.Models.Teachers
 		[Display(Name = "Group")]
 		public int GroupId { get; init; }
 
-		public IEnumerable<TeacherGroupViewModel> Groups { get; set; }
+		public IEnumerable<TeacherGroupServiceModel> Groups { get; set; }
 
 	}
 }

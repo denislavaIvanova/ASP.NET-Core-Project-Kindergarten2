@@ -13,6 +13,18 @@ namespace Kindergarten2.Services.Teachers
 			int teachersPerPage);
 
 		IEnumerable<string> AllTeacherSpecializations();
+
+		int Create(int groupId,
+			string firstName,
+			string lastName,
+			int experience,
+			string specialization,
+			string introduction,
+			string imageUrl);
+
+		bool GroupExist(int groupId);
+
+		IEnumerable<TeacherGroupServiceModel> GetTeacherGroups();
 	}
 
 

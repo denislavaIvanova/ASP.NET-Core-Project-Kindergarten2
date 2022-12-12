@@ -1,6 +1,7 @@
 ﻿namespace Kindergarten2.Services.Menus
 {
 	using Kindergarten2.Data;
+	using Kindergarten2.Data.Models;
 	using Kindergarten2.Models.Menus;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -64,5 +65,22 @@
 				.Distinct()
 				.OrderBy(mt => mt)
 				.ToList();
+
+		public int Create(string menuType, string description, double price, string imageUrl)
+		{
+			var menuData = new Menu
+			{
+				MenuType = menuType,
+				Description = description,
+				Price = price,
+				ImageUrl = imageUrl
+			};
+
+			this.data.Menus.Add(menuData);
+
+			this.data.SaveChanges();
+
+			return menuData.Id;
+		}
 	}
 }

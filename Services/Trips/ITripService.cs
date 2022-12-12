@@ -13,5 +13,11 @@ namespace Kindergarten2.Services.Trips
 			int tripsPerPage);
 
 		IEnumerable<string> AllTripPlacesToVisit();
+
+		int Craete(string placeToVisit,
+		string activity,
+		string location,
+		double price,
+		string imageUrl);
 	}
 }

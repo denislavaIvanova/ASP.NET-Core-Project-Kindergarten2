@@ -13,5 +13,10 @@ namespace Kindergarten2.Services.ECAs
 			int ECAsPerPage);
 
 		IEnumerable<string> AllECAsTitles();
+
+		int Create(double monthlyFee,
+			   string title,
+			   string description,
+			   string imageUrl);
 	}
 }

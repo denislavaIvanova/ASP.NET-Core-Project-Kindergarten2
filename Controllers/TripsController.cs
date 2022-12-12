@@ -3,7 +3,6 @@
 namespace Kindergarten2.Controllers
 {
 	using Kindergarten2.Data;
-	using Kindergarten2.Data.Models;
 	using Kindergarten2.Models.Trips;
 	using Kindergarten2.Services.Trips;
 	using Microsoft.AspNetCore.Authorization;
@@ -58,18 +57,11 @@ namespace Kindergarten2.Controllers
 				return View(trip);
 			}
 
-			var tripData = new Trip
-			{
-				PlaceToVisit = trip.PlaceToVisit,
-				Activity = trip.Activity,
-				Location = trip.Location,
-				Price = trip.Price,
-				ImageUrl = trip.ImageUrl
-			};
-
-			this.data.Trips.Add(tripData);
-
-			this.data.SaveChanges();
+			this.trips.Craete(trip.PlaceToVisit,
+				trip.Activity,
+				trip.Location,
+				trip.Price,
+				trip.ImageUrl);
 
 			return RedirectToAction(nameof(All));
 

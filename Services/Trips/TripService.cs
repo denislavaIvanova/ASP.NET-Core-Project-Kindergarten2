@@ -3,6 +3,7 @@
 namespace Kindergarten2.Services.Trips
 {
 	using Kindergarten2.Data;
+	using Kindergarten2.Data.Models;
 	using Kindergarten2.Models.Trips;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -73,5 +74,27 @@ namespace Kindergarten2.Services.Trips
 				.Distinct()
 				.OrderBy(p => p)
 				.ToList();
+
+		public int Craete(string placeToVisit,
+			string activity,
+			string location,
+			double price,
+			string imageUrl)
+		{
+			var tripData = new Trip
+			{
+				PlaceToVisit = placeToVisit,
+				Activity = activity,
+				Location = location,
+				Price = price,
+				ImageUrl = imageUrl
+			};
+
+			this.data.Trips.Add(tripData);
+
+			this.data.SaveChanges();
+
+			return tripData.Id;
+		}
 	}
 }

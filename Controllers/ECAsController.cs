@@ -3,7 +3,6 @@
 namespace Kindergarten2.Controllers
 {
 	using Kindergarten2.Data;
-	using Kindergarten2.Data.Models;
 	using Kindergarten2.Models.ECAs;
 	using Kindergarten2.Services.ECAs;
 	using Microsoft.AspNetCore.Authorization;
@@ -58,17 +57,10 @@ namespace Kindergarten2.Controllers
 				return View(ECA);
 			}
 
-			var ECAData = new ECA
-			{
-				MonthlyFee = ECA.MonthlyFee,
-				Title = ECA.Title,
-				Description = ECA.Description,
-				ImageUrl = ECA.ImageUrl
-			};
-
-			this.data.ECAs.Add(ECAData);
-
-			this.data.SaveChanges();
+			this.ECAs.Create(ECA.MonthlyFee,
+				ECA.Title,
+				ECA.Description,
+				ECA.ImageUrl);
 
 			return RedirectToAction(nameof(All));
 		}

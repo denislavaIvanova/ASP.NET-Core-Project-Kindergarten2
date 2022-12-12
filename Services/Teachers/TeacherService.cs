@@ -2,6 +2,7 @@
 namespace Kindergarten2.Services.Teachers
 {
 	using Kindergarten2.Data;
+	using Kindergarten2.Data.Models;
 	using Kindergarten2.Models.Teachers;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -78,5 +79,47 @@ namespace Kindergarten2.Services.Teachers
 						.Distinct()
 						.OrderBy(spec => spec)
 						.ToList();
+
+		public int Create(int groupId,
+			string firstName,
+			string lastName,
+			int experience,
+			string specialization,
+			string introduction,
+			string imageUrl)
+		{
+			var teacherData = new Teacher
+			{
+				GroupId = groupId,
+				FirstName = firstName,
+				LastName = lastName,
+				Experience = experience,
+				Specialization = specialization,
+				Introduction = introduction,
+				ImageUrl = imageUrl
+
+			};
+
+			this.data.Teachers.Add(teacherData);
+
+			this.data.SaveChanges();
+
+			return teacherData.Id;
+		}
+
+		public IEnumerable<TeacherGroupServiceModel> GetTeacherGroups()
+		=> this.data
+			.Groups
+			.Select(t => new TeacherGroupServiceModel
+			{
+				Id = t.Id,
+				Name = t.Name,
+
+			}).ToList();
+
+		public bool GroupExist(int groupId)
+		=> this.data.Groups.Any(g => g.Id == groupId);
+
+
 	}
 }

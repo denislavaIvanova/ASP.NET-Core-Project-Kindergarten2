@@ -13,5 +13,7 @@ namespace Kindergarten2.Services.Menus
 			int menusPerPage);
 
 		IEnumerable<string> AllMenuTypes();
+
+		int Create(string menuType, string description, double price, string imageUrl);
 	}
 }
