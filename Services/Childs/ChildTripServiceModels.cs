@@ -1,6 +1,6 @@
-﻿namespace Kindergarten2.Models.Childs
+﻿namespace Kindergarten2.Services.Childs
 {
-	public class ChildTripViewModels
+	public class ChildTripServiceModels
 	{
 		public int Id { get; init; }
 

@@ -1,6 +1,6 @@
-﻿namespace Kindergarten2.Models.Childs
+﻿namespace Kindergarten2.Services.Childs
 {
-	public class ChildGroupViewModel
+	public class ChildGroupServiceModel
 	{
 
 		public int Id { get; init; }

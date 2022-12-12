@@ -82,19 +82,4 @@
 	<h2 class="text-center">No children are found.</h2>
 }
 
-<div class="row">
-	@foreach (var child in Model.Children)
-	{
-		<div class="col-md-4">
-			<div class="card mb-3">
-				<div class="card-body text-center">
-					<h5 class="card-title text-center">@child.FirstName @child.MiddleName @child.LastName who is @child.Age years old and is registered in group @child.Group.</h5>
-					<p class="card-text text-center">@child.Group</p>
-					<a asp-controller="Childs" asp-action="Details" asp-route-id="@child.Id" class="btn btn-primary">Details</a>
-				</div>
-			</div>
-
-		</div>
-
-	}
-</div>
+<partial name="_ChildsPartial" model="@Model.Children"/>

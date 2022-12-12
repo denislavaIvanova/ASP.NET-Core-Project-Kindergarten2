@@ -1,0 +1,13 @@
+﻿@model IEnumerable<ChildServiceModel>
+
+@{
+	ViewBag.Title = "My Children";
+	ViewBag.AllowChildEdit = true;
+}
+
+@if (!Model.Any())
+{
+	<h2 class="text-center">You have not added any children yet!</h2>
+}
+
+<partial name="_ChildsPartial" model="@Model"/>

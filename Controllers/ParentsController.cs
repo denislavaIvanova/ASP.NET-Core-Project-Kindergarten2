@@ -24,7 +24,7 @@ namespace Kindergarten2.Controllers
 
 		public IActionResult Become(RegisterAsParentFormModel parent)
 		{
-			var userId = this.User.GetId();
+			var userId = this.User.Id();
 
 			var userIsAlresdyParent = this.data
 				.Parents.Any(p => p.UserId == userId);

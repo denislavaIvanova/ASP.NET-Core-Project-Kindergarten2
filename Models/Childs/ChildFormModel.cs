@@ -1,9 +1,9 @@
-﻿namespace Kindergarten2.Models.Childs
+﻿namespace Kindergarten2.Services.Childs
 {
 	using System.Collections.Generic;
 	using System.ComponentModel.DataAnnotations;
 
-	public class AddChildFormModel
+	public class ChildFormModel
 	{
 
 		[Required]
@@ -29,21 +29,21 @@
 		[Display(Name = "Group")]
 		public int GroupId { get; init; }
 
-		public IEnumerable<ChildGroupViewModel> Groups { get; set; }
+		public IEnumerable<ChildGroupServiceModel> Groups { get; set; }
 
 		[Display(Name = "Trip")]
 		public int TripId { get; init; }
 
-		public IEnumerable<ChildTripViewModels> Trips { get; set; }
+		public IEnumerable<ChildTripServiceModels> Trips { get; set; }
 
 		[Display(Name = "Menu")]
 		public int MenuId { get; init; }
 
-		public IEnumerable<ChildMenuViewModel> Menus { get; set; }
+		public IEnumerable<ChildMenuServiceModel> Menus { get; set; }
 
 		[Display(Name = "Extracurricular activity")]
 		public int ECAId { get; init; }
 
-		public IEnumerable<ChildECAViewModel> ECAs { get; set; }
+		public IEnumerable<ChildECAServiceModel> ECAs { get; set; }
 	}
 }

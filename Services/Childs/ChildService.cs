@@ -2,6 +2,7 @@
 
 namespace Kindergarten2.Services.Childs
 {
+	using Kindergarten2.Data.Models;
 	using Kindergarten2.Models.Childs;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -37,22 +38,9 @@ namespace Kindergarten2.Services.Childs
 
 			var totalChildren = childrenQuery.Count();
 
-			var children = childrenQuery
+			var children = GetChildren(childrenQuery
 							.Skip((currentPage - 1) * childrenPerPage)
-							.Take(childrenPerPage)
-							.Select(c => new ChildServiceModel
-							{
-								Id = c.Id,
-								FirstName = c.FirstName,
-								LastName = c.LastName,
-								MiddleName = c.MiddleName,
-								Age = c.Age,
-								Group = c.Group.Name,
-								ECA = c.ECA.Title,
-								Trip = c.Trip.PlaceToVisit,
-								Menu = c.Menu.MenuType
-
-							}).ToList();
+							.Take(childrenPerPage));
 
 			return new ChildQueryServiceModel
 			{
@@ -63,6 +51,84 @@ namespace Kindergarten2.Services.Childs
 			};
 		}
 
+		public int Create(string firstName, string middleName, string lastName, int age, int ECAId, int menuId, int groupId, int tripId, int parentId)
+		{
+			var childData = new Child
+			{
+				FirstName = firstName,
+				MiddleName = middleName,
+				LastName = lastName,
+				Age = age,
+				ECAId = ECAId,
+				MenuId = menuId,
+				GroupId = groupId,
+				TripId = tripId,
+				ParentId = parentId
+			};
+
+
+			this.data.Children.Add(childData);
+
+			this.data.SaveChanges();
+
+			return childData.Id;
+		}
+
+		public bool Edit(
+			int id,
+			string firstName,
+			string middleName,
+			string lastName,
+			int age,
+			int ECAId,
+			int menuId,
+			int groupId,
+			int tripId)
+		{
+			var childData = this.data.Children.Find(id);
+
+			if (childData == null)
+			{
+				return false;
+			}
+
+			childData.FirstName = firstName;
+			childData.MiddleName = middleName;
+			childData.LastName = lastName;
+			childData.Age = age;
+			childData.ECAId = ECAId;
+			childData.MenuId = menuId;
+			childData.GroupId = groupId;
+			childData.TripId = tripId;
+
+			this.data.SaveChanges();
+
+			return true;
+		}
+
+
+		public ChildDetailsServiceModel Deatails(int id)
+			=> this.data
+			.Children
+			.Where(c => c.Id == id)
+			.Select(c => new ChildDetailsServiceModel
+			{
+				Id = c.Id,
+				FirstName = c.FirstName,
+				LastName = c.LastName,
+				MiddleName = c.MiddleName,
+				Age = c.Age,
+				GroupName = c.Group.Name,
+				ECAName = c.ECA.Title,
+				TripName = c.Trip.PlaceToVisit,
+				MenuName = c.Menu.MenuType,
+				ParentFirstName = c.Parent.FirstName,
+				ParentLastName = c.Parent.LastName,
+				ParentId = c.ParentId,
+				UserId = c.Parent.UserId
+
+			}).FirstOrDefault();
+
 		public IEnumerable<string> AllChildGroups()
 			=> this.data
 				.Groups
@@ -71,12 +137,91 @@ namespace Kindergarten2.Services.Childs
 				.OrderBy(gn => gn)
 				.ToList();
 
+		public IEnumerable<ChildServiceModel> ByUser(string userId)
+			=> GetChildren(this.data
+			.Children
+			.Where(c => c.Parent.UserId == userId));
+
+		public bool ChildIsByParent(int childId, int parentId)
+			=> this.data
+			.Children
+			.Any(c => c.Id == childId && c.ParentId == parentId);
+
+
+		private static IEnumerable<ChildServiceModel> GetChildren(IQueryable<Child> childQuery)
+			=> childQuery
+			.Select(c => new ChildServiceModel
+			{
+				Id = c.Id,
+				FirstName = c.FirstName,
+				LastName = c.LastName,
+				MiddleName = c.MiddleName,
+				Age = c.Age,
+				GroupName = c.Group.Name,
+				ECAName = c.ECA.Title,
+				TripName = c.Trip.PlaceToVisit,
+				MenuName = c.Menu.MenuType
+
+			}).ToList();
+
+		public IEnumerable<ChildGroupServiceModel> GetChildGroups()
+		=> this.data
+			.Groups.Select(c => new ChildGroupServiceModel
+			{
+				Id = c.Id,
+				Name = c.Name
+
+			}).ToList();
+
+		public bool GroupExist(int groupId)
+			=> this.data
+			.Groups
+			.Any(g => g.Id == groupId);
+
+		public IEnumerable<ChildECAServiceModel> GetChildECAs()
+		=> this.data
+			.ECAs.Select(c => new ChildECAServiceModel
+			{
+				Id = c.Id,
+				Title = c.Title
+
+			}).ToList();
+
+		public bool ECAExist(int ECAId)
+			=> this.data
+			.ECAs
+			.Any(e => e.Id == ECAId);
+
+
+		public IEnumerable<ChildMenuServiceModel> GetChildMenus()
+		=> this.data
+			.Menus.Select(c => new ChildMenuServiceModel
+			{
+				Id = c.Id,
+				MenuType = c.MenuType
+
+			}).ToList();
+
+		public bool MenuExist(int menuId)
+		=> this.data
+			.Menus
+			.Any(e => e.Id == menuId);
+
+		public IEnumerable<ChildTripServiceModels> GetChildTrips()
+		=> this.data
+			.Trips.Select(c => new ChildTripServiceModels
+			{
+				Id = c.Id,
+				PlaceToVisit = c.PlaceToVisit
+			})
+			.ToList();
+
+		public bool TripExist(int tripId)
+		=> this.data
+			.Trips
+			.Any(e => e.Id == tripId);
+
 
 	}
 }
 
-//var user = repo.All<User>()
-//			  .Where(u => u.Id == userId)
-//			  .Include(u => u.Cart)
-//			  .ThenInclude(c => c.Products)
-//	  .FirstOrDefault();
