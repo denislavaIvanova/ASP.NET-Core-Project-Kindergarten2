@@ -41,14 +41,16 @@
 
 		}
 
-		[Authorize]
+		[Authorize(Roles = "Administrator")]
+
 		//if you want to find additional info for the user var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;=>this.User.GetId()
 		public IActionResult Add() => View(new AddTeacherFormModel
 		{
 			Groups = this.GetTeacherGroups()
 		});
 
-		[Authorize]
+		[Authorize(Roles = "Administrator")]
+
 
 		[HttpPost]
 		public IActionResult Add(AddTeacherFormModel teacher)

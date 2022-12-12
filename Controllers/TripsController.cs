@@ -40,14 +40,16 @@ namespace Kindergarten2.Controllers
 
 		}
 
-		[Authorize]
+		[Authorize(Roles = "Administrator")]
+
 		public IActionResult Add() => View(new AddTripFormModel
 		{
 
 		});
 
 		[HttpPost]
-		[Authorize]
+		[Authorize(Roles = "Administrator")]
+
 
 		public IActionResult Add(AddTripFormModel trip)
 		{

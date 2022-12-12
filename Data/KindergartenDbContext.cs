@@ -1,10 +1,9 @@
 ﻿namespace Kindergarten2.Data
 {
 	using Kindergarten2.Data.Models;
-	using Microsoft.AspNetCore.Identity;
 	using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore;
-	public class KindergartenDbContext : IdentityDbContext
+	public class KindergartenDbContext : IdentityDbContext<User>
 	{
 		public KindergartenDbContext(DbContextOptions<KindergartenDbContext> options)
 			: base(options)
@@ -21,7 +20,7 @@
 
 			builder
 				.Entity<Parent>()
-				.HasOne<IdentityUser>()
+				.HasOne<User>()
 				.WithOne()
 				.HasForeignKey<Parent>(p => p.UserId)
 				.OnDelete(DeleteBehavior.Restrict);

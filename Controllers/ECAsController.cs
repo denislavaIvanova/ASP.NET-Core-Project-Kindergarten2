@@ -40,7 +40,7 @@ namespace Kindergarten2.Controllers
 			return View(query);
 		}
 
-		[Authorize]
+		[Authorize(Roles = "Administrator")]
 
 		public IActionResult Add() => View(new AddECAFormModel
 		{
@@ -48,7 +48,8 @@ namespace Kindergarten2.Controllers
 		});
 
 		[HttpPost]
-		[Authorize]
+		[Authorize(Roles = "Administrator")]
+
 
 		public IActionResult Add(AddECAFormModel ECA)
 		{

@@ -1,6 +1,7 @@
 namespace Kindergarten2
 {
 	using Kindergarten2.Data;
+	using Kindergarten2.Data.Models;
 	using Kindergarten2.Infrastructure;
 	using Kindergarten2.Services.Childs;
 	using Kindergarten2.Services.ECAs;
@@ -34,7 +35,7 @@ namespace Kindergarten2
 			services.AddDatabaseDeveloperPageExceptionFilter();
 
 			services
-				.AddDefaultIdentity<IdentityUser>(options =>
+				.AddDefaultIdentity<User>(options =>
 				{
 					options.Password.RequireDigit = false;
 					options.Password.RequireLowercase = false;

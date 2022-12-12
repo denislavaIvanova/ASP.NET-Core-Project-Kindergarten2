@@ -39,7 +39,8 @@ namespace Kindergarten2.Controllers
 
 		}
 
-		[Authorize]
+		[Authorize(Roles = "Administrator")]
+
 
 		public IActionResult Add() => View(new AddMenuFormModel
 		{
@@ -47,7 +48,8 @@ namespace Kindergarten2.Controllers
 		});
 
 		[HttpPost]
-		[Authorize]
+		[Authorize(Roles = "Administrator")]
+
 
 		public IActionResult Add(AddMenuFormModel menu)
 		{

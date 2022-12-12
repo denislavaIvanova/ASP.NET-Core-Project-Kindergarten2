@@ -121,14 +121,14 @@ namespace Kindergarten2.Controllers
 		{
 			var userId = this.User.Id();
 
-			if (!this.parents.IsParent(userId))
+			if (!this.parents.IsParent(userId) && !User.IsAdmin())
 			{
 				return RedirectToAction(nameof(ParentsController.Become), "Parents");
 			}
 
 			var child = this.children.Deatails(id);
 
-			if (child.UserId != userId)
+			if (child.UserId != userId && !User.IsAdmin())
 			{
 				return Unauthorized();
 			}
@@ -157,7 +157,7 @@ namespace Kindergarten2.Controllers
 		{
 			var parentId = this.parents.IdByUser(this.User.Id());
 
-			if (parentId == 0)
+			if (parentId == 0 && !User.IsAdmin())
 			{
 				return RedirectToAction(nameof(ParentsController.Become), "Parents");
 			}
@@ -185,7 +185,7 @@ namespace Kindergarten2.Controllers
 				return View(child);
 			}
 
-			if (!this.children.ChildIsByParent(id, parentId))
+			if (!this.children.ChildIsByParent(id, parentId) && !User.IsAdmin())
 			{
 				return Unauthorized();
 			}

@@ -1,7 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using Kindergarten2.Data.Models
 
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 @inject IParentService Parents
 
 <ul class="navbar-nav">
@@ -10,14 +12,15 @@
 	{
 		var userId = User.Id();
 		var userIsParent = Parents.IsParent(userId);
+		var userIsAdmin = User.IsAdmin();
 
-		@if (userIsParent)
+		@if (userIsParent&&!userIsAdmin)
 		{
 			<li class="nav-item">
 				<a class="nav-link text-dark" asp-area="" asp-controller="Childs" asp-action="Mine">My children</a>
 			</li>
 		}
-		else
+		else if(!userIsAdmin)
 		{
 			<li class="nav-item">
 				<a class="nav-link text-dark" asp-area="" asp-controller="Parents" asp-action="Become">Register as parent</a>

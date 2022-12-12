@@ -97,7 +97,7 @@ using Kindergarten2.Services.Parents;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"cc778ab232bea4be50f4354603cd017ecceed172", @"/Views/Menus/All.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e705a1ffd5730bfacabe69bd5506ebfbf0e3c579", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ee84c8812d602b54edccd404b38c4901c03895da", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Menus_All : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<AllMenusQueryModel>
     #nullable disable

@@ -4,9 +4,13 @@ namespace Kindergarten2.Infrastructure
 	using Kindergarten2.Data;
 	using Kindergarten2.Data.Models;
 	using Microsoft.AspNetCore.Builder;
+	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 	using Microsoft.Extensions.DependencyInjection;
+	using System;
 	using System.Linq;
+	using System.Threading.Tasks;
+	using static WebConstants;
 
 	public static class ApplicationBuilderExtensions
 	{
@@ -15,13 +19,17 @@ namespace Kindergarten2.Infrastructure
 		{
 			using var scopedServices = app.ApplicationServices.CreateScope();
 
-			var data = scopedServices.ServiceProvider.GetService<KindergartenDbContext>();
+			var serviceProvider = scopedServices.ServiceProvider;
+
+			var data = serviceProvider.GetRequiredService<KindergartenDbContext>();
 
 			data.Database.Migrate();
 
 			SeedCategories(data);
 
 			SeedGroups(data);
+
+			SeedAdministrator(serviceProvider);
 
 
 			return app;
@@ -66,6 +74,44 @@ namespace Kindergarten2.Infrastructure
 			});
 
 			data.SaveChanges();
+		}
+
+		private static void SeedAdministrator(IServiceProvider services)
+		{
+
+			var userManager = services.GetRequiredService<UserManager<User>>();
+			var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+			Task
+				.Run(async () =>
+				{
+					if (await roleManager.RoleExistsAsync(AdministratorRoleName))
+					{
+						return;
+					}
+
+					var role = new IdentityRole { Name = AdministratorRoleName };
+
+					await roleManager.CreateAsync(role);
+
+					const string adminEmail = "admin@kdr.com";
+					const string adminPassword = "admin1234";
+
+
+					var user = new User
+					{
+						Email = adminEmail,
+						UserName = adminEmail,
+						FullName = "Admin"
+					};
+
+					await userManager.CreateAsync(user, adminPassword);
+
+					await userManager.AddToRoleAsync(user, role.Name);
+				})
+				.GetAwaiter()
+				.GetResult();
+
 		}
 	}
 }
