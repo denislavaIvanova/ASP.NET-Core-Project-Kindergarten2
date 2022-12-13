@@ -97,6 +97,8 @@ namespace Kindergarten2.Services.Trips
 			return tripData.Id;
 		}
 
+
+
 		public TripServiceModel Details(int id)
 			=> this.data
 			.Trips.Where(t => t.Id == id)
@@ -130,5 +132,6 @@ namespace Kindergarten2.Services.Trips
 			return true;
 
 		}
+
 	}
 }

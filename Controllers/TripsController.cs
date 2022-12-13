@@ -88,7 +88,7 @@ namespace Kindergarten2.Controllers
 		[HttpPost]
 		public IActionResult Edit(int id, TripServiceModel trip)
 		{
-			if (!ModelState.IsValid) 
+			if (!ModelState.IsValid)
 			{
 				return View(trip);
 			}
@@ -103,6 +103,8 @@ namespace Kindergarten2.Controllers
 			return RedirectToAction(nameof(All));
 
 		}
+
+
 
 	}
 }

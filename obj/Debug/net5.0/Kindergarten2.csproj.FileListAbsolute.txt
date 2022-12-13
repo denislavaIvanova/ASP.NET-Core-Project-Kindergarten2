@@ -459,3 +459,5 @@ C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\obj
 C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\obj\Debug\net5.0\Razor\Views\Menus\_MenuFormPartial.cshtml.g.cs
 C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\obj\Debug\net5.0\Razor\Views\Trips\Edit.cshtml.g.cs
 C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\obj\Debug\net5.0\Razor\Views\Trips\_TripFormPartial.cshtml.g.cs
+C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\obj\Debug\net5.0\Razor\Views\Teachers\Edit.cshtml.g.cs
+C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\obj\Debug\net5.0\Razor\Views\Teachers\_TeacherFormPartial.cshtml.g.cs

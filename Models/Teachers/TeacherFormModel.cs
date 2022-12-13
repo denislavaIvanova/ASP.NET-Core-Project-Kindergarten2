@@ -5,7 +5,7 @@ namespace Kindergarten2.Models.Teachers
 	using System.Collections.Generic;
 	using System.ComponentModel.DataAnnotations;
 
-	public class AddTeacherFormModel
+	public class TeacherFormModel
 	{
 		[Required]
 		[StringLength(100, MinimumLength = 2, ErrorMessage = "{0} must be between {2} and {1} symbols.")]

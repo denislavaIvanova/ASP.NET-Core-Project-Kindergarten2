@@ -25,6 +25,17 @@ namespace Kindergarten2.Services.Teachers
 		bool GroupExist(int groupId);
 
 		IEnumerable<TeacherGroupServiceModel> GetTeacherGroups();
+
+		TeacherDetailsServiceModel Details(int id);
+
+		bool Edit(int id,
+			string firstName,
+				string lastName,
+				string specialization,
+				string introduction,
+				int experience,
+				string imageUrl,
+				int groupId);
 	}
 
 

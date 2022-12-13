@@ -107,6 +107,50 @@ namespace Kindergarten2.Services.Teachers
 			return teacherData.Id;
 		}
 
+		public TeacherDetailsServiceModel Details(int id)
+			=> this.data
+			.Teachers.Where(t => t.Id == id)
+			.Select(t => new TeacherDetailsServiceModel
+			{
+				Id = t.Id,
+				FirstName = t.FirstName,
+				LastName = t.LastName,
+				Specialization = t.Specialization,
+				Introduction = t.Introduction,
+				Experience = t.Experience,
+				Group = t.Group.Name,
+				ImageUrl = t.ImageUrl
+			}).FirstOrDefault();
+
+		public bool Edit(int id,
+			string firstName,
+				string lastName,
+				string specialization,
+				string introduction,
+				int experience,
+				string imageUrl,
+				int groupId)
+		{
+			var teacherData = this.data.Teachers.Find(id);
+
+			if (teacherData == null)
+			{
+				return false;
+			}
+
+			teacherData.FirstName = firstName;
+			teacherData.LastName = lastName;
+			teacherData.Specialization = specialization;
+			teacherData.Introduction = introduction;
+			teacherData.Experience = experience;
+			teacherData.GroupId = groupId;
+			teacherData.ImageUrl = imageUrl;
+
+			this.data.SaveChanges();
+
+			return true;
+		}
+
 		public IEnumerable<TeacherGroupServiceModel> GetTeacherGroups()
 		=> this.data
 			.Groups

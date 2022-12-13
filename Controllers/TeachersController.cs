@@ -41,7 +41,7 @@
 		[Authorize(Roles = "Administrator")]
 
 		//if you want to find additional info for the user var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;=>this.User.GetId()
-		public IActionResult Add() => View(new AddTeacherFormModel
+		public IActionResult Add() => View(new TeacherFormModel
 		{
 			Groups = this.teachers.GetTeacherGroups()
 		});
@@ -50,7 +50,7 @@
 
 
 		[HttpPost]
-		public IActionResult Add(AddTeacherFormModel teacher)
+		public IActionResult Add(TeacherFormModel teacher)
 		{
 			if (!this.teachers.GroupExist(teacher.GroupId))
 			{
@@ -73,6 +73,55 @@
 				teacher.ImageUrl);
 
 			return RedirectToAction(nameof(All));
+		}
+
+		[Authorize(Roles ="Administrator")]
+		public IActionResult Edit(int id)
+		{
+			var teacher = this.teachers.Details(id);
+
+			return View(new TeacherFormModel
+			{
+				FirstName=teacher.FirstName,
+				LastName=teacher.LastName,
+				Specialization=teacher.Specialization,
+				Introduction=teacher.Introduction,
+				Experience=teacher.Experience,
+				ImageUrl=teacher.ImageUrl,
+				GroupId=teacher.GroupId,
+				Groups=this.teachers.GetTeacherGroups()
+			});
+		}
+
+		[Authorize(Roles = "Administrator")]
+		[HttpPost]
+
+		public IActionResult Edit(int id, TeacherFormModel teacher)
+		{
+			if (!this.teachers.GroupExist(teacher.GroupId)) 
+			{
+				this.ModelState.AddModelError(nameof(teacher.GroupId), "Group does not exist!");
+			}
+
+			if (!ModelState.IsValid) 
+			{
+				teacher.Groups=this.teachers.GetTeacherGroups();
+				return View(teacher);
+			}
+
+			this.teachers.Edit(id,
+				teacher.FirstName,
+				teacher.LastName,
+				teacher.Specialization,
+				teacher.Introduction,
+				teacher.Experience,
+				teacher.ImageUrl,
+				teacher.GroupId);
+
+			return RedirectToAction(nameof(All));
+
+
+		
 		}
 
 	}
