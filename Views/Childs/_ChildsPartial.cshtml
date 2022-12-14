@@ -9,7 +9,7 @@
 				<div class="card-body text-center">
 					<h5 class="card-title text-center">@child.FirstName @child.MiddleName @child.LastName who is @child.Age years old and is registered in group @child.GroupName.</h5>
 					<p class="card-text text-center">@child.GroupName</p>
-					<a asp-controller="Childs" asp-action="Details" asp-route-id="@child.Id" class="btn btn-primary">Details</a>
+					<a asp-controller="Childs" asp-action="Details" asp-route-id="@child.Id" asp-route-information="@child.GetInformation()" class="btn btn-primary">Details</a>
 					@if (ViewBag.AllowChildEdit==true||User.IsAdmin()) 
 					{
 					<a asp-controller="Childs" asp-action="Edit" asp-route-id="@child.Id" class="btn btn-warning">Edit</a>

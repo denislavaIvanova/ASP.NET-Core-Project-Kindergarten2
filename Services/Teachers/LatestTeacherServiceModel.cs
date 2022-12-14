@@ -1,6 +1,6 @@
-﻿namespace Kindergarten2.Models.Home
+﻿namespace Kindergarten2.Services.Teachers
 {
-	public class TeacherIndexViewModel
+	public class LatestTeacherServiceModel
 	{
 		public int Id { get; init; }
 

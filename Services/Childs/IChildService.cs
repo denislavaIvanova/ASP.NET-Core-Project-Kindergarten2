@@ -33,6 +33,8 @@ namespace Kindergarten2.Services.Childs
 				int groupId,
 				int tripId);
 
+		void Delete(int id);
+
 		ChildDetailsServiceModel Deatails(int childId);
 		IEnumerable<ChildServiceModel> ByUser(string userId);
 

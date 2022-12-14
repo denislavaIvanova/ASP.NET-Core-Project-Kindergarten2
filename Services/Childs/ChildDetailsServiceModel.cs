@@ -10,11 +10,15 @@
 
 		public int GroupId { get; init; }
 
+
 		public int ECAId { get; init; }
+
 
 		public int MenuId { get; init; }
 
+
 		public int TripId { get; init; }
+
 
 		public string UserId { get; init; }
 

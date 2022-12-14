@@ -1,49 +1,55 @@
 ﻿namespace Kindergarten2.Controllers
 {
-	using Kindergarten2.Data;
 	using Kindergarten2.Models.Home;
 	using Kindergarten2.Services.Statistics;
+	using Kindergarten2.Services.Teachers;
 	using Microsoft.AspNetCore.Mvc;
-	using System.Linq;
+	using Microsoft.Extensions.Caching.Memory;
+	using System;
+	using System.Collections.Generic;
 
 	public class HomeController : Controller
 	{
 
-		private readonly KindergartenDbContext data;
+		private readonly ITeacherService teachers;
 		private readonly IStatisticsService statistics;
+		private readonly IMemoryCache cache;
+
 
 		public HomeController(
-			IStatisticsService statistics, KindergartenDbContext data)
+			IStatisticsService statistics, ITeacherService teachers, IMemoryCache cache)
 		{
 			this.statistics = statistics;
-			this.data = data;
+			this.teachers = teachers;
+			this.cache = cache;
 		}
+
+		const string latestTeachersCacheKey = "LatestTeachersCacheKey";
+
+
+
 		public IActionResult Index()
 		{
+			var latestTeachers = this.cache.Get<List<LatestTeacherServiceModel>>(latestTeachersCacheKey);
 
-			var teachers = this.data
-					.Teachers
-					.OrderBy(t => t.FirstName)
-					.ThenBy(t => t.LastName)
-					.Select(t => new TeacherIndexViewModel
-					{
-						Id = t.Id,
-						FirstName = t.FirstName,
-						LastName = t.LastName,
-						Experience = t.Experience,
-						Specialization = t.Specialization,
-						Introduction = t.Introduction,
-						ImageUrl = t.ImageUrl
-					})
-					.Take(3)
-					.ToList();
+			if (latestTeachers == null)
+			{
+				latestTeachers = this.teachers.Latest();
+
+				var cacheOptions = new MemoryCacheEntryOptions()
+				   .SetAbsoluteExpiration(TimeSpan.FromMinutes(10));
+
+				this.cache.Set(latestTeachersCacheKey, latestTeachers, cacheOptions);
+			}
+
+
 
 			var totalStatistics = this.statistics.Total();
 
 			return View(new IndexViewModel
 			{
 				TotalTeachers = totalStatistics.TotalTeachers,
-				Teachers = teachers,
+				Teachers = latestTeachers,
 				TotalChildren = totalStatistics.TotalChildren,
 				TotalGroups = totalStatistics.TotalGroups
 			});

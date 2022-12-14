@@ -24,6 +24,8 @@ namespace Kindergarten2.Services.Teachers
 
 		bool GroupExist(int groupId);
 
+		List<LatestTeacherServiceModel> Latest();
+
 		IEnumerable<TeacherGroupServiceModel> GetTeacherGroups();
 
 		TeacherDetailsServiceModel Details(int id);

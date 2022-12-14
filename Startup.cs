@@ -47,6 +47,8 @@ namespace Kindergarten2
 				.AddRoles<IdentityRole>()
 				.AddEntityFrameworkStores<KindergartenDbContext>();
 
+			services.AddMemoryCache();
+
 			services.AddControllersWithViews(options =>
 			{
 				options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
@@ -86,6 +88,17 @@ namespace Kindergarten2
 				.UseAuthorization()
 				.UseEndpoints(endpoints =>
 				{
+					endpoints.MapDefaultAreaRoute();
+
+					endpoints.MapControllerRoute(
+						name: "Child Details",
+						pattern: "/Childs/Details/{id}/{information}",
+						defaults: new
+						{
+							controller = "Childs",
+							action = "Details"
+						});
+
 					endpoints.MapDefaultControllerRoute();
 					endpoints.MapRazorPages();
 				});

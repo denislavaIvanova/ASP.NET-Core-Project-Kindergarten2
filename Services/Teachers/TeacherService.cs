@@ -119,6 +119,7 @@ namespace Kindergarten2.Services.Teachers
 				Introduction = t.Introduction,
 				Experience = t.Experience,
 				Group = t.Group.Name,
+				GroupId = t.GroupId,
 				ImageUrl = t.ImageUrl
 			}).FirstOrDefault();
 
@@ -164,6 +165,22 @@ namespace Kindergarten2.Services.Teachers
 		public bool GroupExist(int groupId)
 		=> this.data.Groups.Any(g => g.Id == groupId);
 
-
+		public List<LatestTeacherServiceModel> Latest()
+			=> this.data
+					.Teachers
+					.OrderBy(t => t.FirstName)
+					.ThenBy(t => t.LastName)
+					.Select(t => new LatestTeacherServiceModel
+					{
+						Id = t.Id,
+						FirstName = t.FirstName,
+						LastName = t.LastName,
+						Experience = t.Experience,
+						Specialization = t.Specialization,
+						Introduction = t.Introduction,
+						ImageUrl = t.ImageUrl
+					})
+					.Take(3)
+					.ToList();
 	}
 }

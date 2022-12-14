@@ -16,7 +16,7 @@ namespace Kindergarten2.Services.Childs
 			=> this.data = data;
 		public ChildQueryServiceModel All(string group, string searchTerm, ChildSorting sorting, int currentPage, int childrenPerPage)
 		{
-			var childrenQuery = this.data.Children.AsQueryable();
+			var childrenQuery = this.data.Children.Where(c => c.IsConfirmed);
 
 			if (!string.IsNullOrWhiteSpace(group))
 			{
@@ -63,7 +63,8 @@ namespace Kindergarten2.Services.Childs
 				MenuId = menuId,
 				GroupId = groupId,
 				TripId = tripId,
-				ParentId = parentId
+				ParentId = parentId,
+				IsConfirmed = false
 			};
 
 
@@ -100,6 +101,7 @@ namespace Kindergarten2.Services.Childs
 			childData.MenuId = menuId;
 			childData.GroupId = groupId;
 			childData.TripId = tripId;
+			childData.IsConfirmed = false;
 
 			this.data.SaveChanges();
 
@@ -118,6 +120,7 @@ namespace Kindergarten2.Services.Childs
 				LastName = c.LastName,
 				MiddleName = c.MiddleName,
 				Age = c.Age,
+				GroupId = c.GroupId,
 				GroupName = c.Group.Name,
 				ECAName = c.ECA.Title,
 				TripName = c.Trip.PlaceToVisit,
@@ -221,7 +224,14 @@ namespace Kindergarten2.Services.Childs
 			.Trips
 			.Any(e => e.Id == tripId);
 
+		public void Delete(int id)
+		{
+			var childToDelete = this.data.Children.Find(id);
 
+			this.data.Children.Remove(childToDelete);
+
+			this.data.SaveChanges();
+		}
 	}
 }
 

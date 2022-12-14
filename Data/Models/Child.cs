@@ -21,6 +21,8 @@
 		[Range(1, 6)]
 		public int Age { get; set; }
 
+		public bool IsConfirmed { get; set; }
+
 		public int GroupId { get; set; }
 
 		public Group Group { get; init; }

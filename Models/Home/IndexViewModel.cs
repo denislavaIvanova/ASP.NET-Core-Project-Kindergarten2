@@ -1,6 +1,7 @@
 ﻿
 namespace Kindergarten2.Models.Home
 {
+	using Kindergarten2.Services.Teachers;
 	using System.Collections.Generic;
 
 	public class IndexViewModel
@@ -11,7 +12,7 @@ namespace Kindergarten2.Models.Home
 
 		public int TotalGroups { get; init; }
 
-		public List<TeacherIndexViewModel> Teachers { get; init; }
+		public List<LatestTeacherServiceModel> Teachers { get; init; }
 
 	}
 }

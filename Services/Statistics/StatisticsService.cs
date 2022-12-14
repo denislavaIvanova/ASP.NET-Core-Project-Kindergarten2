@@ -13,7 +13,7 @@ namespace Kindergarten2.Services.Statistics
 		public StatisticsServiceModel Total()
 		{
 			var totalTeachers = this.data.Teachers.Count();
-			var totalChildren = this.data.Children.Count();
+			var totalChildren = this.data.Children.Count(c => c.IsConfirmed);
 			var totalGroups = this.data.Groups.Count();
 
 			return new StatisticsServiceModel

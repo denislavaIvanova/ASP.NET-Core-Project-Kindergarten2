@@ -48,6 +48,50 @@ namespace Kindergarten2.Controllers
 			return View(myChildren);
 		}
 
+		public IActionResult Details(int id, string information)
+		{
+			var child = this.children.Deatails(id);
+
+			if (information != child.GetInformation())
+			{
+				return BadRequest();
+			}
+
+			return View(child);
+
+		}
+
+		//[Authorize]
+		//public ActionResult Delete(int id)
+		//{
+		//	var child = this.children.Deatails(id);
+
+		//	return View(child);
+		//}
+
+		//// POST: /Movies/Delete/5
+		//[HttpPost, ActionName("Delete")]
+		//[ValidateAntiForgeryToken]
+		//public ActionResult Delete(int id, ChildFormModel child)
+		//{
+		//	var userId = this.User.Id();
+
+		//	if (!this.parents.IsParent(userId) && !User.IsAdmin())
+		//	{
+		//		return RedirectToAction(nameof(ParentsController.Become), "Parents");
+		//	}
+
+		//	var childData = this.children.Deatails(id);
+
+		//	if (childData.UserId != userId && !User.IsAdmin())
+		//	{
+		//		return Unauthorized();
+		//	}
+
+		//	this.children.Delete(id);
+		//	return RedirectToAction(nameof(Mine));
+		//}
+
 		[Authorize]
 
 		public IActionResult Add()
@@ -103,7 +147,7 @@ namespace Kindergarten2.Controllers
 				return View(child);
 			}
 
-			this.children.Create(child.FirstName,
+			var childId = this.children.Create(child.FirstName,
 				child.MiddleName,
 				child.LastName,
 				child.Age,
@@ -113,7 +157,7 @@ namespace Kindergarten2.Controllers
 				child.TripId,
 				parentId);
 
-			return RedirectToAction(nameof(All));
+			return RedirectToAction(nameof(Details));
 		}
 
 		[Authorize]

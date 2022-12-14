@@ -3,7 +3,7 @@
 	using System.Collections.Generic;
 	using System.ComponentModel.DataAnnotations;
 
-	public class ChildFormModel
+	public class ChildFormModel : IChildModel
 	{
 
 		[Required]

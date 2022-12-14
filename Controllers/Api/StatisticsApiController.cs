@@ -16,15 +16,8 @@ namespace Kindergarten2.Controllers.Api
 		[HttpGet]
 
 		public StatisticsServiceModel GetStatistics()
-		{
-			var totalStatistics = this.statistics.Total();
+		=> this.statistics.Total();
 
-			return new StatisticsServiceModel()
-			{
-				TotalChildren = totalStatistics.TotalChildren,
-				TotalGroups = totalStatistics.TotalGroups,
-				TotalTeachers = totalStatistics.TotalTeachers
-			};
-		}
+
 	}
 }
