@@ -6,12 +6,12 @@ namespace Kindergarten2.Services.Childs
 
 	public interface IChildService
 	{
-		ChildQueryServiceModel All(
-			string group,
-			string searchTerm,
-			ChildSorting sorting,
-			int currentPage,
-			int childrenPerPage);
+		ChildQueryServiceModel All(string group = null,
+			string searchTerm = null,
+			ChildSorting sorting = ChildSorting.DateCreated,
+			int currentPage = 1,
+			int childrenPerPage = int.MaxValue,
+			bool confirmedOnly = true);
 
 		int Create(string firstName,
 				string middleName,
@@ -31,7 +31,10 @@ namespace Kindergarten2.Services.Childs
 				int ECAId,
 				int menuId,
 				int groupId,
-				int tripId);
+				int tripId,
+				bool isConfirmed);
+
+		void ChangeVisibility(int childId);
 
 		void Delete(int id);
 

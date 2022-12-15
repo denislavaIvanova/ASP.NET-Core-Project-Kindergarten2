@@ -157,7 +157,7 @@ namespace Kindergarten2.Controllers
 				child.TripId,
 				parentId);
 
-			return RedirectToAction(nameof(Details));
+			return RedirectToAction(nameof(Details), new { id = childId, information = child.GetInformation() });
 		}
 
 		[Authorize]
@@ -243,9 +243,11 @@ namespace Kindergarten2.Controllers
 					child.ECAId,
 					child.MenuId,
 					child.GroupId,
-					child.TripId);
+					child.TripId,
+					this.User.IsAdmin());
 
-			return RedirectToAction(nameof(All));
+			return RedirectToAction(nameof(Details), new { id, information = child.GetInformation() });
+
 
 		}
 

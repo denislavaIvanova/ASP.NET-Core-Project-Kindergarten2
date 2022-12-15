@@ -14,9 +14,14 @@ namespace Kindergarten2.Services.Childs
 
 		public ChildService(KindergartenDbContext data)
 			=> this.data = data;
-		public ChildQueryServiceModel All(string group, string searchTerm, ChildSorting sorting, int currentPage, int childrenPerPage)
+		public ChildQueryServiceModel All(string group = null,
+			string searchTerm = null,
+			ChildSorting sorting = ChildSorting.DateCreated,
+			int currentPage = 1,
+			int childrenPerPage = int.MaxValue,
+			bool confirmedOnly = true)
 		{
-			var childrenQuery = this.data.Children.Where(c => c.IsConfirmed);
+			var childrenQuery = this.data.Children.Where(c => !confirmedOnly || c.IsConfirmed);
 
 			if (!string.IsNullOrWhiteSpace(group))
 			{
@@ -51,7 +56,15 @@ namespace Kindergarten2.Services.Childs
 			};
 		}
 
-		public int Create(string firstName, string middleName, string lastName, int age, int ECAId, int menuId, int groupId, int tripId, int parentId)
+		public int Create(string firstName,
+			string middleName,
+			string lastName,
+			int age,
+			int ECAId,
+			int menuId,
+			int groupId,
+			int tripId,
+			int parentId)
 		{
 			var childData = new Child
 			{
@@ -84,7 +97,8 @@ namespace Kindergarten2.Services.Childs
 			int ECAId,
 			int menuId,
 			int groupId,
-			int tripId)
+			int tripId,
+			bool isConfirmed)
 		{
 			var childData = this.data.Children.Find(id);
 
@@ -101,7 +115,7 @@ namespace Kindergarten2.Services.Childs
 			childData.MenuId = menuId;
 			childData.GroupId = groupId;
 			childData.TripId = tripId;
-			childData.IsConfirmed = false;
+			childData.IsConfirmed = isConfirmed;
 
 			this.data.SaveChanges();
 
@@ -163,7 +177,8 @@ namespace Kindergarten2.Services.Childs
 				GroupName = c.Group.Name,
 				ECAName = c.ECA.Title,
 				TripName = c.Trip.PlaceToVisit,
-				MenuName = c.Menu.MenuType
+				MenuName = c.Menu.MenuType,
+				IsConfirmed = c.IsConfirmed,
 
 			}).ToList();
 
@@ -229,6 +244,15 @@ namespace Kindergarten2.Services.Childs
 			var childToDelete = this.data.Children.Find(id);
 
 			this.data.Children.Remove(childToDelete);
+
+			this.data.SaveChanges();
+		}
+
+		public void ChangeVisibility(int childId)
+		{
+			var child = this.data.Children.Find(childId);
+
+			child.IsConfirmed = !child.IsConfirmed;
 
 			this.data.SaveChanges();
 		}

@@ -22,8 +22,16 @@
 		}
 		else if(!userIsAdmin)
 		{
+			
 			<li class="nav-item">
 				<a class="nav-link text-dark" asp-area="" asp-controller="Parents" asp-action="Become">Register as parent</a>
+			</li>
+		}
+			else if(userIsAdmin)
+		{
+
+			<li class="nav-item">
+				<a class="nav-link text-dark" asp-area="Admin" asp-controller="Childs" asp-action="All">Administration</a>
 			</li>
 		}
 		<li class="nav-item">

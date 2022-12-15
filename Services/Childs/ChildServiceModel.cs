@@ -28,5 +28,7 @@ namespace Kindergarten2.Services.Childs
 		[Display(Name = "Activity Name")]
 
 		public string ECAName { get; init; }
+
+		public bool IsConfirmed { get; init; }
 	}
 }
