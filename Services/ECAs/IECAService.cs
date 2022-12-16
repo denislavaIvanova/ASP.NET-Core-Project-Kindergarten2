@@ -25,5 +25,7 @@ namespace Kindergarten2.Services.ECAs
 				   string imageUrl);
 
 		ECAServiceModel Details(int id);
+
+		void Delete(int id);
 	}
 }

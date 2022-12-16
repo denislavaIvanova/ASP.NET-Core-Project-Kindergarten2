@@ -1,5 +1,4 @@
 ﻿
-
 namespace Kindergarten2.Controllers
 {
 	using Kindergarten2.Data;
@@ -7,6 +6,7 @@ namespace Kindergarten2.Controllers
 	using Kindergarten2.Services.Menus;
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Mvc;
+	using static Kindergarten2.Areas.Admin.AdminConstants;
 
 	public class MenusController : Controller
 	{
@@ -38,7 +38,7 @@ namespace Kindergarten2.Controllers
 
 		}
 
-		[Authorize(Roles = "Administrator")]
+		[Authorize(Roles = AdministratorRoleName)]
 
 
 		public IActionResult Add() => View(new AddMenuFormModel
@@ -47,7 +47,7 @@ namespace Kindergarten2.Controllers
 		});
 
 		[HttpPost]
-		[Authorize(Roles = "Administrator")]
+		[Authorize(Roles = AdministratorRoleName)]
 
 
 		public IActionResult Add(AddMenuFormModel menu)
@@ -67,7 +67,7 @@ namespace Kindergarten2.Controllers
 
 		}
 
-		[Authorize(Roles = "Administrator")]
+		[Authorize(Roles = AdministratorRoleName)]
 		public IActionResult Edit(int id)
 		{
 			var menu = this.menus.Details(id);
@@ -81,7 +81,7 @@ namespace Kindergarten2.Controllers
 			});
 		}
 
-		[Authorize(Roles = "Administrator")]
+		[Authorize(Roles = AdministratorRoleName)]
 		[HttpPost]
 
 		public IActionResult Edit(int id, MenuServiceModel menu)

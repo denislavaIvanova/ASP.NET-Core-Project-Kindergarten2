@@ -27,5 +27,7 @@ namespace Kindergarten2.Services.Trips
 	string imageUrl);
 
 		TripServiceModel Details(int id);
+
+		void Delete(int id);
 	}
 }

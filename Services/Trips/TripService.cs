@@ -97,7 +97,14 @@ namespace Kindergarten2.Services.Trips
 			return tripData.Id;
 		}
 
+		public void Delete(int id)
+		{
+			var tripToDelete = this.data.Trips.Find(id);
 
+			this.data.Trips.Remove(tripToDelete);
+
+			this.data.SaveChanges();
+		}
 
 		public TripServiceModel Details(int id)
 			=> this.data

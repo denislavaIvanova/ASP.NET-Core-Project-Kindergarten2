@@ -7,6 +7,8 @@ namespace Kindergarten2.Controllers
 	using Kindergarten2.Services.Trips;
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Mvc;
+	using static Kindergarten2.Areas.Admin.AdminConstants;
+
 
 	public class TripsController : Controller
 	{
@@ -39,7 +41,7 @@ namespace Kindergarten2.Controllers
 
 		}
 
-		[Authorize(Roles = "Administrator")]
+		[Authorize(Roles = AdministratorRoleName)]
 
 		public IActionResult Add() => View(new AddTripFormModel
 		{
@@ -47,8 +49,7 @@ namespace Kindergarten2.Controllers
 		});
 
 		[HttpPost]
-		[Authorize(Roles = "Administrator")]
-
+		[Authorize(Roles = AdministratorRoleName)]
 
 		public IActionResult Add(AddTripFormModel trip)
 		{
@@ -67,8 +68,7 @@ namespace Kindergarten2.Controllers
 
 		}
 
-		[Authorize(Roles = "Administrator")]
-
+		[Authorize(Roles = AdministratorRoleName)]
 		public IActionResult Edit(int id)
 		{
 			var trip = this.trips.Details(id);
@@ -84,7 +84,7 @@ namespace Kindergarten2.Controllers
 
 		}
 
-		[Authorize(Roles = "Administrator")]
+		[Authorize(Roles = AdministratorRoleName)]
 		[HttpPost]
 		public IActionResult Edit(int id, TripServiceModel trip)
 		{
@@ -104,7 +104,34 @@ namespace Kindergarten2.Controllers
 
 		}
 
+		// GET: /Movies/Delete/5
+		public IActionResult Delete(int id)
+		{
 
+			var trip = data.Trips.Find(id);
+
+			return View(new TripServiceModel
+
+			{
+				PlaceToVisit = trip.PlaceToVisit,
+				Activity = trip.Activity,
+				Id = trip.Id,
+				ImageUrl = trip.ImageUrl,
+				Location = trip.Location,
+				Price = trip.Price
+			});
+		}
+
+		// POST: /Movies/Delete/5
+		[HttpDelete, ActionName("DeleteConfirmed")]
+		[ValidateAntiForgeryToken]
+		public IActionResult DeleteConfirmed(int id)
+		{
+			var trip = data.Trips.Find(id);
+			data.Trips.Remove(trip);
+			data.SaveChanges();
+			return RedirectToAction("All");
+		}
 
 	}
 }

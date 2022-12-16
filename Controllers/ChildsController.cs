@@ -246,6 +246,11 @@ namespace Kindergarten2.Controllers
 					child.TripId,
 					this.User.IsAdmin());
 
+			if (!childIsEdited)
+			{
+				return BadRequest();
+			}
+
 			return RedirectToAction(nameof(Details), new { id, information = child.GetInformation() });
 
 

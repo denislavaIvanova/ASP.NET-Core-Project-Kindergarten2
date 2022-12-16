@@ -1,10 +1,12 @@
-﻿namespace Kindergarten2.Controllers
+﻿
+namespace Kindergarten2.Controllers
 {
 	using Kindergarten2.Data;
 	using Kindergarten2.Models.Teachers;
 	using Kindergarten2.Services.Teachers;
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Mvc;
+	using static Kindergarten2.Areas.Admin.AdminConstants;
 
 	public class TeachersController : Controller
 	{
@@ -38,7 +40,7 @@
 
 		}
 
-		[Authorize(Roles = "Administrator")]
+		[Authorize(Roles = AdministratorRoleName)]
 
 		//if you want to find additional info for the user var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;=>this.User.GetId()
 		public IActionResult Add() => View(new TeacherFormModel
@@ -46,7 +48,7 @@
 			Groups = this.teachers.GetTeacherGroups()
 		});
 
-		[Authorize(Roles = "Administrator")]
+		[Authorize(Roles = AdministratorRoleName)]
 
 
 		[HttpPost]
@@ -75,37 +77,37 @@
 			return RedirectToAction(nameof(All));
 		}
 
-		[Authorize(Roles ="Administrator")]
+		[Authorize(Roles = AdministratorRoleName)]
 		public IActionResult Edit(int id)
 		{
 			var teacher = this.teachers.Details(id);
 
 			return View(new TeacherFormModel
 			{
-				FirstName=teacher.FirstName,
-				LastName=teacher.LastName,
-				Specialization=teacher.Specialization,
-				Introduction=teacher.Introduction,
-				Experience=teacher.Experience,
-				ImageUrl=teacher.ImageUrl,
-				GroupId=teacher.GroupId,
-				Groups=this.teachers.GetTeacherGroups()
+				FirstName = teacher.FirstName,
+				LastName = teacher.LastName,
+				Specialization = teacher.Specialization,
+				Introduction = teacher.Introduction,
+				Experience = teacher.Experience,
+				ImageUrl = teacher.ImageUrl,
+				GroupId = teacher.GroupId,
+				Groups = this.teachers.GetTeacherGroups()
 			});
 		}
 
-		[Authorize(Roles = "Administrator")]
+		[Authorize(Roles = AdministratorRoleName)]
 		[HttpPost]
 
 		public IActionResult Edit(int id, TeacherFormModel teacher)
 		{
-			if (!this.teachers.GroupExist(teacher.GroupId)) 
+			if (!this.teachers.GroupExist(teacher.GroupId))
 			{
 				this.ModelState.AddModelError(nameof(teacher.GroupId), "Group does not exist!");
 			}
 
-			if (!ModelState.IsValid) 
+			if (!ModelState.IsValid)
 			{
-				teacher.Groups=this.teachers.GetTeacherGroups();
+				teacher.Groups = this.teachers.GetTeacherGroups();
 				return View(teacher);
 			}
 
@@ -121,7 +123,7 @@
 			return RedirectToAction(nameof(All));
 
 
-		
+
 		}
 
 	}

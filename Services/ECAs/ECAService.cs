@@ -119,5 +119,13 @@ namespace Kindergarten2.Services.ECAs
 
 			}).FirstOrDefault();
 
+		public void Delete(int id)
+		{
+			var ECAToDelete = this.data.ECAs.Find(id);
+
+			this.data.ECAs.Remove(ECAToDelete);
+
+			this.data.SaveChanges();
+		}
 	}
 }

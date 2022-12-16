@@ -1,5 +1,4 @@
 ﻿
-
 namespace Kindergarten2.Controllers
 {
 	using Kindergarten2.Data;
@@ -7,6 +6,8 @@ namespace Kindergarten2.Controllers
 	using Kindergarten2.Services.ECAs;
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Mvc;
+	using static Kindergarten2.Areas.Admin.AdminConstants;
+
 
 	public class ECAsController : Controller
 	{
@@ -39,7 +40,7 @@ namespace Kindergarten2.Controllers
 			return View(query);
 		}
 
-		[Authorize(Roles = "Administrator")]
+		[Authorize(Roles = AdministratorRoleName)]
 
 		public IActionResult Add() => View(new AddECAFormModel
 		{
@@ -47,7 +48,7 @@ namespace Kindergarten2.Controllers
 		});
 
 		[HttpPost]
-		[Authorize(Roles = "Administrator")]
+		[Authorize(Roles = AdministratorRoleName)]
 
 
 		public IActionResult Add(AddECAFormModel ECA)
@@ -65,7 +66,7 @@ namespace Kindergarten2.Controllers
 			return RedirectToAction(nameof(All));
 		}
 
-		[Authorize(Roles = "Administrator")]
+		[Authorize(Roles = AdministratorRoleName)]
 		public IActionResult Edit(int id)
 		{
 
@@ -81,7 +82,7 @@ namespace Kindergarten2.Controllers
 			});
 		}
 
-		[Authorize(Roles = "Administrator")]
+		[Authorize(Roles = AdministratorRoleName)]
 		[HttpPost]
 
 		public IActionResult Edit(int id, ECAServiceModel ECA)
@@ -99,7 +100,17 @@ namespace Kindergarten2.Controllers
 
 			return RedirectToAction(nameof(All));
 
+		}
 
+
+		[Authorize(Roles = AdministratorRoleName)]
+		[HttpPost]
+		[HttpDelete]
+		public IActionResult Delete(int id)
+		{
+
+			this.ECAs.Delete(id);
+			return RedirectToAction(nameof(All));
 		}
 	}
 }

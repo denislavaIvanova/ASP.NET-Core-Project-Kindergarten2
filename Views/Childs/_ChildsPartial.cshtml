@@ -13,9 +13,7 @@
 					@if (ViewBag.AllowChildEdit==true||User.IsAdmin()) 
 					{
 					<a asp-controller="Childs" asp-action="Edit" asp-route-id="@child.Id" class="btn btn-warning">Edit</a>
-					<a asp-controller="Childs" asp-action="Delete" asp-route-id="@child.Id" class="btn btn-danger">Delete</a>
-						
-					
+					<a asp-controller="Childs" asp-action="Delete" asp-route-id="@child.Id" class="btn btn-danger">Delete</a>	
 					}
 				</div>
 			</div>
