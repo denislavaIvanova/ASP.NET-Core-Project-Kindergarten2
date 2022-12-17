@@ -117,8 +117,15 @@ using Kindergarten2.Services.Trips;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 16 "C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\Views\_ViewImports.cshtml"
+using Kindergarten2.Services.Teachers;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"30fbb49e9773de4f63eeeec932726837f714f06e", @"/Views/Childs/_ChildsPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"346b5abdb5d6ee5a1393a9bf5762b58dfff759cb", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b82468827175526b01e274513e7c06c71af89f83", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Childs__ChildsPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<ChildServiceModel>>
     #nullable disable
@@ -212,7 +219,7 @@ using Kindergarten2.Services.Trips;
 #line hidden
 #nullable disable
             WriteLiteral("</p>\r\n\t\t\t\t\t");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "30fbb49e9773de4f63eeeec932726837f714f06e10966", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "30fbb49e9773de4f63eeeec932726837f714f06e11190", async() => {
                 WriteLiteral("Details");
             }
             );
@@ -266,7 +273,7 @@ using Kindergarten2.Services.Trips;
 #line hidden
 #nullable disable
             WriteLiteral("\t\t\t\t\t");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "30fbb49e9773de4f63eeeec932726837f714f06e14621", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "30fbb49e9773de4f63eeeec932726837f714f06e14845", async() => {
                 WriteLiteral("Edit");
             }
             );
@@ -300,7 +307,7 @@ using Kindergarten2.Services.Trips;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\t\t\t\t\t");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "30fbb49e9773de4f63eeeec932726837f714f06e17129", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "30fbb49e9773de4f63eeeec932726837f714f06e17353", async() => {
                 WriteLiteral("Delete");
             }
             );

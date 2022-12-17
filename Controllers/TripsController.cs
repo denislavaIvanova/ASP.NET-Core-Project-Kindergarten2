@@ -104,34 +104,53 @@ namespace Kindergarten2.Controllers
 
 		}
 
-		// GET: /Movies/Delete/5
+		[Authorize]
+		public IActionResult Details(int id)
+		{
+			var trip = this.trips.Details(id);
+
+			return View(trip);
+
+		}
+
+		//// GET: /Movies/Delete/5
+		//public IActionResult Delete(int id)
+		//{
+
+		//	var trip = data.Trips.Find(id);
+
+		//	return View(new TripServiceModel
+
+		//	{
+		//		PlaceToVisit = trip.PlaceToVisit,
+		//		Activity = trip.Activity,
+		//		Id = trip.Id,
+		//		ImageUrl = trip.ImageUrl,
+		//		Location = trip.Location,
+		//		Price = trip.Price
+		//	});
+		//}
+
+		//// POST: /Movies/Delete/5
+		//[HttpDelete, ActionName("DeleteConfirmed")]
+		//[ValidateAntiForgeryToken]
+		//public IActionResult DeleteConfirmed(int id)
+		//{
+		//	var trip = data.Trips.Find(id);
+		//	data.Trips.Remove(trip);
+		//	data.SaveChanges();
+		//	return RedirectToAction("All");
+		//}
+
+
+		[Authorize(Roles = AdministratorRoleName)]
+		[HttpPost]
+		[HttpDelete]
 		public IActionResult Delete(int id)
 		{
 
-			var trip = data.Trips.Find(id);
-
-			return View(new TripServiceModel
-
-			{
-				PlaceToVisit = trip.PlaceToVisit,
-				Activity = trip.Activity,
-				Id = trip.Id,
-				ImageUrl = trip.ImageUrl,
-				Location = trip.Location,
-				Price = trip.Price
-			});
+			this.trips.Delete(id);
+			return RedirectToAction(nameof(All));
 		}
-
-		// POST: /Movies/Delete/5
-		[HttpDelete, ActionName("DeleteConfirmed")]
-		[ValidateAntiForgeryToken]
-		public IActionResult DeleteConfirmed(int id)
-		{
-			var trip = data.Trips.Find(id);
-			data.Trips.Remove(trip);
-			data.SaveChanges();
-			return RedirectToAction("All");
-		}
-
 	}
 }

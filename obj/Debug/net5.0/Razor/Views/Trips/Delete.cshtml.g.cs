@@ -117,8 +117,15 @@ using Kindergarten2.Services.Trips;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 16 "C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\Views\_ViewImports.cshtml"
+using Kindergarten2.Services.Teachers;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"133cccea5cd8360bc58ff01c4c985f4d4a8c0000", @"/Views/Trips/Delete.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"346b5abdb5d6ee5a1393a9bf5762b58dfff759cb", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b82468827175526b01e274513e7c06c71af89f83", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Trips_Delete : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<TripServiceModel>
     #nullable disable
@@ -153,7 +160,7 @@ using Kindergarten2.Services.Trips;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("\r\n<h5 class=\"card-title text-center\"> Please confirm you want to delete this entry.</h5>\r\n\t\t\t\t\t\r\n\t\t\t\t\t\t");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "133cccea5cd8360bc58ff01c4c985f4d4a8c00007798", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "133cccea5cd8360bc58ff01c4c985f4d4a8c00008022", async() => {
                 WriteLiteral("No");
             }
             );
@@ -187,7 +194,7 @@ using Kindergarten2.Services.Trips;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\t\t\t\t\t\t");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "133cccea5cd8360bc58ff01c4c985f4d4a8c000010297", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "133cccea5cd8360bc58ff01c4c985f4d4a8c000010521", async() => {
                 WriteLiteral("Yes");
             }
             );

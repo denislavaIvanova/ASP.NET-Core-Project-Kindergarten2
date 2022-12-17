@@ -48,6 +48,7 @@ namespace Kindergarten2.Controllers
 			return View(myChildren);
 		}
 
+		[Authorize]
 		public IActionResult Details(int id, string information)
 		{
 			var child = this.children.Deatails(id);

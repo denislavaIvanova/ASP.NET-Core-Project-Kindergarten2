@@ -1,0 +1,28 @@
+﻿@model ECAServiceModel
+
+@{
+	ViewBag.Title = "Extracurricular Activity Details";
+}
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="card mb-3">
+				<img class="card-img-top" src="@Model.ImageUrl" alt="@Model.Title - @Model.MonthlyFee">
+				<div class="card-body text-center">
+					<h5 class="card-title text-center">@Model.Title for only @Model.MonthlyFee EUR per month.</h5>
+					<p class="text-center">@Model.Description</p>
+					<a href="/ECAs/All" class="btn btn-primary">Go back</a>
+
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+
+
+

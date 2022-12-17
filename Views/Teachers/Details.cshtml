@@ -1,0 +1,29 @@
+﻿@model TeacherDetailsServiceModel
+
+@{
+	ViewBag.Title = "Teacher Details";
+}
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="card mb-3">
+				<img class="card-img-top" src="@Model.ImageUrl" alt="@Model.FirstName @Model.LastName">
+				<div class="card-body text-center">
+					<h5 class="card-title text-center">@Model.FirstName @Model.LastName with @Model.Experience years of experience.</h5>
+					<p class="card-text text-center">@Model.Specialization in group @Model.Group.</p>
+					<p class="text-center">@Model.Introduction</p>
+					<a href="/Teachers/All" class="btn btn-primary">Go back</a>
+
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+
+
+

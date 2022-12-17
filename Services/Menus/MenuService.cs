@@ -113,5 +113,14 @@
 
 			return true;
 		}
+
+		public void Delete(int id)
+		{
+			var menuToDelete = this.data.Menus.Find(id);
+
+			this.data.Menus.Remove(menuToDelete);
+
+			this.data.SaveChanges();
+		}
 	}
 }

@@ -38,6 +38,8 @@ namespace Kindergarten2.Services.Teachers
 				int experience,
 				string imageUrl,
 				int groupId);
+
+		void Delete(int id);
 	}
 
 

@@ -1,0 +1,26 @@
+﻿@model MenuServiceModel
+
+@{
+	ViewBag.Title = "Menu Details";
+}
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="card mb-3">
+				<img class="card-img-top" src="@Model.ImageUrl" alt="@Model.MenuType - @Model.Price">
+				<div class="card-body text-center">
+					<h5 class="card-title text-center">@Model.MenuType menu for only @Model.Price EUR per meal.</h5>
+					<p class="text-center">@Model.Description</p>
+					<a href="/Menus/All" class="btn btn-primary">Go back</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+
+
+

@@ -102,6 +102,16 @@ namespace Kindergarten2.Controllers
 
 		}
 
+		[Authorize]
+
+		public IActionResult Details(int id)
+		{
+			var ECA = this.ECAs.Details(id);
+
+			return View(ECA);
+
+		}
+
 
 		[Authorize(Roles = AdministratorRoleName)]
 		[HttpPost]

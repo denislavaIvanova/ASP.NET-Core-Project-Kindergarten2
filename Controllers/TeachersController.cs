@@ -122,8 +122,25 @@ namespace Kindergarten2.Controllers
 
 			return RedirectToAction(nameof(All));
 
+		}
 
+		[Authorize]
+		public IActionResult Details(int id)
+		{
+			var teacher = this.teachers.Details(id);
 
+			return View(teacher);
+
+		}
+
+		[Authorize(Roles = AdministratorRoleName)]
+		[HttpPost]
+		[HttpDelete]
+		public IActionResult Delete(int id)
+		{
+
+			this.teachers.Delete(id);
+			return RedirectToAction(nameof(All));
 		}
 
 	}

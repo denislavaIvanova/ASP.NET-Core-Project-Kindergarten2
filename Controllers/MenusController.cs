@@ -98,8 +98,25 @@ namespace Kindergarten2.Controllers
 				menu.ImageUrl);
 
 			return RedirectToAction(nameof(All));
+		}
 
+		[Authorize]
+		public IActionResult Details(int id)
+		{
+			var menu = this.menus.Details(id);
 
+			return View(menu);
+
+		}
+
+		[Authorize(Roles = AdministratorRoleName)]
+		[HttpPost]
+		[HttpDelete]
+		public IActionResult Delete(int id)
+		{
+
+			this.menus.Delete(id);
+			return RedirectToAction(nameof(All));
 		}
 	}
 }

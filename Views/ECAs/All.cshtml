@@ -78,6 +78,7 @@
 				<img class="card-img-top" src="@ECA.ImageUrl" alt="@ECA.Title - @ECA.MonthlyFee">
 				<div class="card-body text-center">
 					<h5 class="card-title text-center">@ECA.Title for only @ECA.MonthlyFee EUR per month.</h5>
+
 					<a asp-controller="ECAs" asp-action="Details" asp-route-id="@ECA.Id" class="btn btn-primary">Details</a>
 
 					@if (User.IsAdmin()) 

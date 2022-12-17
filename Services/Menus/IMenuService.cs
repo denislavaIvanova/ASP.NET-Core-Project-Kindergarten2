@@ -19,5 +19,7 @@ namespace Kindergarten2.Services.Menus
 		bool Edit(int id, string menuType, string description, double price, string imageUrl);
 
 		MenuServiceModel Details(int id);
+
+		void Delete(int id);
 	}
 }

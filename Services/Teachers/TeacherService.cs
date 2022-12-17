@@ -182,5 +182,14 @@ namespace Kindergarten2.Services.Teachers
 					})
 					.Take(3)
 					.ToList();
+
+		public void Delete(int id)
+		{
+			var teacherToDelete = this.data.Teachers.Find(id);
+
+			this.data.Teachers.Remove(teacherToDelete);
+
+			this.data.SaveChanges();
+		}
 	}
 }

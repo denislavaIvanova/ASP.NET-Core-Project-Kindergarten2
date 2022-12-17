@@ -1,4 +1,4 @@
-﻿@model  ChildDetailsServiceModel
+﻿@model ChildDetailsServiceModel
 
 @{
 	ViewBag.Title = "Child Details";
@@ -6,56 +6,20 @@
 
 <div class="container">
 	<div class="row">
+		<div class="col-md-4">
+			<div class="card mb-3">
+				<h5 class="card-title text-center">@Model.FirstName @Model.MiddleName @Model.LastName who is @Model.Age years old and is registered in group @Model.GroupName.</h5>
+					<p class="text-center">Extracurricular activity signed for: @Model.ECAName.</p>
+					<p class="text-center">Trip signed for: @Model.TripName.</p>
+					<p class="text-center">Menu signed for: @Model.MenuName.</p>
+					<p class="text-center">Responsible parent first name: @Model.ParentFirstName.</p>
+					<p class="text-center">Responsible parent last name: @Model.ParentLastName.</p>
+					<a href="/Childs/All" class="btn btn-primary">Go back</a>
+				</div>
+			</div>
 
-		<div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
-			<h2 class="heading-margin text-center">@ViewBag.Title</h2>
-			<form method="post">
-				<div class="form-group">
-					<label asp-for="FirstName"></label>
-					<input asp-for="FirstName" class="form-control" placeholder=@Model.FirstName>
-					
-				</div>
-				<div class="form-group">
-					<label asp-for="MiddleName"></label>
-					<input asp-for="MiddleName" class="form-control" placeholder=@Model.MiddleName>
-					
-				</div>
-				<div class="form-group">
-					<label asp-for="LastName"></label>
-					<input asp-for="LastName" class="form-control" placeholder=@Model.LastName>
-					
-				</div>
-				<div class="form-group">
-					<label asp-for="Age"></label>
-					<input asp-for="Age" class="form-control" placeholder=@Model.Age>
-					
-				</div>
-				 
-				<div class="form-group">
-					<label asp-for="GroupName"></label>
-					<input asp-for="GroupName" class="form-control" placeholder=@Model.GroupName>
-
-				</div>
-				<div class="form-group">
-					<label asp-for="TripName"></label>
-					<input asp-for="TripName" class="form-control" placeholder=@Model.TripName>
-					
-				</div>
-
-				<div class="form-group">
-					<label asp-for="MenuName"></label>
-					<input asp-for="MenuName" class="form-control" placeholder=@Model.MenuName>
-					
-				</div>
-				<div class="form-group">
-					<label asp-for="ECAName"></label>
-					<input asp-for="ECAName" class="form-control" placeholder=@Model.ECAName>
-					
-				</div>
-			</form>
 		</div>
 	</div>
-
 </div>
 
 

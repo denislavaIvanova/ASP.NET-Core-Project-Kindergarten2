@@ -1,0 +1,27 @@
+﻿@model TripServiceModel
+
+@{
+	ViewBag.Title = "Trip Details";
+}
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="card mb-3">
+				<img class="card-img-top" src="@Model.ImageUrl" alt="@Model.PlaceToVisit @Model.Location">
+				<div class="card-body text-center">
+					<h5 class="card-title text-center"> Trip to @Model.PlaceToVisit in @Model.Location for @Model.Price EUR.</h5>
+					<p class="card-text text-center">@Model.PlaceToVisit</p>
+					<p class="text-center">@Model.Activity</p>
+					<a href="/Trips/All" class="btn btn-primary">Go back</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+
+
+

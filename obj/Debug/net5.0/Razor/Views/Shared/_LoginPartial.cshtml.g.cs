@@ -118,6 +118,13 @@ using Kindergarten2.Services.Trips;
 #line hidden
 #nullable disable
 #nullable restore
+#line 16 "C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\Views\_ViewImports.cshtml"
+using Kindergarten2.Services.Teachers;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 1 "C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten\Kindergarten2\Views\Shared\_LoginPartial.cshtml"
 using Microsoft.AspNetCore.Identity;
 
@@ -132,7 +139,7 @@ using Kindergarten2.Data.Models;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f71408c480ede34b2aa9f2f8f594dcf3dde756d7", @"/Views/Shared/_LoginPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"346b5abdb5d6ee5a1393a9bf5762b58dfff759cb", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b82468827175526b01e274513e7c06c71af89f83", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Shared__LoginPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     #nullable disable
@@ -202,7 +209,7 @@ using Kindergarten2.Data.Models;
 #line hidden
 #nullable disable
             WriteLiteral("\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f71408c480ede34b2aa9f2f8f594dcf3dde756d712265", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f71408c480ede34b2aa9f2f8f594dcf3dde756d712489", async() => {
                 WriteLiteral("My children");
             }
             );
@@ -234,7 +241,7 @@ using Kindergarten2.Data.Models;
 #line hidden
 #nullable disable
             WriteLiteral("\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f71408c480ede34b2aa9f2f8f594dcf3dde756d714234", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f71408c480ede34b2aa9f2f8f594dcf3dde756d714458", async() => {
                 WriteLiteral("Register as parent");
             }
             );
@@ -266,7 +273,7 @@ using Kindergarten2.Data.Models;
 #line hidden
 #nullable disable
             WriteLiteral("\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f71408c480ede34b2aa9f2f8f594dcf3dde756d716207", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f71408c480ede34b2aa9f2f8f594dcf3dde756d716431", async() => {
                 WriteLiteral("Administration");
             }
             );
@@ -295,7 +302,7 @@ using Kindergarten2.Data.Models;
 #line hidden
 #nullable disable
             WriteLiteral("\t\t<li class=\"nav-item\">\r\n\t\t\t");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f71408c480ede34b2aa9f2f8f594dcf3dde756d718140", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f71408c480ede34b2aa9f2f8f594dcf3dde756d718364", async() => {
                 WriteLiteral("Account");
             }
             );
@@ -315,7 +322,7 @@ using Kindergarten2.Data.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\t\t</li>\r\n\t\t<li class=\"nav-item\">\r\n\t\t\t");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f71408c480ede34b2aa9f2f8f594dcf3dde756d719712", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f71408c480ede34b2aa9f2f8f594dcf3dde756d719936", async() => {
                 WriteLiteral("\r\n\t\t\t\t<button type=\"submit\" class=\"nav-link btn btn-link text-dark\">Logout</button>\r\n\t\t\t");
             }
             );
@@ -361,7 +368,7 @@ using Kindergarten2.Data.Models;
 #line hidden
 #nullable disable
             WriteLiteral("\t\t<li class=\"nav-item\">\r\n\t\t\t");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f71408c480ede34b2aa9f2f8f594dcf3dde756d722952", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f71408c480ede34b2aa9f2f8f594dcf3dde756d723176", async() => {
                 WriteLiteral("Register");
             }
             );
@@ -380,7 +387,7 @@ using Kindergarten2.Data.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\t\t</li>\r\n\t\t<li class=\"nav-item\">\r\n\t\t\t");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f71408c480ede34b2aa9f2f8f594dcf3dde756d724443", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f71408c480ede34b2aa9f2f8f594dcf3dde756d724667", async() => {
                 WriteLiteral("Login");
             }
             );
