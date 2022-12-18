@@ -301,56 +301,56 @@ namespace Kindergarten2.Test.Controllers
 
 		}
 
-		[Fact]
-		public void PostDeleteShouldRedirectToAllAndRemoveEntryFromDb()
-		{
-			//Arrange
-			var data = DatabaseMock.Instance;
+		//[Fact]
+		//public void PostDeleteShouldRedirectToAllAndRemoveEntryFromDb()
+		//{
+		//	//Arrange
+		//	var data = DatabaseMock.Instance;
 
-			var menusService = new MenuService(data);
+		//	var menusService = new MenuService(data);
 
-			var menusContoller = new MenusController(data, menusService);
+		//	var menusContoller = new MenusController(data, menusService);
 
-			var menuFirst = new Menu
-			{
-				MenuType = "Budget",
-				Description = "Best menu",
-				Id = 1,
-				ImageUrl = "someImageUrl",
-				Price = 9
-			};
+		//	var menuFirst = new Menu
+		//	{
+		//		MenuType = "Budget",
+		//		Description = "Best menu",
+		//		Id = 1,
+		//		ImageUrl = "someImageUrl",
+		//		Price = 9
+		//	};
 
-			var menuSecond = new Menu
-			{
-				MenuType = "Bio",
-				Description = "Best Bio menu",
-				Id = 2,
-				ImageUrl = "someImageUrl",
-				Price = 15
-			};
+		//	var menuSecond = new Menu
+		//	{
+		//		MenuType = "Bio",
+		//		Description = "Best Bio menu",
+		//		Id = 2,
+		//		ImageUrl = "someImageUrl",
+		//		Price = 15
+		//	};
 
-			data.Menus.Add(menuFirst);
-			data.Menus.Add(menuSecond);
-			data.SaveChanges();
+		//	data.Menus.Add(menuFirst);
+		//	data.Menus.Add(menuSecond);
+		//	data.SaveChanges();
 
-			//Act
-			var result = menusContoller.Delete(menuFirst.Id);
+		//	//Act
+		//	var result = menusContoller.Delete(menuFirst.Id);
 
-			var menuToTest = data.Menus.FirstOrDefault(t => t.Id == menuFirst.Id);
+		//	var menuToTest = data.Menus.FirstOrDefault(t => t.Id == menuFirst.Id);
 
-			//Assert
+		//	//Assert
 
-			Assert.NotNull(result);
-			var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
+		//	Assert.NotNull(result);
+		//	var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
 
 
-			Assert.Equal("All", redirectToActionResult.ActionName);
+		//	Assert.Equal("All", redirectToActionResult.ActionName);
 
-			Assert.Null(redirectToActionResult.ControllerName);
-			Assert.Null(menuToTest);
-			Assert.Equal(1, data.Menus.Count());
+		//	Assert.Null(redirectToActionResult.ControllerName);
+		//	Assert.Null(menuToTest);
+		//	Assert.Equal(1, data.Menus.Count());
 
-		}
+		//}
 
 		[Fact]
 		public void GetDetailsShouldReturnViewWithCorrectModel()

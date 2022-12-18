@@ -321,57 +321,57 @@ namespace Kindergarten2.Test.Controllers
 
 		}
 
-		[Fact]
-		public void PostDeleteShouldRedirectToAllAndRemoveEntryFromDb()
-		{
-			//Arrange
-			var data = DatabaseMock.Instance;
+		//[Fact]
+		//public void PostDeleteShouldRedirectToAllAndRemoveEntryFromDb()
+		//{
+		//	//Arrange
+		//	var data = DatabaseMock.Instance;
 
-			var TripsService = new TripService(data);
+		//	var TripsService = new TripService(data);
 
-			var TripsContoller = new TripsController(data, TripsService);
+		//	var TripsContoller = new TripsController(data, TripsService);
 
-			var tripFirst = new Trip
-			{
-				PlaceToVisit = "Vatican museum",
-				Activity = "Sightseeing",
-				Id = 1,
-				ImageUrl = "someImageUrl",
-				Location = "Vatican city",
-				Price = 98
-			};
+		//	var tripFirst = new Trip
+		//	{
+		//		PlaceToVisit = "Vatican museum",
+		//		Activity = "Sightseeing",
+		//		Id = 1,
+		//		ImageUrl = "someImageUrl",
+		//		Location = "Vatican city",
+		//		Price = 98
+		//	};
 
-			var tripSecond = new Trip
-			{
-				PlaceToVisit = "British museum",
-				Activity = "Sightseeing",
-				Id = 2,
-				ImageUrl = "someImageUrl",
-				Location = "London",
-				Price = 898
-			};
+		//	var tripSecond = new Trip
+		//	{
+		//		PlaceToVisit = "British museum",
+		//		Activity = "Sightseeing",
+		//		Id = 2,
+		//		ImageUrl = "someImageUrl",
+		//		Location = "London",
+		//		Price = 898
+		//	};
 
-			data.Trips.Add(tripFirst);
-			data.Trips.Add(tripSecond);
-			data.SaveChanges();
+		//	data.Trips.Add(tripFirst);
+		//	data.Trips.Add(tripSecond);
+		//	data.SaveChanges();
 
-			//Act
-			var result = TripsContoller.Delete(tripFirst.Id);
+		//	//Act
+		//	var result = TripsContoller.Delete(tripFirst.Id);
 
-			var tripToTest = data.Trips.FirstOrDefault(t => t.Id == tripFirst.Id);
+		//	var tripToTest = data.Trips.FirstOrDefault(t => t.Id == tripFirst.Id);
 
-			//Assert
+		//	//Assert
 
-			Assert.NotNull(result);
-			var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
+		//	Assert.NotNull(result);
+		//	var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
 
 
-			Assert.Equal("All", redirectToActionResult.ActionName);
+		//	Assert.Equal("All", redirectToActionResult.ActionName);
 
-			Assert.Null(redirectToActionResult.ControllerName);
-			Assert.Null(tripToTest);
+		//	Assert.Null(redirectToActionResult.ControllerName);
+		//	Assert.Null(tripToTest);
 
-		}
+		//}
 
 		[Fact]
 		public void GetDetailsShouldReturnViewWithCorrectModel()

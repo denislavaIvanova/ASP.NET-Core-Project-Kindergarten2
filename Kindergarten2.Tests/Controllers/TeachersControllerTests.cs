@@ -402,80 +402,80 @@ namespace Kindergarten2.Tests.Controllers
 
 		}
 
-		[Fact]
-		public void PostDeleteShouldRedirectToAllAndRemoveEntryFromDb()
-		{
-			//Arrange
-			var data = DatabaseMock.Instance;
+		//[Fact]
+		//public void PostDeleteShouldRedirectToAllAndRemoveEntryFromDb()
+		//{
+		//	//Arrange
+		//	var data = DatabaseMock.Instance;
 
-			var groupOne = new Group
-			{
-				Id = 1,
-				Name = "Daisy",
-				ChildrenCount = 9
-			};
+		//	var groupOne = new Group
+		//	{
+		//		Id = 1,
+		//		Name = "Daisy",
+		//		ChildrenCount = 9
+		//	};
 
-			var groupTwo = new Group
-			{
-				Id = 2,
-				Name = "Sun",
-				ChildrenCount = 10
-			};
+		//	var groupTwo = new Group
+		//	{
+		//		Id = 2,
+		//		Name = "Sun",
+		//		ChildrenCount = 10
+		//	};
 
 
-			data.Groups.Add(groupOne);
-			data.SaveChanges();
+		//	data.Groups.Add(groupOne);
+		//	data.SaveChanges();
 
-			data.Groups.Add(groupTwo);
-			data.SaveChanges();
+		//	data.Groups.Add(groupTwo);
+		//	data.SaveChanges();
 
-			var teacherFirst = new Teacher
-			{
-				FirstName = "Poly",
-				LastName = "Parker",
-				Experience = 9,
-				Id = 1,
-				GroupId = 1,
-				Specialization = "Music",
-				ImageUrl = "someUrl",
-				Introduction = "I am the best teacher"
-			};
+		//	var teacherFirst = new Teacher
+		//	{
+		//		FirstName = "Poly",
+		//		LastName = "Parker",
+		//		Experience = 9,
+		//		Id = 1,
+		//		GroupId = 1,
+		//		Specialization = "Music",
+		//		ImageUrl = "someUrl",
+		//		Introduction = "I am the best teacher"
+		//	};
 
-			var teacherSecond = new Teacher
-			{
-				FirstName = "Moly",
-				LastName = "Potter",
-				Experience = 12,
-				Id = 2,
-				GroupId = 1,
-				Specialization = "Theathre",
-				ImageUrl = "someUrl",
-				Introduction = "I am the best artist"
-			};
+		//	var teacherSecond = new Teacher
+		//	{
+		//		FirstName = "Moly",
+		//		LastName = "Potter",
+		//		Experience = 12,
+		//		Id = 2,
+		//		GroupId = 1,
+		//		Specialization = "Theathre",
+		//		ImageUrl = "someUrl",
+		//		Introduction = "I am the best artist"
+		//	};
 
-			data.Teachers.Add(teacherFirst);
-			data.Teachers.Add(teacherSecond);
-			data.SaveChanges();
+		//	data.Teachers.Add(teacherFirst);
+		//	data.Teachers.Add(teacherSecond);
+		//	data.SaveChanges();
 
-			var teachersService = new TeacherService(data);
-			var teachersContoller = new TeachersController(data, teachersService);
+		//	var teachersService = new TeacherService(data);
+		//	var teachersContoller = new TeachersController(data, teachersService);
 
-			//Act
-			var result = teachersContoller.Delete(teacherFirst.Id);
+		//	//Act
+		//	var result = teachersContoller.Delete(teacherFirst.Id);
 
-			var teacherToTest = data.Teachers.FirstOrDefault(t => t.Id == teacherFirst.Id);
+		//	var teacherToTest = data.Teachers.FirstOrDefault(t => t.Id == teacherFirst.Id);
 
-			//Assert
+		//	//Assert
 
-			Assert.NotNull(result);
-			var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
+		//	Assert.NotNull(result);
+		//	var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
 
-			Assert.Equal("All", redirectToActionResult.ActionName);
-			Assert.Null(redirectToActionResult.ControllerName);
-			Assert.Null(teacherToTest);
-			Assert.Equal(1, data.Teachers.Count());
+		//	Assert.Equal("All", redirectToActionResult.ActionName);
+		//	Assert.Null(redirectToActionResult.ControllerName);
+		//	Assert.Null(teacherToTest);
+		//	Assert.Equal(1, data.Teachers.Count());
 
-		}
+		//}
 
 		[Fact]
 		public void GetDetailsShouldReturnViewWithCorrectModel()
