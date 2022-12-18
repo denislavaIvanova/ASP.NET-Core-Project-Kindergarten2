@@ -1,7 +1,23 @@
-﻿@model TripServiceModel
+﻿@model Kindergarten2.Services.Trips.TripServiceModel
 
-<h5 class="card-title text-center"> Please confirm you want to delete this entry.</h5>
-					
-						<a asp-controller="Trips" asp-action="All" asp-route-id="@Model.Id" class="btn btn-warning">No</a>
-						<a asp-controller="Trips" asp-action="DeleteConfirmed" asp-route-id="@Model.Id"  class="btn btn-danger">Yes</a>
-					
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>TripServiceModel</h4>
+    <hr />
+    <dl class="row">
+      
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        @Html.HiddenFor(model=>model.Id)
+        <a  href="/Trips/All" class="btn btn-warning">Back to List</a>
+    </form>
+</div>

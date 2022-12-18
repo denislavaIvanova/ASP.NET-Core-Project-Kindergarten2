@@ -113,25 +113,27 @@ namespace Kindergarten2.Controllers
 
 		}
 
-		//// GET: /Movies/Delete/5
-		//public IActionResult Delete(int id)
-		//{
+		// GET: /Movies/Delete/5
+		public IActionResult Delete(int id)
+		{
 
-		//	var trip = data.Trips.Find(id);
+			var trip = data.Trips.Find(id);
 
-		//	return View(new TripServiceModel
+			return View(new TripServiceModel
 
-		//	{
-		//		PlaceToVisit = trip.PlaceToVisit,
-		//		Activity = trip.Activity,
-		//		Id = trip.Id,
-		//		ImageUrl = trip.ImageUrl,
-		//		Location = trip.Location,
-		//		Price = trip.Price
-		//	});
-		//}
+			{
+				PlaceToVisit = trip.PlaceToVisit,
+				Activity = trip.Activity,
+				Id = trip.Id,
+				ImageUrl = trip.ImageUrl,
+				Location = trip.Location,
+				Price = trip.Price
+			});
+		}
 
-		//// POST: /Movies/Delete/5
+
+
+		// POST: /Movies/Delete/5
 		//[HttpDelete, ActionName("DeleteConfirmed")]
 		//[ValidateAntiForgeryToken]
 		//public IActionResult DeleteConfirmed(int id)
@@ -142,14 +144,12 @@ namespace Kindergarten2.Controllers
 		//	return RedirectToAction("All");
 		//}
 
-
 		[Authorize(Roles = AdministratorRoleName)]
 		[HttpPost]
-		[HttpDelete]
-		public IActionResult Delete(int id)
+		public IActionResult Delete(TripServiceModel model)
 		{
 
-			this.trips.Delete(id);
+			this.trips.Delete(model.Id);
 			return RedirectToAction(nameof(All));
 		}
 	}
