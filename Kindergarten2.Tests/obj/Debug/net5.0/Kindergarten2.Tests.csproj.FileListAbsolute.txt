@@ -560,7 +560,6 @@ C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten3\ASP.NET-Core-Pro
 C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten3\ASP.NET-Core-Project-Kindergarten2\Kindergarten2.Tests\bin\Debug\net5.0\Kindergarten2.Tests.runtimeconfig.json
 C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten3\ASP.NET-Core-Project-Kindergarten2\Kindergarten2.Tests\bin\Debug\net5.0\Kindergarten2.Tests.runtimeconfig.dev.json
 C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten3\ASP.NET-Core-Project-Kindergarten2\Kindergarten2.Tests\bin\Debug\net5.0\Kindergarten2.Tests.dll
-C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten3\ASP.NET-Core-Project-Kindergarten2\Kindergarten2.Tests\bin\Debug\net5.0\ref\Kindergarten2.Tests.dll
 C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten3\ASP.NET-Core-Project-Kindergarten2\Kindergarten2.Tests\bin\Debug\net5.0\Kindergarten2.Tests.pdb
 C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten3\ASP.NET-Core-Project-Kindergarten2\Kindergarten2.Tests\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Antiforgery.dll
 C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten3\ASP.NET-Core-Project-Kindergarten2\Kindergarten2.Tests\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Authentication.Abstractions.dll
@@ -1082,3 +1081,4 @@ C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten3\ASP.NET-Core-Pro
 C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten3\ASP.NET-Core-Project-Kindergarten2\Kindergarten2.Tests\obj\Debug\net5.0\ref\Kindergarten2.Tests.dll
 C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten3\ASP.NET-Core-Project-Kindergarten2\Kindergarten2.Tests\obj\Debug\net5.0\Kindergarten2.Tests.pdb
 C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten3\ASP.NET-Core-Project-Kindergarten2\Kindergarten2.Tests\obj\Debug\net5.0\Kindergarten2.Tests.genruntimeconfig.cache
+C:\Users\Bumba\Desktop\SoftUni\C#Web\ProjectKenov\Kindergarten3\ASP.NET-Core-Project-Kindergarten2\Kindergarten2.Tests\obj\Debug\net5.0\refint\Kindergarten2.Tests.dll

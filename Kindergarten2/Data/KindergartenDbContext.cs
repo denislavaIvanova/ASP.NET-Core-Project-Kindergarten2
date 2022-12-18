@@ -12,18 +12,48 @@
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
 			builder
-				.Entity<Child>()
-				.HasOne(c => c.Parent)
-				.WithMany(p => p.Children)
-				.HasForeignKey(c => c.ParentId)
-				.OnDelete(DeleteBehavior.Restrict);
+			   .Entity<Child>()
+			   .HasOne(c => c.Group)
+			   .WithMany(c => c.Children)
+			   .HasForeignKey(c => c.GroupId)
+			   .OnDelete(DeleteBehavior.Restrict);
 
 			builder
-				.Entity<Parent>()
-				.HasOne<User>()
-				.WithOne()
-				.HasForeignKey<Parent>(p => p.UserId)
-				.OnDelete(DeleteBehavior.Restrict);
+		   .Entity<Child>()
+		   .HasOne(c => c.ECA)
+		   .WithMany(c => c.Children)
+		   .HasForeignKey(c => c.ECAId)
+		   .OnDelete(DeleteBehavior.Restrict);
+
+			builder
+		   .Entity<Child>()
+		   .HasOne(c => c.Menu)
+		   .WithMany(c => c.Children)
+		   .HasForeignKey(c => c.MenuId)
+		   .OnDelete(DeleteBehavior.Restrict);
+
+			builder
+		   .Entity<Child>()
+		   .HasOne(c => c.Trip)
+		   .WithMany(c => c.Children)
+		   .HasForeignKey(c => c.TripId)
+		   .OnDelete(DeleteBehavior.Restrict);
+
+
+
+			builder
+			.Entity<Child>()
+			.HasOne(c => c.Parent)
+			.WithMany(p => p.Children)
+			.HasForeignKey(c => c.ParentId)
+			.OnDelete(DeleteBehavior.Restrict);
+
+			builder
+			.Entity<Parent>()
+			.HasOne<User>()
+			.WithOne()
+			.HasForeignKey<Parent>(p => p.UserId)
+			.OnDelete(DeleteBehavior.Restrict);
 
 			base.OnModelCreating(builder);
 		}
