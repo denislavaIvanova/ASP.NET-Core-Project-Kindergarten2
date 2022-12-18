@@ -62,36 +62,55 @@ namespace Kindergarten2.Controllers
 
 		}
 
-		//[Authorize]
-		//public ActionResult Delete(int id)
-		//{
-		//	var child = this.children.Deatails(id);
+		[Authorize]
+		public ActionResult Delete(int id)
+		{
+			var child = this.children.Deatails(id);
 
-		//	return View(child);
-		//}
 
-		//// POST: /Movies/Delete/5
-		//[HttpPost, ActionName("Delete")]
-		//[ValidateAntiForgeryToken]
-		//public ActionResult Delete(int id, ChildFormModel child)
-		//{
-		//	var userId = this.User.Id();
+			if (child == null)
+			{
+				return BadRequest();
+			}
 
-		//	if (!this.parents.IsParent(userId) && !User.IsAdmin())
-		//	{
-		//		return RedirectToAction(nameof(ParentsController.Become), "Parents");
-		//	}
 
-		//	var childData = this.children.Deatails(id);
+			return View(new ChildDetailsServiceModel
 
-		//	if (childData.UserId != userId && !User.IsAdmin())
-		//	{
-		//		return Unauthorized();
-		//	}
+			{
+				FirstName = child.FirstName,
+				MiddleName = child.MiddleName,
+				LastName = child.LastName,
+				Age = child.Age,
+				ECAId = child.ECAId,
+				TripId = child.TripId,
+				GroupId = child.GroupId,
+				MenuId = child.MenuId,
+				Id = child.Id,
+			});
+		}
 
-		//	this.children.Delete(id);
-		//	return RedirectToAction(nameof(Mine));
-		//}
+
+
+		[Authorize]
+		[HttpPost]
+		public IActionResult Delete(ChildDetailsServiceModel model)
+		{
+			var userId = this.User.Id();
+
+			if (!this.parents.IsParent(userId) && !User.IsAdmin())
+			{
+				return RedirectToAction(nameof(ParentsController.Become), "Parents");
+			}
+
+			var childData = this.children.Deatails(model.Id);
+
+			if (childData.UserId != userId && !User.IsAdmin())
+			{
+				return Unauthorized();
+			}
+			this.children.Delete(model.Id);
+			return RedirectToAction(nameof(All));
+		}
 
 		[Authorize]
 

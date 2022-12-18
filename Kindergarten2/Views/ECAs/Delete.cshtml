@@ -1,4 +1,4 @@
-﻿@model TripServiceModel
+﻿@model ECAServiceModel
 
 @{
     ViewData["Title"] = "Delete";
@@ -17,6 +17,6 @@
     <form asp-action="Delete">
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         @Html.HiddenFor(model=>model.Id)
-        <a  href="/Trips/All" class="btn btn-warning">Back to List</a>
+        <a  href="/ECAs/All" class="btn btn-warning">Back to List</a>
     </form>
 </div>

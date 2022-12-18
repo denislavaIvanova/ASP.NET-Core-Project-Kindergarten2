@@ -113,11 +113,18 @@ namespace Kindergarten2.Controllers
 
 		}
 
-		// GET: /Movies/Delete/5
+		[Authorize(Roles = AdministratorRoleName)]
 		public IActionResult Delete(int id)
 		{
 
 			var trip = data.Trips.Find(id);
+
+			if (trip == null)
+			{
+				return BadRequest();
+			}
+
+
 
 			return View(new TripServiceModel
 
@@ -131,18 +138,6 @@ namespace Kindergarten2.Controllers
 			});
 		}
 
-
-
-		// POST: /Movies/Delete/5
-		//[HttpDelete, ActionName("DeleteConfirmed")]
-		//[ValidateAntiForgeryToken]
-		//public IActionResult DeleteConfirmed(int id)
-		//{
-		//	var trip = data.Trips.Find(id);
-		//	data.Trips.Remove(trip);
-		//	data.SaveChanges();
-		//	return RedirectToAction("All");
-		//}
 
 		[Authorize(Roles = AdministratorRoleName)]
 		[HttpPost]

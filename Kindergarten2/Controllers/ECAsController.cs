@@ -112,14 +112,37 @@ namespace Kindergarten2.Controllers
 
 		}
 
-
 		[Authorize(Roles = AdministratorRoleName)]
-		[HttpPost]
-		[HttpDelete]
 		public IActionResult Delete(int id)
 		{
 
-			this.ECAs.Delete(id);
+			var ECA = this.data.ECAs.Find(id);
+
+			if (ECA == null)
+			{
+				return BadRequest();
+			}
+
+			return View(new ECAServiceModel
+
+			{
+				Title = ECA.Title,
+				Description = ECA.Description,
+				Id = ECA.Id,
+				ImageUrl = ECA.ImageUrl,
+				MonthlyFee = ECA.MonthlyFee
+			});
+		}
+
+
+
+
+		[Authorize(Roles = AdministratorRoleName)]
+		[HttpPost]
+		public IActionResult Delete(ECAServiceModel model)
+		{
+
+			this.ECAs.Delete(model.Id);
 			return RedirectToAction(nameof(All));
 		}
 	}

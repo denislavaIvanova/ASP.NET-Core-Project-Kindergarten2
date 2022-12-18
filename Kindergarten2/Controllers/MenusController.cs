@@ -110,12 +110,36 @@ namespace Kindergarten2.Controllers
 		}
 
 		[Authorize(Roles = AdministratorRoleName)]
-		[HttpPost]
-		[HttpDelete]
 		public IActionResult Delete(int id)
 		{
 
-			this.menus.Delete(id);
+			var menu = this.data.Menus.Find(id);
+
+			if (menu == null)
+			{
+				return BadRequest();
+			}
+
+			return View(new MenuServiceModel
+
+			{
+				MenuType = menu.MenuType,
+				Description = menu.Description,
+				Id = menu.Id,
+				ImageUrl = menu.ImageUrl,
+				Price = menu.Price
+			});
+		}
+
+
+
+
+		[Authorize(Roles = AdministratorRoleName)]
+		[HttpPost]
+		public IActionResult Delete(MenuServiceModel model)
+		{
+
+			this.menus.Delete(model.Id);
 			return RedirectToAction(nameof(All));
 		}
 	}

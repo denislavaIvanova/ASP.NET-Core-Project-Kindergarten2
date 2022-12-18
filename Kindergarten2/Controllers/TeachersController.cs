@@ -134,12 +134,38 @@ namespace Kindergarten2.Controllers
 		}
 
 		[Authorize(Roles = AdministratorRoleName)]
-		[HttpPost]
-		[HttpDelete]
 		public IActionResult Delete(int id)
 		{
 
-			this.teachers.Delete(id);
+			var teacher = data.Teachers.Find(id);
+
+			if (teacher == null)
+			{
+				return BadRequest();
+			}
+
+
+
+			return View(new TeacherServiceModel
+
+			{
+				FirstName = teacher.FirstName,
+				LastName = teacher.LastName,
+				Id = teacher.Id,
+				ImageUrl = teacher.ImageUrl,
+				Experience = teacher.Experience,
+				Introduction = teacher.Introduction,
+				Specialization = teacher.Specialization
+			});
+		}
+
+
+		[Authorize(Roles = AdministratorRoleName)]
+		[HttpPost]
+		public IActionResult Delete(TeacherServiceModel model)
+		{
+
+			this.teachers.Delete(model.Id);
 			return RedirectToAction(nameof(All));
 		}
 
