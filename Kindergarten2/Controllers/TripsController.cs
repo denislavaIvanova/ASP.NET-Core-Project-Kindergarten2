@@ -143,7 +143,6 @@ namespace Kindergarten2.Controllers
 		[HttpPost]
 		public IActionResult Delete(TripServiceModel model)
 		{
-
 			this.trips.Delete(model.Id);
 			return RedirectToAction(nameof(All));
 		}

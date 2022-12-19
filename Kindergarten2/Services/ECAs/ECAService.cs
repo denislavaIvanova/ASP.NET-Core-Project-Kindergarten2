@@ -5,6 +5,7 @@ namespace Kindergarten2.Services.ECAs
 	using Kindergarten2.Data;
 	using Kindergarten2.Data.Models;
 	using Kindergarten2.Models.ECAs;
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	public class ECAService : IECAService
@@ -122,6 +123,12 @@ namespace Kindergarten2.Services.ECAs
 		public void Delete(int id)
 		{
 			var ECAToDelete = this.data.ECAs.Find(id);
+
+			if (this.data.ECAs.Where(e => e.Id == id && e.Children.Count() > 0).Any())
+			{
+				throw new UnauthorizedAccessException("Unable to delete an entry currently used by a child.");
+
+			}
 
 			this.data.ECAs.Remove(ECAToDelete);
 

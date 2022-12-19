@@ -5,8 +5,10 @@ namespace Kindergarten2.Services.Trips
 	using Kindergarten2.Data;
 	using Kindergarten2.Data.Models;
 	using Kindergarten2.Models.Trips;
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+
 	public class TripService : ITripService
 	{
 		private readonly KindergartenDbContext data;
@@ -100,6 +102,12 @@ namespace Kindergarten2.Services.Trips
 		public void Delete(int id)
 		{
 			var tripToDelete = this.data.Trips.Find(id);
+
+			if (this.data.Trips.Where(t => t.Id == id && t.Children.Count() > 0).Any())
+			{
+				throw new UnauthorizedAccessException("Unable to delete an entry currently used by a child.");
+
+			}
 
 			this.data.Trips.Remove(tripToDelete);
 

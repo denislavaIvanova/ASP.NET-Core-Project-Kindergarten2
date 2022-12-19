@@ -3,6 +3,7 @@
 	using Kindergarten2.Data;
 	using Kindergarten2.Data.Models;
 	using Kindergarten2.Models.Menus;
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 
@@ -117,6 +118,12 @@
 		public void Delete(int id)
 		{
 			var menuToDelete = this.data.Menus.Find(id);
+
+			if (this.data.Menus.Where(m => m.Id == id && m.Children.Count() > 0).Any())
+			{
+				throw new UnauthorizedAccessException("Unable to delete an entry currently used by a child.");
+
+			}
 
 			this.data.Menus.Remove(menuToDelete);
 
